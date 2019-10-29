@@ -30,7 +30,7 @@
         
 		<org-jdom>1.1.3</org-jdom>
 		
-		<version-fastjson>1.2.6</version-fastjson>
+		<version-fastjson>1.2.25</version-fastjson>
 		
 		<version-com-ning>1.8.13</version-com-ning>
 		
