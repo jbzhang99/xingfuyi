@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.member.MemberCollectionSellerWriteDao">
+	<resultMap id="MemberCollectionSellerResult" type="com.yixiekeji.entity.member.MemberCollectionSeller">
+			<result property="id" column="id" />
+			<result property="memberId" column="member_id" />
+			<result property="sellerId" column="seller_id" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+			<result property="state" column="state" />
+	</resultMap>
+
+	<select id="get" parameterType="Integer" resultMap="MemberCollectionSellerResult">
+		select
+		   *
+		from `member_collection_seller`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getBySellerIdAndMId" resultMap="MemberCollectionSellerResult">
+		select
+		   *
+		from `member_collection_seller`
+		where `seller_id` = #{sellerId}
+		and `member_id` = #{memberId}
+	</select>
+
+	<update id="update" parameterType="com.yixiekeji.entity.member.MemberCollectionSeller">
+        update `member_collection_seller` 
+    	<set>
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="sellerId != null">`seller_id`= #{sellerId},</if>
+			<!-- <if test="createTime != null">`create_time`= #{createTime},</if> -->
+			<if test="state != null">`state`= #{state},</if>
+			`update_time`= now()
+	    </set>
+        where `id` = #{id}
+	</update>
+
+	<insert id="save" parameterType="com.yixiekeji.entity.member.MemberCollectionSeller" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`member_collection_seller`
+		(
+			`member_id`,
+			`seller_id`,
+			`create_time`,
+			`update_time`,
+			`state`
+		)
+		values
+		(
+			#{memberId},
+			#{sellerId},
+			now(),
+			now(),
+			#{state}
+		)
+	</insert>
+
+	<update id="cancelCollectionSeller">
+        update `member_collection_seller` 
+		set `state`= 2,
+			`update_time`= now()
+        where `seller_id` = #{sellerId}
+		and `member_id` = #{memberId}
+	</update>
+</mapper>

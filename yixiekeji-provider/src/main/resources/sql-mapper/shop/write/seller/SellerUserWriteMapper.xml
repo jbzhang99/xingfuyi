@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.seller.SellerUserWriteDao">
+	<resultMap id="SellerUserResult" type="com.yixiekeji.entity.seller.SellerUser">
+			<result property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="password" column="password" />
+			<result property="code" column="code" />
+			<result property="realName" column="real_name" />
+			<result property="phone" column="phone" />
+			<result property="job" column="job" />
+			<result property="sellerId" column="seller_id" />
+			<result property="roleId" column="role_id" />
+			<result property="state" column="state" />
+			<result property="createId" column="create_id" />
+			<result property="createTime" column="create_time" />
+			<result property="updateId" column="update_id" />
+			<result property="updateTime" column="update_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SellerUserResult">
+		select
+		   *
+		from `seller_user`
+		where `id` = #{id}
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.seller.SellerUser">
+        update `seller_user` 
+    	<set>
+			<!-- <if test="id != null">`id`= #{id},</if> -->
+			<if test="name != null">`name`= #{name},</if>
+			<if test="password != null">`password`= #{password},</if>
+			<if test="code != null">`code`= #{code},</if>
+			<if test="realName != null">`real_name`= #{realName},</if>
+			<if test="phone != null">`phone`= #{phone},</if>
+			<if test="job != null">`job`= #{job},</if>
+			<if test="sellerId != null">`seller_id`= #{sellerId},</if>
+			<if test="roleId != null">`role_id`= #{roleId},</if>
+			<if test="state != null">`state`= #{state},</if>
+			<!-- <if test="createId != null">`create_id`= #{createId},</if>
+			<if test="createTime != null">`create_time`= #{createTime},</if> -->
+			<if test="updateId != null">`update_id`= #{updateId},</if>
+			<!-- <if test="updateTime != null">`update_time`= #{updateTime}</if> -->
+			`update_time`= now()
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.seller.SellerUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into `seller_user`
+		(
+			`name`,
+			`password`,
+			`code`,
+			`real_name`,
+			`phone`,
+			`job`,
+			`seller_id`,
+			`role_id`,
+			`state`,
+			`create_id`,
+			`create_time`,
+			`update_id`,
+			`update_time`
+		)
+		values
+		(
+			#{name},
+			#{password},
+			#{code},
+			#{realName},
+			#{phone},
+			#{job},
+			#{sellerId},
+			#{roleId},
+			#{state},
+			#{createId},
+			now(),
+			#{updateId},
+			now()
+		)
+	</insert>
+	
+	<delete id="del">
+        delete from `seller_user` where `id` = #{id}
+	</delete>
+	
+	<select id="getCountByRoleId" resultType="java.lang.Integer">
+		select count(1) from `seller_user` where `role_id` = #{roleId}
+	</select>
+	
+</mapper>

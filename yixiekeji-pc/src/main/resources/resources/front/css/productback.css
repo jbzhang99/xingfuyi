@@ -1,0 +1,260 @@
+.apply-form {
+	padding-top: 10px;
+}
+
+.list-proinfo {
+	text-align: left;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.list-proinfo {
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+
+.list-proinfo .p-info-name {
+	display: inline-block;
+	/*width: 150px;*/
+	height: 36px;
+	line-height: 18px;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.p-info-name a {
+	color: #005ea7;
+}
+
+.apply-form .sellerPrompt {
+	display: block;
+	margin-bottom: 20px;
+	line-height: 30px;
+	height: 30px;
+	font-family: "宋体";
+}
+
+.apply-form .sellerPrompt  span.label {
+	float: left;
+	line-height: 18px;
+	padding: 6px 0;
+	text-align: right;
+	color: #666;
+	font-weight: 400;
+	font-size: 100%;
+}
+
+.apply-form .sellerPrompt span em {
+	color: red;
+}
+
+.apply-form .sellerPrompt .label {
+	width: 122px;
+}
+
+label {
+	font-weight: 400;
+}
+
+.apply-form .repair-steps {
+	padding: 5px 10px;
+}
+
+.repair-steps .edit-mess {
+	color: #459ae9;
+}
+
+.apply-form .repair-steps .repair-step {
+	padding: 20px 9px 0;
+	margin: -5px -10px 15px;
+	border: 1px solid #e6e6e6;
+}
+
+.apply-form .repair-steps .repair-step-curr {
+	border: 1px solid #F49299;
+}
+
+.sellerPrompt .fl {
+	/* width:460px; */
+	
+}
+
+.list-type li {
+	float: left;
+	margin-right: 14px;
+}
+
+.list-type-new li {
+	position: relative;
+	white-space: nowrap;
+}
+
+.list-type-new li a {
+	display: block;
+	border: 1px solid #ebebeb;
+	text-align: center;
+	/*height: 18px;*/
+	line-height: 18px;
+	padding: 6px 28px;
+	color: #666;
+}
+
+.list-type-new li.selected a {
+	border: 2px solid #e4393c;
+	padding: 6px 27px;
+}
+
+.list-type-new .selected b {
+	background: url(../img/cart-icons-new.png) -201px -286px;
+	bottom: 0;
+	height: 12px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	width: 12px;
+}
+
+.decrement, .increment {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	overflow: hidden;
+	line-height: 13px;
+	text-align: center;
+	border: 1px solid #c9c9c9;
+	margin-right: 2px;
+	vertical-align: middle;
+}
+
+.quantity-form a:hover {
+	color: #666;
+}
+
+.quantity-form .apply-text {
+	width: 30px;
+	margin-right: 3px;
+	text-align: center;
+	padding: 1px 5px;
+	height: 22px;
+	line-height: 17px;
+	border: 1px solid #c9c9c9;
+	outline: none;
+}
+
+.sellerPrompt .miaoshu-text {
+	width: 450px;
+	height: 90px;
+	resize: none;
+	outline: none;
+	padding: 5px;
+}
+
+.ar {
+	float: right;
+	margin-right: 9px;
+	color: #666;
+}
+
+.imgUploadAdd {
+	width: 80px;
+	height: 80px;
+	border: 1px dashed #F49299;
+	margin-right: 20px;
+	position: relative;
+	float: left;
+}
+
+.imgUploadAdd img {
+	float: left;
+	margin-right: 10px;
+}
+
+.apply-form .imgUpBox {
+	height: 150px;
+}
+
+.apply-form .imgUpBox span.label {
+	/*line-height:60px; */
+	
+}
+
+.imgUpBtn {
+	height: 32px;
+	margin-bottom: 10px;
+	background: #eee;
+	width: 100px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.imgUpBtn input {
+	position: absolute;
+	border: 0;
+	opacity: 0;
+	margin-top: -32px;
+	width: 100px;
+	cursor: pointer;
+	height: 32px;
+}
+
+.sellerPrompt .check {
+	vertical-align: middle;
+	margin: 0 3px 0px 0px;
+}
+
+.apply-form .selt {
+	line-height: 18px;
+	border: 1px solid #ccc;
+	padding: 5px;
+	vertical-align: middle;
+	float: none;
+	outline: none;
+}
+
+.sellerPrompt .address-input {
+	width: 300px;
+	height: 35px;
+}
+
+.sellerPrompt input {
+	border: 1px solid #ddd;
+	outline: none;
+	padding: 4px;
+	height: 30px;
+}
+
+.btn-7 {
+	padding: 6px 22px;
+	background: #edecf1;
+}
+
+.btn-7:hover {
+	background: #edecf1;
+}
+
+.error-msg {
+	height: 25px;
+	line-height: 18px;
+	vertical-align: middle;
+	overflow: hidden;
+	border: 0px solid #ffbdbe;
+	background: #ffebeb;
+	color: #e4393c;
+	padding: 3px 7px 2px;
+	margin-left: 5px;
+}
+
+.button-center {
+	width: 75px;
+	margin: 0 auto;
+}
+
+.list-group-item2 {
+	display: block;
+	padding: 10px 15px;
+	background-color: #fff;
+}
+
+.list-group-item2 .complain-title {
+	width: 120px;
+}

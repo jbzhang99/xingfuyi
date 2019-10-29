@@ -1,0 +1,305 @@
+/*满屏*/
+html, body {
+	height: 100%;
+}
+
+i {
+	font-style: normal;
+}
+/*隐藏所有的商品区块*/
+.section {
+	display: none;
+}
+
+.active {
+	display: block;
+}
+/*广告图*/
+.ad-img {
+	width: 100%;
+	overflow: hidden;
+}
+
+.ad-img a {
+	width: 100%;
+	overflow: hidden;
+}
+
+.ad-img a img {
+	width: 100%;
+}
+/*时间段秒杀*/
+.topfixed {
+	position: static;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+	height: 50px;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.category-time {
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+}
+
+.product-ul {
+	display: flex;
+	/*width: 100%;*/
+	overflow: hidden;
+	font-family: Arial
+}
+
+.product-ul li {
+	/*flex: 1;*/
+	text-align: center;
+	/*width: 80px;*/
+	float: left;
+	height: 100%;
+}
+
+.product-ul li p:nth-child(1) {
+	font-size: 17px;
+	line-height: 20px;
+	font-weight: bold;
+	margin-top: 7px;
+}
+
+.product-ul li p:nth-child(2) {
+	font-size: 11px;
+}
+
+.product-ul li.curent {
+	color: #F23030;
+}
+
+.product-ul li.curent p:nth-child(1) {
+	font-size: 23px;
+	line-height: 20px;
+	font-weight: bold;
+	margin-top: 6px;
+}
+
+/*主体*/
+.sk-category {
+	height: 100%;
+	width: 100%;
+	/*padding-top: 50px;*/
+}
+
+.sk-disalbed {
+	background-color: rgb(255, 255, 255);
+	border: 1px solid gray;
+	color: gray;
+}
+
+/*倒计时*/
+.timer {
+	padding: 0 10px;
+	overflow: hidden;
+	height: 28px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.timer>span {
+	float: left;
+	line-height: 28px;
+	color: #F23030;
+}
+
+.time-item {
+	display: inline-block;
+	line-height: 25px;
+	height: 25px;
+	float: right;
+}
+
+.time-item strong {
+	background: #000;
+	color: #fff;
+	width: 18px;
+	height: 16px;
+	font-size: 10px;
+	line-height: 16px;
+	text-align: center;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 0 2px;
+}
+/*.item-title .unit {
+    background:none;
+    line-height:49px;
+    font-size:24px;
+    padding:0 10px;
+    float:left;
+}
+*/
+
+/*列表切换*/
+.item-ul {
+	padding: 0 10px;
+}
+
+li.item-list {
+	padding: 15px 0;
+	position: relative;
+}
+
+.list-a {
+	display: block;
+	overflow: hidden;
+}
+
+.a-img {
+	width: 102px;
+	height: 102px;
+	margin-right: 4px;
+}
+
+.list-pic {
+	position: relative;
+	float: left;
+	display: inline-block;
+}
+
+.list-pic em {
+	position: absolute;
+	top: 0px;
+	left: 2px;
+}
+
+.supor {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background: url(../img/skillnew.fw.png) no-repeat;
+	background-size: 40px 40px;
+	text-align: center;
+}
+
+.buyhot {
+	display: inline-block;
+	width: 29px;
+	height: 36px;
+	background: url(../img/bg_yellow.fw.png) no-repeat;
+	background-size: 29px 36px;
+}
+
+.mdp {
+	display: inline-block;
+	width: 29px;
+	height: 36px;
+	background: url(../img/bg_dp.fw.png) no-repeat;
+	background-size: 29px 36px;
+}
+
+.list-tit {
+	height: 32px;
+	overflow: hidden;
+	font-size: 14px;
+	color: #252525;
+	line-height: 16px;
+	margin-bottom: 5px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.list-price {
+	margin: 25px 0 0px;
+	color: #f23030;
+	font-size: 20px;
+}
+
+.doller {
+	font-size: 11px;
+}
+
+.skill-price {
+	overflow: hidden;
+}
+
+.g-price-odd {
+	color: #848689;
+	float: left;
+}
+
+.skill-lod {
+	float: right;
+	font-size: 10px;
+	color: #848689;
+}
+
+.btn-slid {
+	display: inline-block;
+	text-decoration: none;
+	width: 62px;
+	height: 27px;
+	line-height: 27px;
+	text-align: center;
+	overflow: hidden;
+	position: absolute;
+	bottom: 40px;
+	right: 0px;
+	border: 1px solid #f15353;
+	color: #f15353;
+	border-radius: 5px;
+	font-size: 12px;
+}
+
+.btn-slid:hover {
+	color: #f15353;
+}
+
+.seconds-kill-over {
+	position: absolute;
+	bottom: 9px;
+	color: #FFF;
+	font-size: 13px;
+	height: 24px;
+	width: 102px;
+	bottom: 15px;
+}
+
+.seconds-kill-over p {
+	position: absolute;
+	width: 100%;
+	height: 24px;
+	line-height: 24px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: rgba(0, 0, 0, .8);
+	bottom: 0px;
+	opacity: .8;
+	-webkit-border-radius: 0 0 3px 3px;
+	-moz-border-radius: 0 0 3px 3px;
+	border-radius: 0 0 3px 3px;
+}
+
+.btn-slid.bg-red {
+	color: #fff;
+	background-color: #f15353;
+}
+
+.loding-btn {
+	width: 100%;
+	height: 50px;
+	position: relative;
+}
+
+.loding-btn .loding-a {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 50%;
+	margin-left: -25px;
+}
+
+.noactive {
+	margin: 0px 35%;
+	font-size: 18px;
+}

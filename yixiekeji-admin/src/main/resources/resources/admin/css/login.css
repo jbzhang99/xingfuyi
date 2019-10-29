@@ -1,0 +1,112 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif;
+	color: #666;
+}
+
+.login-form {
+	width: 400px;
+	min-height: 240px;
+	margin: 80px auto;
+	background: #fff;
+	padding: 30px 70px 24px 70px;
+	box-shadow: -2px -2px 8px #cacaca, 0px 2px 8px #888;
+	box-sizing: border-box;
+}
+
+.tit {
+	font-size: 18px;
+	text-align: left;
+	padding-left: 40px;
+	background: url(../images/logo1.png) no-repeat 0px 0px;
+	background-size: 32px 32px;
+	line-height: 36px;
+	padding-bottom: 10px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.form-group input {
+	height: 32px;
+	padding-left: 30px;
+	border: 1px solid #e0e0e0;
+	width: 218px;
+}
+
+.form-group i {
+	position: absolute;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background-repeat: no-repeat;
+	background-position: 6px 6px;
+	background-size: 20px 20px;
+}
+
+.i-username {
+	background-image: url(../images/logo2.png);
+}
+
+.i-password {
+	background-image: url(../images/logo3.png);
+}
+
+.i-viricode {
+	background-image: url(../images/logo4.png);
+}
+
+.erro {
+	font-size: 12px;
+	color: red;
+	line-height: 20px;
+	position: absolute;
+}
+
+.btn-login {
+	background: #3879D9;
+	color: #fff;
+	margin-left: 80px;
+	border: 1px solid #e0e0e0;
+	padding: 6px 18px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.nav-tit {
+	background: #0061AC;
+	height: 100px;
+}
+
+.w {
+	width: 1200px;
+	margin: 0 auto;
+	text-align: center;
+	color: #fff;
+	font-size: 22px;
+	letter-spacing: 2px;
+	line-height: 110px;
+	position: relative;
+}
+
+.w img {
+	position: absolute;
+	width: 40px;
+	top: 38px;
+	left: 356px;
+}
+
+.botm-copy {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -253px;
+	text-align: center;
+	font-size: 14px;
+}

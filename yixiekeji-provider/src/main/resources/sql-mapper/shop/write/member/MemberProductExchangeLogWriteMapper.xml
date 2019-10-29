@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.member.MemberProductExchangeLogWriteDao">
+	<resultMap id="MemberProductExchangeLogResult" type="com.yixiekeji.entity.member.MemberProductExchangeLog">
+			<result property="id" column="id" />
+			<result property="operatingId" column="operating_id" />
+			<result property="operatingName" column="operating_name" />
+			<result property="memberProductExchangeId" column="member_product_exchange_id" />
+			<result property="content" column="content" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="MemberProductExchangeLogResult">
+		select
+		   *
+		from `member_product_exchange_log`
+		where `id` = #{id}
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.member.MemberProductExchangeLog">
+        update `member_product_exchange_log` 
+    	<set>
+			<!-- <if test="id != null">`id`= #{id},</if> -->
+			<if test="operatingId != null">`operating_id`= #{operatingId},</if>
+			<if test="operatingName != null">`operating_name`= #{operatingName},</if>
+			<if test="memberProductExchangeId != null">`member_product_exchange_id`= #{memberProductExchangeId},</if>
+			<if test="content != null">`content`= #{content},</if>
+			<!-- <if test="createTime != null">`create_time`= #{createTime}</if> -->
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.member.MemberProductExchangeLog" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`member_product_exchange_log`
+		(
+			
+			`operating_id`,
+			`operating_name`,
+			`member_product_exchange_id`,
+			`content`,
+			`create_time`
+		)
+		values
+		(
+			
+			#{operatingId},
+			#{operatingName},
+			#{memberProductExchangeId},
+			#{content},
+			now()
+		)
+	</insert>
+	
+	<delete id="delete">
+        delete from `member_product_exchange_log` where `id` = #{id}
+	</delete>
+	
+</mapper>

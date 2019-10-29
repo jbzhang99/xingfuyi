@@ -1,0 +1,352 @@
+.reminder-con {
+    border: 1px solid #ddd;
+}
+.reminder-con h3 {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+.reminder-con .con {
+    padding: 10px;
+}
+.reminder-con .con p {
+    line-height: 26px;
+}
+.reminder-conbotm {
+    margin-top: 20px;
+    padding-bottom: 15px;
+}
+.cb-item {
+    padding: 5px 10px;
+}
+.cb-item .examineStatus {
+    color: red;
+}
+.cb-item .examineInfo {
+    color: #000;
+}
+.cb-item label {
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    float:left;
+    line-height:25px;
+}
+.cb-item label.error {
+	width: auto;
+}
+.cb-item label i {
+    color: red;
+}
+.cb-item .ipt-con {
+    display: inline-block;
+    width: 800px;
+    height: 25px;
+    line-height: 25px;
+    padding-left:10px;
+}
+.cb-item .ipt-con select {
+    height: 25px;
+    line-height: 25px;
+    width: 200px;
+    outline: none;
+}
+.cb-item .ipt-con input[type="text"] {
+    height: 25px;
+    line-height: 25px;
+    width: 400px;
+    outline: none;
+    padding: 0 2px;
+    float:left;
+}
+.cb-item .ipt-con input[type="file"] {
+    height: 25px;
+    line-height: 25px;
+    outline: none;
+}
+.pTip {
+    margin-left: 110px;
+    color: red;
+}
+.mybalance-accrued, .mybalance-withdraw {
+    float: left;
+    padding: 48px 42px 26px;
+    width: 420px;
+}
+.bottomline-dot {
+    border-bottom: 1px dotted #ebebeb;
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+}
+.mybalance-title {
+    float: left;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    margin-right: 17px;
+    border-radius: 3px;
+    margin-top: 9px;
+}
+.mybalance-title__accrued {
+    background: #f2c90c;
+    color: #fff;
+}
+.mybalance-info {
+    float: left;
+}
+.balancecash {
+    font-size: 30px;
+    color: #000;
+    font-weight: 700;
+    height: 45px;
+    line-height: 45px;
+}
+.balancecash .pricetag {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.accrued-rules dt {
+    float: left;
+    font-weight: normal;
+}
+.accrued-rules dd {
+    float: right;
+    width: 150px;
+    text-align: left;
+    clear: both;
+    margin-right: 17px;
+    margin-bottom: 10px;
+}
+.iconadd {
+    background: url(../img/iconadd.png) no-repeat;
+}
+.icon-clock {
+    display: inline-block;
+    width: 13px;
+    height: 14px;
+    background-position: 0 -3px;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+.icon-check {
+    display: inline-block;
+    background-position: right;
+    width: 16px;
+    height: 19px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+h3.mybalance-title__accrued {
+    background: #d7000f;
+    color: #fff;
+}
+h3.mybalance-title {
+    padding: 0;
+    float: left;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    margin-right: 17px;
+    border-radius: 3px;
+    margin-top: 9px;
+    font-size: 12px;
+}
+h3.mybalance-title__cash {
+    background: #2ec55c;
+    color: #fff;
+}
+.btn-getcash, .exportorders {
+    padding: 5px 37px;
+    cursor: pointer;
+}
+.btn-getcash {
+    position: absolute;
+    border: 1px solid #b2b2b2;
+    border-radius: 3px;
+    margin-left: 91px;
+    margin-top: 8px;
+    background: #f1f1f1;
+    right: 142px;
+}
+.btn-getcash, .btnaera, .warn-notice {
+    position: absolute;
+}
+.nomoney {
+    margin-left: 19px;
+}
+.warn-notice {
+    width: 325px;
+    color: #d20201;
+}
+.bt {
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    background-color: #d7000f;
+    width: 99px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+bt:link,.bt:visited,.bt:hover,.bt:active{
+	color:#fff
+}
+.balancecash-money {
+    color: #000;
+    font-size: 1.6em;
+    font-weight: 700;
+}
+.balancecash-money .pricetag {
+    font-size: 1em;
+    font-weight: 400;
+}
+.balancecash-status {
+    margin-left: 10px;
+}
+.balancecash-info {
+    float: right;
+    text-align: left;
+    width: 160px;
+    overflow: hidden;
+    height: 22px;
+    line-height: 22px;
+}
+.balancecash-info,
+.balancecash-money,
+.balancecash-status {
+    display: inline-block;
+}
+.mybalance-withdraw {
+    padding: 48px 42px 26px;
+    width: 580px;
+    border-left: 1px solid #ebebeb;
+    position: relative;
+}
+.result-head {
+    font-weight: 400;
+    line-height: 40px;
+    background: #eaeaea;
+    text-align: center;
+    border-right: 1px solid #e2e2e2;
+}
+table.searchlist-result {
+    font-family: verdana,arial,sans-serif;
+    width: 98%;
+    margin: 10px auto;
+    font-size:11px;
+    color:#333333;
+    border-width: 0px;
+    border-collapse: collapse;
+}
+table.searchlist-result th {
+    text-align: center;
+    border-width: 1px;
+    padding: 8px;
+    width: 10%;
+    border-style: solid;
+    border-color: #e2e2e2;
+    background-color:#eaeaea;
+}
+table.searchlist-result th.th-cell-with {
+    width: 15%;
+}
+table.searchlist-result th.th-cell-with20 {
+    width: 20%;
+}
+table.searchlist-result td {
+    text-align: center;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #e2e2e2;
+    background-color: #ffffff;
+}
+.benefitboa {
+    padding: 0 20px 20px;
+}
+.benefit {
+    margin-top: 20px;
+    font-size: 13px;
+}
+.benefit p {
+    margin-top: 5px;
+    line-height: 21px;
+}
+.benefit p.tit {
+    font-weight: 700;
+}
+.derailedCon {
+    margin-bottom: -10px;
+    padding: 10px;
+}
+.mybalance-search {
+    position: relative;
+}
+.mybalance-search .searchItm {
+    display: inline-block;
+    padding:10px;
+    width: 335px;
+}
+.mybalance-search .btnaera {
+    display:inline-block;
+    position:static;
+}
+.search-lable {
+    display: inline-block;
+    width: 72px;
+    text-align: right;
+}
+.searchItm input[type="text"] {
+    width: 100px;
+    outline: none;
+    border-radius: 0;
+    height: 22px;
+    line-height: 22px;
+}
+.searchItm input[type="text"].search__odn {
+    width: 155px;
+    outline: none;
+    border-radius: 0;
+    height: 22px;
+    line-height: 22px;
+}
+.searchItm select {
+    width: 155px;
+    outline: none;
+    border-radius: 0;
+    height: 22px;
+    line-height: 22px;
+}
+#buttonSubmit {
+	margin-right: 30px;
+	border-radius: 4px;
+	font-size: 12px;
+	padding:0 10px;
+	height:30px;
+	line-height:30px;
+}
+#buttonSaleSubmit {
+	padding:0 10px;
+	height:30px;
+	line-height:30px;
+	font-size: 12px;
+}
+.colftbtn:link,
+.colftbtn:visited {
+	color: #fff;
+}
+.colftbtn {
+	font-size: 12px;
+	padding:0 10px;
+	height:30px;
+	line-height:30px;
+	color: #fff;
+}
+.textcter {
+	text-align:center;
+}

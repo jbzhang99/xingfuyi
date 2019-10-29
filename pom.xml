@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.yixiekeji</groupId>
+  <artifactId>yixiekeji</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>yixiekeji</name>
+  
+  <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.7.RELEASE</version>
+        <relativePath/>
+    </parent>
+    
+  <properties>
+     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
+        
+        <mybatis-spring-cloud>1.3.2</mybatis-spring-cloud>
+        
+        <com-google-zxing>3.2.1</com-google-zxing>
+        <com-belerweb>2.5.0</com-belerweb>
+        
+        <org-apache-poi>3.10-FINAL</org-apache-poi>
+        <org-apache-poi-ooxml>3.9</org-apache-poi-ooxml>
+        
+		<org-jdom>1.1.3</org-jdom>
+		
+		<version-fastjson>1.2.6</version-fastjson>
+		
+		<version-com-ning>1.8.13</version-com-ning>
+		
+		<version-cglib>2.2.2</version-cglib>
+		
+		<version-beanutils>1.9.2</version-beanutils>
+        <version-mybatis>1.3.2</version-mybatis>
+        <version-druid>1.1.9</version-druid>
+        
+        <shiro-core.version>1.4.0</shiro-core.version>
+        <shiro-spring.version>1.4.0</shiro-spring.version>
+        <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
+        <jsp-api.version>2.0</jsp-api.version>
+  </properties>
+  
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring-cloud}</version>
+        </dependency>
+        
+        <!-- gson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${version-fastjson}</version>
+		</dependency>
+		
+		<!-- 拼音 -->
+	    <dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>${com-belerweb}</version>
+		</dependency>
+		
+		<!-- 二维码生成器 -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>${com-google-zxing}</version>
+		</dependency>
+		
+		<!-- Excel导入导出 -->
+		<dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${org-apache-poi}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${org-apache-poi-ooxml}</version>
+        </dependency>
+		
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>${org-jdom}</version>
+         </dependency>
+		 
+		 <dependency>
+			<groupId>com.ning</groupId>
+			<artifactId>async-http-client</artifactId>
+			<version>${version-com-ning}</version>
+		</dependency>
+
+		 <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${version-beanutils}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${version-mybatis}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${version-druid}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp-api.version}</version>
+        </dependency>
+        
+        <dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>${shiro-core.version}</version>
+		</dependency>
+		<dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro-spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro-ehcache.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${version-cglib}</version>
+        </dependency>
+            
+  	   </dependencies>
+    </dependencyManagement>
+    
+  <modules>
+  	<module>yixiekeji-core</module>
+  	<module>yixiekeji-eureka</module>
+  	<module>yixiekeji-service</module>
+  	<module>yixiekeji-provider</module>
+  	<module>yixiekeji-admin</module>
+  	<module>yixiekeji-seller</module>
+  	<module>yixiekeji-pc</module>
+  	<module>yixiekeji-h5</module>
+  	<module>yixiekeji-app</module>
+  	<module>yixiekeji-mobile</module>
+  </modules>
+  
+</project>

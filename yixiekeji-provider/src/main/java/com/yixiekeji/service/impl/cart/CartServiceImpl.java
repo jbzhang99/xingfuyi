@@ -1,0 +1,242 @@
+package com.yixiekeji.service.impl.cart;
+
+import com.yixiekeji.core.ConstantsEJS;
+import com.yixiekeji.core.ServiceResult;
+import com.yixiekeji.core.exception.BusinessException;
+import com.yixiekeji.entity.cart.Cart;
+import com.yixiekeji.entity.member.MemberAddress;
+import com.yixiekeji.model.cart.CartModel;
+import com.yixiekeji.service.cart.ICartService;
+import com.yixiekeji.vo.cart.CartInfoVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@RestController
+public class CartServiceImpl implements ICartService {
+    private static Logger log = LoggerFactory.getLogger(CartServiceImpl.class);
+
+    @Resource
+    private CartModel     cartModel;
+
+    @Override
+    public ServiceResult<Integer> addToCart(@RequestBody Cart cart) {
+        ServiceResult<Integer> result = new ServiceResult<Integer>();
+        try {
+            result.setResult(cartModel.addToCart(cart));
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error("[CartService][addToCart]添加商品到购物车时发生异常:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][addToCart]添加商品到购物车时发生异常:", e);
+        }
+        return result;
+    }
+
+    @Override
+    public ServiceResult<CartInfoVO> getCartInfoByMId(@RequestParam("memberId") Integer memberId,
+                                                      @RequestBody MemberAddress memberAddress,
+                                                      @RequestParam("source") Integer source,
+                                                      @RequestParam("useType") Integer useType) {
+        ServiceResult<CartInfoVO> serviceResult = new ServiceResult<CartInfoVO>();
+        try {
+            serviceResult
+                .setResult(cartModel.getCartInfoByMId(memberId, memberAddress, source, useType));
+        } catch (BusinessException be) {
+            serviceResult.setSuccess(false);
+            serviceResult.setMessage(be.getMessage());
+            log.error("[CartService][getCartInfoByMId]根据用户ID获取购物车时发生异常:" + be.getMessage());
+        } catch (Exception e) {
+            serviceResult.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][getCartInfoByMId]根据用户ID获取购物车时发生异常:", e);
+        }
+        return serviceResult;
+    }
+
+    @Override
+    public ServiceResult<CartInfoVO> getCartByMId(@RequestParam("memberId") Integer memberId,
+                                                  @RequestParam("source") Integer source,
+                                                  @RequestParam("useType") Integer useType) {
+        ServiceResult<CartInfoVO> serviceResult = new ServiceResult<CartInfoVO>();
+        try {
+            serviceResult.setResult(cartModel.getCartInfoByMId(memberId, null, source, useType));
+        } catch (BusinessException be) {
+            serviceResult.setSuccess(false);
+            serviceResult.setMessage(be.getMessage());
+            log.error("[CartService][getCartInfoByMId]根据用户ID获取购物车时发生异常:" + be.getMessage());
+        } catch (Exception e) {
+            serviceResult.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][getCartInfoByMId]根据用户ID获取购物车时发生异常:", e);
+        }
+        return serviceResult;
+    }
+
+    @Override
+    public ServiceResult<Boolean> updateCartNumber(@RequestParam("id") Integer id,
+                                                   @RequestParam("number") Integer number) {
+        ServiceResult<Boolean> result = new ServiceResult<Boolean>();
+        try {
+            result.setResult(cartModel.updateCartNumber(id, number));
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error("[CartService][updateCartNumber]根据购物车id更新商城购物车时发生异常:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][updateCartNumber]根据购物车id更新商城购物车时发生异常:", e);
+        }
+        return result;
+    }
+
+    @Override
+    public ServiceResult<Boolean> deleteCartByIds(@RequestBody List<Integer> ids) {
+        ServiceResult<Boolean> result = new ServiceResult<Boolean>();
+        try {
+            result.setResult(cartModel.deleteCartByIds(ids));
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error("[CartService][deleteCartByIds]批量删除购物车商品时出现未知异常:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][deleteCartByIds]批量删除购物车商品时出现未知异常:", e);
+        }
+        return result;
+    }
+
+    /**
+    * 根据id取得商城购物车
+    * @param  cartId
+    * @return
+    */
+    @Override
+    public ServiceResult<Cart> getCartById(@RequestParam("cartId") Integer cartId) {
+        ServiceResult<Cart> result = new ServiceResult<Cart>();
+        try {
+            result.setResult(cartModel.getCartById(cartId));
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error(
+                "[CartService][getCartById]根据id[" + cartId + "]取得商城购物车时出现未知异常:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][getCartById]根据id[" + cartId + "]取得商城购物车时出现未知异常:", e);
+        }
+        return result;
+    }
+
+    @Override
+    public ServiceResult<Boolean> jobClearCart() {
+        ServiceResult<Boolean> result = new ServiceResult<Boolean>();
+        try {
+            result.setResult(cartModel.jobClearCart());
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error("[CartService][jobClearCart]系统定时清理购物车数据时出现未知异常:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][jobClearCart]系统定时清理购物车数据时出现未知异常:", e);
+        }
+        return result;
+    }
+
+    @Override
+    public ServiceResult<Integer> getCartNumberByMId(@RequestParam("memberId") Integer memberId) {
+        ServiceResult<Integer> result = new ServiceResult<Integer>();
+        try {
+            result.setResult(cartModel.getCartNumberByMId(memberId));
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error("[CartService][getCartNumberByMId]根据用户ID获取用户购物车数量时出现未知异常:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][getCartNumberByMId]根据用户ID获取用户购物车数量时出现未知异常:", e);
+        }
+        return result;
+    }
+
+    @Override
+    public ServiceResult<Boolean> updateChecked(@RequestParam("memberId") Integer memberId,
+                                                @RequestParam("cartId") Integer cartId,
+                                                @RequestParam("checked") Integer checked) {
+        ServiceResult<Boolean> result = new ServiceResult<Boolean>();
+        try {
+            result.setResult(cartModel.updateChecked(memberId, cartId, checked));
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error(
+                "[CartService][updateChecked]根据用户ID、购物车ID修改购物车的选中状态时出现未知异常:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][updateChecked]根据用户ID、购物车ID修改购物车的选中状态时出现未知异常:", e);
+        }
+        return result;
+    }
+
+    /**
+     * 根据用户ID取得此用户购物车中最后加入的一个商品
+     * @param memberId
+     * @return
+     * @see com.yixiekeji.service.cart.ICartService#getCartByLastOne(java.lang.Integer)
+     */
+    @Override
+    public ServiceResult<Cart> getCartByLastOne(@RequestParam("memberId") Integer memberId) {
+        ServiceResult<Cart> result = new ServiceResult<Cart>();
+        try {
+            result.setResult(cartModel.getCartByLastOne(memberId));
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error("[CartService][getCartByLastOne]根据用户ID取得此用户购物车中最后加入的一个商品:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][getCartByLastOne]根据用户ID取得此用户购物车中最后加入的一个商品:", e);
+        }
+        return result;
+    }
+
+    @Override
+    public ServiceResult<Boolean> updateCheckedAll(Integer memberId, Integer checked) {
+        ServiceResult<Boolean> result = new ServiceResult<Boolean>();
+        try {
+            result.setResult(cartModel.updateCheckedAll(memberId, checked));
+        } catch (BusinessException be) {
+            result.setSuccess(false);
+            result.setMessage(be.getMessage());
+            log.error(
+                "[CartService][updateChecked]根据用户ID、购物车ID修改购物车的选中状态时出现未知异常:" + be.getMessage());
+        } catch (Exception e) {
+            result.setError(ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR, "服务异常，请联系系统管理员。");
+            log.error("[CartService][updateChecked]根据用户ID、购物车ID修改购物车的选中状态时出现未知异常:", e);
+        }
+        return result;
+    }
+
+    @Override
+    public ServiceResult<Boolean> updateStatusById(@RequestParam("id") Integer id) {
+        ServiceResult<Boolean> result = new ServiceResult<Boolean>();
+        try {
+            result.setResult(cartModel.updateStatusById(id));
+        }catch (Exception e){
+            result.setSuccess(false);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+    }
+
+    @Override
+    public Integer getCartByPid(@RequestParam("productId")Integer productId) {
+        return cartModel.getCartByPid(productId);
+    }
+}

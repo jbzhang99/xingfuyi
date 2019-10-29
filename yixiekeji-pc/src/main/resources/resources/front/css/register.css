@@ -1,0 +1,26 @@
+#form input[type='radio'] {
+	height: 0px;
+}
+
+#form label[class='radio-inline'] {
+	padding-left: 20px;
+}
+
+#form label.error {
+	color: Red;
+	font-size: 12px;
+}
+
+.register-info {
+	float: right;
+	padding-right: 40px;
+	color: #F00;
+	font-size: 12px;
+	font-weight: 200;
+	padding-top: 5px;
+}
+
+#form input.submit {
+	border-radius: 4px;
+	height: auto;
+}

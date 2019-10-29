@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.order.OrdersProductReadDao">
+	<resultMap id="OrdersProductResult" type="com.yixiekeji.entity.order.OrdersProduct">
+			<result property="id" column="id" />
+			<result property="ordersId" column="orders_id" />
+			<result property="ordersSn" column="orders_sn" />
+			<result property="ordersPsn" column="orders_psn" />
+			<result property="sellerId" column="seller_id" />
+			<result property="sellerName" column="seller_name" />
+			<result property="productCateId" column="product_cate_id" />
+			<result property="productId" column="product_id" />
+			<result property="productGoodsId" column="product_goods_id" />
+			<result property="specInfo" column="spec_info" />
+			<result property="productName" column="product_name" />
+			<result property="productSku" column="product_sku" />
+			<result property="packageGroupsId" column="package_groups_id" />
+			<result property="mallGroupsId" column="mall_groups_id" />
+			<result property="giftId" column="gift_id" />
+			<result property="isGift" column="is_gift" />
+			<result property="moneyPrice" column="money_price" />
+			<result property="number" column="number" />
+			<result property="moneyAmount" column="money_amount" />
+			<result property="moneyActSingle" column="money_act_single" />
+			<result property="actSingleId" column="act_single_id" />
+			<result property="actGroupId" column="act_group_id" />
+			<result property="actFlashSaleId" column="act_flash_sale_id" />
+			<result property="actFlashSaleProductId" column="act_flash_sale_product_id" />
+			<result property="actBiddingId" column="act_bidding_id" />
+			<result property="actIntegralId" column="act_integral_id" />
+			<result property="actIntegralNum" column="act_integral_num" />
+			<result property="actIntegralMoney" column="act_integral_money" />
+			<result property="systemRemark" column="system_remark" />
+			<result property="backNumber" column="back_number" />
+			<result property="exchangeNumber" column="exchange_number" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+			<result property="isEvaluate" column="is_evaluate" />
+	</resultMap>
+	
+	<select id="getByOrderId" parameterType="Integer" resultType="com.yixiekeji.entity.order.OrdersProduct">
+		select * from `orders_product`
+		where `orders_id` = #{ordersId}
+	</select>
+
+	<!-- 查询条件 -->
+	<sql id="Where_Clause">
+		where 1=1
+		<trim  suffixOverrides="," >
+		<if test="id != null and id != ''" >
+			    and id =  #{id}
+			</if>
+		<if test="ordersId != null and ordersId != ''" >
+			    and orders_id =  #{ordersId}
+			</if>
+		<if test="ordersSn != null and ordersSn != ''" >
+			    and orders_sn =  #{ordersSn}
+			</if>
+		<if test="ordersPsn != null and ordersPsn != ''" >
+			    and orders_psn =  #{ordersPsn}
+			</if>
+		<if test="sellerId != null and sellerId != ''" >
+			    and seller_id =  #{sellerId}
+			</if>
+		<if test="productCateId != null and productCateId != ''" >
+			    and product_cate_id =  #{productCateId}
+			</if>
+		<if test="productId != null and productId != ''" >
+			    and product_id =  #{productId}
+			</if>
+		<if test="productGoodsId != null and productGoodsId !=''"  > 
+			and `product_goods_id`= #{productGoodsId}
+			</if>
+		<if test="productSku != null and productSku != ''" >
+			    and product_sku =  #{productSku}
+			</if>
+		<if test="packageGroupsId != null and packageGroupsId != ''" >
+			    and package_groups_id =  #{packageGroupsId}
+			</if>
+		<if test="mallGroupsId != null and mallGroupsId != ''" >
+			    and mall_groups_id =  #{mallGroupsId}
+			</if>
+		<if test="giftId != null and giftId != ''" >
+			    and gift_id =  #{giftId}
+			</if>
+		<if test="isGift != null and isGift != ''" >
+			    and is_gift =  #{isGift}
+			</if>
+		<if test="actGroupId != null and actGroupId != ''" >
+			    and act_group_id =  #{actGroupId}
+			</if>
+		<if test="actSingleId != null and actSingleId != ''" >
+			    and act_single_id =  #{actSingleId}
+			</if>
+		<if test="actFlashSaleId != null and actFlashSaleId != ''" >
+			    and act_flash_sale_id =  #{actFlashSaleId}
+			</if>
+		<if test="actFlashSaleProductId != null and actFlashSaleProductId != ''" >
+			    and act_flash_sale_product_id =  #{actFlashSaleProductId}
+			</if>
+		<if test="actBiddingId != null and actBiddingId != ''" >
+			    and act_bidding_id =  #{actBiddingId}
+			</if>
+		<if test="actIntegralId != null and actIntegralId != ''" >
+			    and act_integral_id =  #{actIntegralId}
+			</if>
+		<if test="actIntegralNum != null and actIntegralNum != ''" >
+			    and act_integral_num =  #{actIntegralNum}
+			</if>
+		<if test="logisticsNumber != null and logisticsNumber != ''" >
+			    and logistics_number =  #{logisticsNumber}
+			</if>
+		<if test="closeTime != null and closeTime != ''" >
+			    and close_time =  #{closeTime}
+			</if>
+		<if test="backNumber != null and backNumber != ''" >
+			    and back_number =  #{backNumber}
+			</if>
+		<if test="exchangeNumber != null and exchangeNumber != ''" >
+			    and exchange_number =  #{exchangeNumber}
+			</if>
+		<if test="createTime != null and createTime != ''" >
+			    and create_time =  #{createTime}
+			</if>
+		<if test="updateTime != null and updateTime != ''" >
+			    and update_time =  #{updateTime}
+			</if>
+		</trim>
+	</sql>
+	
+	<select id="get" parameterType="Integer" resultMap="OrdersProductResult">
+		select
+		   *
+		from `orders_product`
+		where `id` = #{id}
+	</select>
+	
+	<!-- 网单表 列表总数-->
+	<select id="queryCount" resultType="java.lang.Integer"  parameterType="map">
+		select count(1) from orders_product 
+		<include refid="Where_Clause"/>
+	</select>
+	  	
+	<!-- 查询网单表列表 -->
+	<select id="queryList" resultMap="OrdersProductResult"  parameterType="map">
+		select 
+		 * 
+		from orders_product 
+		<include refid="Where_Clause"/>
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	
+	<select id="getProductDayDto" resultType="com.yixiekeji.dto.ProductDayDto">
+        select 
+        	product_id as productId,
+        	product_name as productName,
+        	seller_id as sellerId,
+        	left(create_time,10) as orderDay,
+        	sum(money_amount) as moneyAmount,
+        	sum(number) as number
+		from orders_product
+		where
+			`back_number` = 0
+			<if test="queryMap.q_startTime != null and queryMap.q_startTime !=''"  >
+				and `create_time` &gt;= #{queryMap.q_startTime}
+			</if>
+			<if test="queryMap.q_endTime != null and queryMap.q_endTime !=''"  >
+				and `create_time` &lt;= #{queryMap.q_endTime}
+			</if>
+			<if test="queryMap.q_sellerId != null and queryMap.q_sellerId !=''"  >
+				and `seller_id`= #{queryMap.q_sellerId}
+			</if>
+		group by productId, productName,orderDay,sellerId
+		order by orderDay desc
+    </select>
+
+	<select id="getByOrdersPsn" parameterType="String" resultMap="OrdersProductResult">
+		select * from `orders_product`
+		where `orders_psn` = #{ordersPsn}
+	</select>
+</mapper>

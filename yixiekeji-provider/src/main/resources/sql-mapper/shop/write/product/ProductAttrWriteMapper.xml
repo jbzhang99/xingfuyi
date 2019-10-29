@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.product.ProductAttrWriteDao">
+    <insert id="insert"  useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `product_attr`(
+            `product_id`,
+            `product_type_attr_id`,
+            `name`,
+            `value`,
+            `state`
+        )
+        values(
+            #{productId},
+            #{productTypeAttrId},
+            #{name},
+            #{value},
+            #{state}
+        )
+    </insert>
+    <update id="update">
+        update `product_attr`
+        <set>
+            <if test = "null != id and '' != id">`id`= #{id},</if>
+            <if test = "null != productId and '' != productId">`product_id`= #{productId},</if>
+            <if test = "null != productTypeAttrId and '' != productTypeAttrId">`product_type_attr_id`= #{productTypeAttrId},</if>
+            <if test = "null != name and '' != name">`name`= #{name},</if>
+            <if test = "null != value and '' != value">`value`= #{value},</if>
+            <if test = "null != state and '' != state">`state`= #{state},</if>
+        </set>
+        where `id` = #{id}
+    </update>
+    <delete id="del">
+        delete from `product_attr` where `id` = #{id}
+    </delete>
+
+    <select id="get" resultType="com.yixiekeji.entity.product.ProductAttr">
+        select
+        <include refid="selectColumn"/>
+        from `product_attr`
+        where `id` = #{id}
+    </select>
+    <select id="getByProductId" resultType="com.yixiekeji.entity.product.ProductAttr">
+        select
+        <include refid="selectColumn"/>
+        from `product_attr`
+        where `product_id` = #{productId}
+    </select>
+
+    <sql id="selectColumn">
+        `id`,
+        `product_id`,
+        `product_type_attr_id`,
+        `name`,
+        `value`,
+        `state`
+    </sql>
+    
+    <!-- seller start -->
+    <delete id="delByProductId">
+        delete from `product_attr` where `product_id` = #{productId}
+    </delete>
+    <!-- seller end -->
+</mapper>

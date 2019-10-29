@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.sale.SaleOrderReadDao">
+	<resultMap id="SaleOrderResult" type="com.yixiekeji.entity.sale.SaleOrder">
+			<result property="id" column="id" />
+			<result property="buyId" column="buy_id" />
+			<result property="buyName" column="buy_name" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="productId" column="product_id" />
+			<result property="productName" column="product_name" />
+			<result property="sellerId" column="seller_id" />
+			<result property="sellerName" column="seller_name" />
+			<result property="orderId" column="order_id" />
+			<result property="orderSn" column="order_sn" />
+			<result property="ordersProductId" column="orders_product_id" />
+			<result property="orderTime" column="order_time" />
+			<result property="moneyAll" column="money_all" />
+			<result property="actMoney" column="act_money" />
+			<result property="money" column="money" />
+			<result property="number" column="number" />
+			<result property="saleMoney" column="sale_money" />
+			<result property="saleScale" column="sale_scale" />
+			<result property="saleState" column="sale_state" />
+			<result property="saleType" column="sale_type" />
+			<result property="saleGrade" column="sale_grade" />
+			<result property="backNumber" column="back_number" />
+			<result property="backMoney" column="back_money" />
+			<result property="backIds" column="back_ids" />
+			<result property="saleApplyMoneyId" column="sale_apply_money_id" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SaleOrderResult">
+		select
+		   *
+		from `sale_order`
+		where `id` = #{id}
+	</select>
+	
+	<select id="countSaleOrderBySaleStateAndMemberId" parameterType="Integer" resultType="Integer">
+		select
+		   count(1)
+		from `sale_order`
+		where `member_id` = #{memberId} and `sale_state` = #{saleState}
+	</select>
+	
+	<select id="sumSaleOrderBySaleStateAndMemberId" parameterType="Integer" resultType="java.math.BigDecimal">
+		select
+		   sum(sale_money)
+		from `sale_order`
+		where `member_id` = #{memberId} and `sale_state` = #{saleState}
+	</select>
+	
+	<select id="sumSaleOrderBySellerId" resultType="java.math.BigDecimal">
+		select
+		   sum(sale_money)
+		from `sale_order`
+		where `seller_id` = #{sellerId} 
+		and `create_time` &gt;= #{startTime}
+		and `create_time` &lt;= #{endTime}
+	</select>
+	
+	<select id="sumOrdersProductId" resultType="java.math.BigDecimal">
+		select
+		   sum(sale_money)
+		from `sale_order`
+		where `orders_product_id` = #{ordersProductId}
+	</select>
+	
+	
+	<select id="getSaleOrdersCount" parameterType="java.util.Map" resultType="Integer">
+		select
+		   count(1)
+		from `sale_order`
+		<include refid="getCondition"/>
+	</select>
+	
+	<select id="getSaleOrders" parameterType="java.util.Map" resultMap="SaleOrderResult">
+		select
+		   *
+		from `sale_order`
+		<include refid="getCondition"/>
+		order by `id` desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<sql id="getCondition">
+        <where>
+            <if test="queryMap.q_sellerId != null and queryMap.q_sellerId !=''">
+                and `seller_id` = #{queryMap.q_sellerId}
+            </if>
+            <if test="queryMap.q_saleState != null and queryMap.q_saleState !=''">
+                and `sale_state` = #{queryMap.q_saleState}
+            </if>
+            <if test="queryMap.q_buyName != null and queryMap.q_buyName !=''">
+                and `buy_name` = #{queryMap.q_buyName}
+            </if>
+            
+            <if test="queryMap.q_orderSn != null and queryMap.q_orderSn !=''">
+                and `order_sn` = #{queryMap.q_orderSn}
+            </if>
+            <if test="queryMap.q_memberId != null and queryMap.q_memberId !=''">
+                and `member_id` = #{queryMap.q_memberId}
+            </if>
+            <if test="queryMap.q_startTime != null and queryMap.q_startTime !=''">
+                and `order_time` &gt;= #{queryMap.q_startTime}
+            </if>
+            <if test="queryMap.q_endTime != null and queryMap.q_endTime !=''">
+                and `order_time` &lt;= #{queryMap.q_endTime}
+            </if>
+            
+        </where>
+    </sql>
+    
+</mapper>

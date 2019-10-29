@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.sale.SaleMemberWriteDao">
+	<resultMap id="SaleMemberResult" type="com.yixiekeji.entity.sale.SaleMember">
+			<result property="id" column="id" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="certificateType" column="certificate_type" />
+			<result property="certificateCode" column="certificate_code" />
+			<result property="bankType" column="bank_type" />
+			<result property="bankCode" column="bank_code" />
+			<result property="bankName" column="bank_name" />
+			<result property="bankAdd" column="bank_add" />
+			<result property="state" column="state" />
+			<result property="isSale" column="is_sale" />
+			<result property="referrerId" column="referrer_id" />
+			<result property="referrerName" column="referrer_name" />
+			<result property="referrerCode" column="referrer_code" />
+			<result property="referrerPid" column="referrer_pid" />
+			<result property="referrerPname" column="referrer_pname" />
+			<result property="referrerPath" column="referrer_path" />
+			<result property="grade" column="grade" />
+			<result property="saleCode" column="sale_code" />
+			<result property="audit" column="audit" />
+			<result property="auditId" column="audit_id" />
+			<result property="auditName" column="audit_name" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+			<!--新加字段-->
+			<result property="authType" column="auth_type" />
+		    <result property="cardPath" column="card_path" />
+			<result property="disabilityGrade" column="disability_grade" />
+			<result property="disabilityCard" column="disability_card" />
+			<result property="detailDress" column="detail_dress" />
+			<result property="provinceId" column="province_id" />
+			<result property="cityId" column="city_id" />
+			<result property="areaId" column="area_id" />
+			<result property="bindingState" column="binding_state" />
+			<result property="disabilityState" column="disability_state" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SaleMemberResult">
+		select
+		   *
+		from `sale_member`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getSaleMemberByMemberId" parameterType="Integer" resultMap="SaleMemberResult">
+		select
+		   *
+		from `sale_member`
+		where `member_id` = #{memberId}
+		order by id desc
+		limit 1
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.sale.SaleMember">
+        update `sale_member` 
+    	<set>
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="memberName != null">`member_name`= #{memberName},</if>
+			<if test="certificateType != null">`certificate_type`= #{certificateType},</if>
+			<if test="certificateCode != null">`certificate_code`= #{certificateCode},</if>
+			<if test="bankType != null">`bank_type`= #{bankType},</if>
+			<if test="bankCode != null">`bank_code`= #{bankCode},</if>
+			<if test="bankName != null">`bank_name`= #{bankName},</if>
+			<if test="bankAdd != null">`bank_add`= #{bankAdd},</if>
+			<if test="state != null">`state`= #{state},</if>
+			<if test="isSale != null">`is_sale`= #{isSale},</if>
+			<if test="referrerId != null">`referrer_id`= #{referrerId},</if>
+			<if test="referrerName != null">`referrer_name`= #{referrerName},</if>
+			<if test="referrerCode != null">`referrer_code`= #{referrerCode},</if>
+			<if test="referrerPid != null">`referrer_pid`= #{referrerPid},</if>
+			<if test="referrerPname != null">`referrer_pname`= #{referrerPname},</if>
+			<if test="referrerPath != null">`referrer_path`= #{referrerPath},</if>
+			<if test="grade != null">`grade`= #{grade},</if>
+			<if test="saleCode != null">`sale_code`= #{saleCode},</if>
+			<if test="audit != null">`audit`= #{audit},</if>
+			<if test="auditId != null">`audit_id`= #{auditId},</if>
+			<if test="auditName != null">`audit_name`= #{auditName},</if>
+
+			<if test="authType != null">`auth_type`= #{authType},</if>
+			<if test="cardPath != null">`card_path`= #{cardPath},</if>
+			<if test="disabilityGrade != null">`disability_grade`= #{disabilityGrade},</if>
+			<if test="disabilityCard != null">`disability_card`= #{disabilityCard},</if>
+			<if test="detailDress != null">`detail_dress`= #{detailDress},</if>
+			<if test="provinceId != null">`province_id`= #{provinceId},</if>
+			<if test="cityId != null">`city_id`= #{cityId},</if>
+			<if test="areaId != null">`area_id`= #{areaId},</if>
+			<if test="bindingState != null">`binding_state`= #{bindingState},</if>
+			<if test="disabilityState != null">`disability_state`= #{disabilityState},</if>
+			`update_time`= now()
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.sale.SaleMember" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`sale_member`
+		(
+			
+			`member_id`,
+			`member_name`,
+			`certificate_type`,
+			`certificate_code`,
+			`bank_type`,
+			`bank_code`,
+			`bank_name`,
+			`bank_add`,
+			`state`,
+			`is_sale`,
+			`referrer_id`,
+			`referrer_name`,
+			`referrer_code`,
+			`referrer_pid`,
+			`referrer_pname`,
+			`referrer_path`,
+			`grade`,
+			`sale_code`,
+			`audit`,
+			`audit_id`,
+			`audit_name`,
+			`create_time`,
+			`update_time`
+		)
+		values
+		(
+			
+			#{memberId},
+			#{memberName},
+			#{certificateType},
+			#{certificateCode},
+			#{bankType},
+			#{bankCode},
+			#{bankName},
+			#{bankAdd},
+			#{state},
+			#{isSale},
+			#{referrerId},
+			#{referrerName},
+			#{referrerCode},
+			#{referrerPid},
+			#{referrerPname},
+			#{referrerPath},
+			#{grade},
+			#{saleCode},
+			#{audit},
+			#{auditId},
+			#{auditName},
+			now(),
+			now()
+		)
+	</insert>
+	
+</mapper>

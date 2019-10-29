@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.sale.SaleApplyMoneyWriteDao">
+	<resultMap id="SaleApplyMoneyResult" type="com.yixiekeji.entity.sale.SaleApplyMoney">
+			<result property="id" column="id" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="state" column="state" />
+			<result property="certificateCode" column="certificate_code" />
+			<result property="bankType" column="bank_type" />
+			<result property="bankCode" column="bank_code" />
+			<result property="bankName" column="bank_name" />
+			<result property="bankAdd" column="bank_add" />
+			<result property="money" column="money" />
+			<result property="bake" column="bake" />
+			<result property="createTime" column="create_time" />
+			<result property="updateId" column="update_id" />
+			<result property="updateName" column="update_name" />
+			<result property="updateTime" column="update_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SaleApplyMoneyResult">
+		select
+		   *
+		from `sale_apply_money`
+		where `id` = #{id}
+	</select>
+	
+	<select id="countSaleApplyMoneyByMemberIdAndState" parameterType="Integer" resultType="Integer">
+		select
+		   count(1)
+		from `sale_apply_money`
+		where `member_id` = #{memberId} and `state` = #{state}
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.sale.SaleApplyMoney">
+        update `sale_apply_money` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="memberName != null">`member_name`= #{memberName},</if>
+			<if test="state != null">`state`= #{state},</if>
+			<if test="certificateCode != null">`certificate_code`= #{certificateCode},</if>
+			<if test="bankType != null">`bank_type`= #{bankType},</if>
+			<if test="bankCode != null">`bank_code`= #{bankCode},</if>
+			<if test="bankName != null">`bank_name`= #{bankName},</if>
+			<if test="bankAdd != null">`bank_add`= #{bankAdd},</if>
+			<if test="money != null">`money`= #{money},</if>
+			<if test="bake != null">`bake`= #{bake},</if>
+			<if test="createTime != null">`create_time`= #{createTime},</if>
+			<if test="updateId != null">`update_id`= #{updateId},</if>
+			<if test="updateName != null">`update_name`= #{updateName},</if>
+			`update_time`= now()
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.sale.SaleApplyMoney" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`sale_apply_money`
+		(
+			`member_id`,
+			`member_name`,
+			`state`,
+			`certificate_code`,
+			`bank_type`,
+			`bank_code`,
+			`bank_name`,
+			`bank_add`,
+			`money`,
+			`bake`,
+			`create_time`,
+			`update_id`,
+			`update_name`,
+			`update_time`
+		)
+		values
+		(
+			#{memberId},
+			#{memberName},
+			#{state},
+			#{certificateCode},
+			#{bankType},
+			#{bankCode},
+			#{bankName},
+			#{bankAdd},
+			#{money},
+			#{bake},
+			now(),
+			#{updateId},
+			#{updateName},
+			#{updateTime}
+		)
+	</insert>
+	
+</mapper>

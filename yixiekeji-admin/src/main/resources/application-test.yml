@@ -1,0 +1,68 @@
+server:
+  port: 6003
+  maxHttpHeaderSize: 1024000  #单位byte,最大请求头数据大小，默认是8k
+feign: 
+  hystrix: 
+    enabled: false
+  httpclient:
+    enabled: true
+ribbon:
+  OkToRetryOnAllOperations: false #对所有操作请求都进行重试,默认false
+  ReadTimeout: 6000   #负载均衡超时时间，默认值5000
+  ConnectTimeout: 3000 #ribbon请求连接的超时时间，默认值2000
+  MaxAutoRetries: 0     #对当前实例的重试次数，默认0
+  MaxAutoRetriesNextServer: 1 #对切换实例的重试次数，默认1
+  
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://192.168.3.183:6001/eureka/
+  
+logging:
+  config: 'classpath:logback.xml'
+  #file-name: admin
+  level-service: INFO 
+      
+# 配置freemarker
+spring:
+  mvc:
+    static-path-pattern: /resources/**
+  resources: 
+    static-locations: classpath:/resources/ 
+  servlet:
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 100Mb 
+  freemarker:
+    # 设置模板后缀名
+    suffix: .ftl
+    # 设置文档类型
+    content-type: text/html;charset=UTF-8
+    # 设置页面编码格式
+    charset: UTF-8
+    # 设置页面缓存
+    cache: false
+    request-context-attribute: request
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    # 设置ftl文件路径
+    template-loader-path:
+      - classpath:/templates
+    
+shiro:
+  configLocation: classpath:/shiro-ehcache.xml
+   
+yxkj: 
+  urlResources: http://192.168.3.183:6003
+  staticResources: http://192.168.3.183:6003
+  imageResources: http://192.168.3.183:8888/ejsimage
+  cookieDomain: 192.168.3.183:6003
+  cookieName: qiqu_b2b2c_admin
+  frontUrl: http://192.168.3.183
+  h5Url: http://192.168.3.183
+  searchSolrUrl: http://192.168.3.183:8888/solr
+  searchSolrServer: ejavashopcore
+  pomLogFile: admin
+  pomLogLevel: debug

@@ -1,0 +1,143 @@
+spring:
+  application:
+    name: yixiekeji
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource  # 当前数据源操作类型
+      
+server:
+  port: 8001
+feign: 
+  hystrix: 
+    enabled: false
+  httpclient:
+    enabled: true
+ribbon:
+  OkToRetryOnAllOperations: false #对所有操作请求都进行重试,默认false
+  ReadTimeout: 6000   #负载均衡超时时间，默认值5000
+  ConnectTimeout: 3000 #ribbon请求连接的超时时间，默认值2000
+  MaxAutoRetries: 0     #对当前实例的重试次数，默认0
+  MaxAutoRetriesNextServer: 1 #对切换实例的重试次数，默认1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiqu:qiqu2019@192.168.0.4:7001/eureka/
+  instance: 
+    prefer-ip-address: true      
+
+logging:
+  config: 'classpath:logback.xml'
+  #file-name: provider
+  level-service: INFO
+  level-myibatis: INFO
+  
+yxkj:
+  searchSolrUrl: http://solr.qiquservice.com/solr
+  searchSolrServer: ejavashopcore
+  
+# 自定义的主数据源配置信息
+shop:
+  datasource:
+    write:
+      driverClassName: com.mysql.jdbc.Driver
+      #配置基本属性
+      url: jdbc:mysql://rm-bp12fvm1xe485p254.mysql.rds.aliyuncs.com/xingfuyi_shop?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true&useSSL=false
+      username: qiqu
+      password: Qiqu@admin
+      #监控统计拦截的filters
+      filters: stat
+      #配置初始化大小/最小/最大
+      initialSize: 1
+      minIdle: 1
+      maxActive: 200
+      #获取连接等待超时时间
+      maxWait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      timeBetweenEvictionRunsMillis: 60000
+      #一个连接在池中最小生存的时间
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: 20
+    read:
+      driverClassName: com.mysql.jdbc.Driver
+      #配置基本属性
+      url: jdbc:mysql://rm-bp12fvm1xe485p254.mysql.rds.aliyuncs.com/xingfuyi_shop?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true&useSSL=false
+      username: qiqu
+      password: Qiqu@admin
+      #监控统计拦截的filters
+      filters: stat
+      #配置初始化大小/最小/最大
+      initialSize: 1
+      minIdle: 1
+      maxActive: 200
+      #获取连接等待超时时间
+      maxWait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      timeBetweenEvictionRunsMillis: 60000
+      #一个连接在池中最小生存的时间
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: 20
+
+# 自定义的主数据源配置信息
+analysis:
+  datasource:
+    write:
+      driverClassName: com.mysql.jdbc.Driver
+      #配置基本属性
+      url: jdbc:mysql://rm-bp12fvm1xe485p254.mysql.rds.aliyuncs.com/xingfuyi_behavior?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true&useSSL=false
+      username: qiqu
+      password: Qiqu@admin
+      #监控统计拦截的filters
+      filters: stat
+      #配置初始化大小/最小/最大
+      initialSize: 1
+      minIdle: 1
+      maxActive: 200
+      #获取连接等待超时时间
+      maxWait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      timeBetweenEvictionRunsMillis: 60000
+      #一个连接在池中最小生存的时间
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: 20
+    read:
+      driverClassName: com.mysql.jdbc.Driver
+      #配置基本属性
+      url: jdbc:mysql://rm-bp12fvm1xe485p254.mysql.rds.aliyuncs.com/xingfuyi_behavior?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true&useSSL=false
+      username: qiqu
+      password: Qiqu@admin
+      #监控统计拦截的filters
+      filters: stat
+      #配置初始化大小/最小/最大
+      initialSize: 1
+      minIdle: 1
+      maxActive: 200
+      #获取连接等待超时时间
+      maxWait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      timeBetweenEvictionRunsMillis: 60000
+      #一个连接在池中最小生存的时间
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: 20

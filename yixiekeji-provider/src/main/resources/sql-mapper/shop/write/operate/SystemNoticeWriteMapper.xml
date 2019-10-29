@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.operate.SystemNoticeWriteDao">
+	<resultMap id="SystemNoticeResult" type="com.yixiekeji.entity.operate.SystemNotice">
+			<result property="id" column="id" />
+			<result property="title" column="title" />
+			<result property="describe" column="describe" />
+			<result property="content" column="content" />
+			<result property="createTime" column="create_time" />
+			<result property="createUserId" column="create_user_id" />
+			<result property="updateTime" column="update_time" />
+			<result property="updateUserId" column="update_user_id" />
+			<result property="isTop" column="is_top" />
+			<result property="sort" column="sort" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SystemNoticeResult">
+		select
+		   *
+		from `system_notice`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from `system_notice` t1
+		<include refid="whereConditions" />
+	</select>
+	
+	<delete id="del">
+        delete from `system_notice` where `id` = #{id}
+	</delete>
+	
+	<select id="page" resultType="com.yixiekeji.entity.operate.SystemNotice">
+		select * from `system_notice` t1
+		<include refid="whereConditions" />
+		ORDER BY
+			is_top DESC,
+			sort,
+			id DESC,
+			create_time DESC
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<select id="getUnreadNoticeCount" parameterType="Integer" resultType="Integer">
+		SELECT
+			count(1)
+		FROM
+			system_notice nt
+		WHERE
+			NOT EXISTS(
+				SELECT
+					1
+				FROM
+					notice_click_situation ncs
+				WHERE
+					ncs.seller_id = #{sellerId}
+				AND ncs.notice_id = nt.id
+				AND ncs.state = 1
+			)
+		ORDER BY
+			is_top DESC,
+			sort,
+			id DESC,
+			create_time DESC
+	</select>
+	
+	<select id="getUnreadNotice" resultType="com.yixiekeji.entity.operate.SystemNotice">
+		SELECT
+			*
+		FROM
+			system_notice nt
+		WHERE
+			NOT EXISTS(
+				SELECT
+					1
+				FROM
+					notice_click_situation ncs
+				WHERE
+					ncs.seller_id = #{sellerId}
+				AND ncs.notice_id = nt.id
+				AND ncs.state = 1
+			)
+		ORDER BY
+			is_top DESC,
+			sort,
+			id DESC,
+			create_time DESC
+		<if test="size != null and size &gt; 0">LIMIT #{start},#{size}</if>
+	</select>
+	
+	<select id="list" resultType="com.yixiekeji.entity.operate.SystemNotice">
+		select * from `system_notice` t1
+		order by id
+	</select>
+	
+	<!-- 查询条件 -->
+	<sql id="whereConditions">
+		where 1=1
+		<trim  suffixOverrides="," >
+			<if test="id != null and id !=''"  > and `id`= #{id}</if>
+			<if test="title != null and title !=''"  > and `title`= #{title}</if>
+			<if test="q_title != null and q_title !=''"  > and `title` like CONCAT('%',#{q_title},'%')</if>
+			<if test="describe != null and describe !=''"  > and `describe`= #{describe}</if>
+			<if test="content != null and content !=''"  > and `content`= #{content}</if>
+			<if test="createTime != null and createTime !=''"  > and `create_time`= #{createTime}</if>
+			<if test="createUserId != null and createUserId !=''"  > and `create_user_id`= #{createUserId}</if>
+			<if test="updateTime != null and updateTime !=''"  > and `update_time`= #{updateTime}</if>
+			<if test="updateUserId != null and updateUserId !=''"  > and `update_user_id`= #{updateUserId}</if>
+			<if test="isTop != null and isTop !=''"  > and `is_top`= #{isTop}</if>
+			<if test="sort != null and sort !=''"  > and `sort`= #{sort}</if>
+		</trim>
+	</sql>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.operate.SystemNotice">
+        update `system_notice` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="title != null">`title`= #{title},</if>
+			<if test="describe != null">`describe`= #{describe},</if>
+			<if test="content != null">`content`= #{content},</if>
+			<if test="createTime != null">`create_time`= #{createTime},</if>
+			<if test="createUserId != null">`create_user_id`= #{createUserId},</if>
+			<if test="updateTime != null">`update_time`= #{updateTime},</if>
+			<if test="updateUserId != null">`update_user_id`= #{updateUserId},</if>
+			<if test="isTop != null">`is_top`= #{isTop},</if>
+			<if test="sort != null">`sort`= #{sort}</if>
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="save" parameterType="com.yixiekeji.entity.operate.SystemNotice" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`system_notice`
+		(
+			
+			`title`,
+			`describe`,
+			`content`,
+			`create_time`,
+			`create_user_id`,
+			`update_time`,
+			`update_user_id`,
+			`is_top`,
+			`sort`
+		)
+		values
+		(
+			
+			#{title},
+			#{describe},
+			#{content},
+			#{createTime},
+			#{createUserId},
+			#{updateTime},
+			#{updateUserId},
+			#{isTop},
+			#{sort}
+		)
+	</insert>
+	
+</mapper>

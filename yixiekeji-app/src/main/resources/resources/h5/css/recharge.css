@@ -1,0 +1,89 @@
+.recharge-box {
+	border-radius: 2px;
+	font-family: "microsoft yahei";
+	padding: 10px;
+}
+
+.recharge-tit {
+	background: #F3F3F3;
+	padding: 10px 10px;
+	font-size: 18px;
+	color: #000;
+}
+
+.recharge-content {
+	width: 100%;
+}
+
+.grounp-div {
+	height: 30px;
+	font-size: 14px;
+	color: #333;
+	line-height: 30px;
+}
+
+.mony-txt {
+	height: 30px;
+	margin-right: 10px;
+	border: 1px solid #E2E2E2;
+	padding: 5px;
+	width: 35%;
+}
+
+.careful-info {
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+
+.careful-info p {
+	line-height: 24px;
+	color: #a6a6a6;
+	margin: 0px;
+}
+
+.careful-info .tel-iph {
+	border: 1px solid #e2e2e2;
+	display: inline-block;
+	width: 100%;
+	padding: 5px;
+	color: #333;
+	letter-spacing: 1px;
+	background: #f5f5f5;
+}
+
+.careful-btn {
+	display: block;
+	color: #fff;
+	font-size: 20px;
+	background: #DE3432;
+	border: 0;
+	border-radius: 3px;
+	margin-top: 10px;
+	float: right;
+	width: 100%;
+}
+
+.review-tips {
+	border: 2px solid #E8D89D;
+	background: #FFFDEE;
+	padding: 10px 15px;
+	color: #333;
+	font-size: 13px;
+}
+
+.review-tips p {
+	margin: 0px;
+	line-height: 20px;
+}
+
+.review-tips p.fir-p {
+	font-weight: 800;
+	font-size: 14px;
+}
+
+.careful-info p {
+	line-height: 20px;
+	color: #a6a6a6;
+	margin: 0px;
+	font-size: 12px;
+}

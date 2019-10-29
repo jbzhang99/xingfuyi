@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.member.MemberSignLogsWriteDao">
+	<resultMap id="MemberSignLogsResult" type="com.yixiekeji.entity.member.MemberSignLogs">
+			<result property="id" column="id" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="loginIp" column="login_ip" />
+			<result property="createTime" column="create_time" />
+			<result property="source" column="source" />
+	</resultMap>
+	
+	<select id="getCountByMemberIdAndDate" resultType="Integer">
+		select
+			count(1)
+		from `member_sign_logs`
+		where `member_id` = #{memberId}
+		and `create_time` &gt;= #{start}
+		and `create_time` &lt;= #{end}
+	</select>
+
+	<select id="get" parameterType="Integer" resultMap="MemberSignLogsResult">
+		select
+		   *
+		from `member_sign_logs`
+		where `id` = #{id}
+	</select>
+	
+	<!-- <update id="update" parameterType="com.yixiekeji.entity.member.MemberSignLogs">
+        update `member_sign_logs` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="memberName != null">`member_name`= #{memberName},</if>
+			<if test="loginIp != null">`login_ip`= #{loginIp},</if>
+			<if test="createTime != null">`create_time`= #{createTime},</if>
+			<if test="source != null">`source`= #{source}</if>
+	    </set>
+        where `id` = #{id}
+	</update> -->
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.member.MemberSignLogs" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`member_sign_logs`
+		(
+			`member_id`,
+			`member_name`,
+			`login_ip`,
+			`create_time`,
+			`source`
+		)
+		values
+		(
+			#{memberId},
+			#{memberName},
+			#{loginIp},
+			now(),
+			#{source}
+		)
+	</insert>
+	
+	<!-- <delete id="delete">
+        delete from `member_sign_logs` where `id` = #{id}
+	</delete> -->
+	
+</mapper>

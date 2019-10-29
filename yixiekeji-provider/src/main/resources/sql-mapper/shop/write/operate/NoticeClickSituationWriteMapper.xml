@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.operate.NoticeClickSituationWriteDao">
+	<resultMap id="NoticeClickSituationResult" type="com.yixiekeji.entity.operate.NoticeClickSituation">
+			<result property="id" column="id" />
+			<result property="sellerId" column="seller_id" />
+			<result property="noticeId" column="notice_id" />
+			<result property="viewTime" column="view_time" />
+			<result property="state" column="state" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="NoticeClickSituationResult">
+		select
+		   *
+		from `notice_click_situation`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from `notice_click_situation` t1
+		<include refid="whereConditions" />
+	</select>
+	
+	<delete id="del">
+        delete from `notice_click_situation` where `id` = #{id}
+	</delete>
+	
+	<select id="page" resultType="com.yixiekeji.entity.operate.NoticeClickSituation">
+		select * from `notice_click_situation` t1
+		<include refid="whereConditions" />
+		order by id
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<select id="list" resultType="com.yixiekeji.entity.operate.NoticeClickSituation">
+		select * from `notice_click_situation` t1
+		order by id
+	</select>
+	
+	<!-- 查询条件 -->
+	<sql id="whereConditions">
+		where 1=1
+		<trim  suffixOverrides="," >
+			<if test="id != null and id !=''"  > and `id`= #{id}</if>
+			<if test="sellerId != null and sellerId !=''"  > and `seller_id`= #{sellerId}</if>
+			<if test="noticeId != null and noticeId !=''"  > and `notice_id`= #{noticeId}</if>
+			<if test="viewTime != null and viewTime !=''"  > and `view_time`= #{viewTime}</if>
+			<if test="state != null and state !=''"  > and `state`= #{state}</if>
+		</trim>
+	</sql>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.operate.NoticeClickSituation">
+        update `notice_click_situation` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="sellerId != null">`seller_id`= #{sellerId},</if>
+			<if test="noticeId != null">`notice_id`= #{noticeId},</if>
+			<if test="viewTime != null">`view_time`= #{viewTime},</if>
+			<if test="state != null">`state`= #{state}</if>
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="save" parameterType="com.yixiekeji.entity.operate.NoticeClickSituation" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`notice_click_situation`
+		(
+			
+			`seller_id`,
+			`notice_id`,
+			`view_time`,
+			`state`
+		)
+		values
+		(
+			
+			#{sellerId},
+			#{noticeId},
+			#{viewTime},
+			#{state}
+		)
+	</insert>
+	
+</mapper>

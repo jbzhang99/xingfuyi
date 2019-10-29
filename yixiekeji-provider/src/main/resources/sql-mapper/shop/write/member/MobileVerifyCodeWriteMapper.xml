@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.member.MobileVerifyCodeWriteDao">
+	<resultMap id="MobileVerifyCodeResult" type="com.yixiekeji.entity.member.MobileVerifyCode">
+			<result property="id" column="id" />
+			<result property="uid" column="uid" />
+			<result property="code" column="code" />
+			<result property="phone" column="phone" />
+			<result property="sendNum" column="send_num" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="MobileVerifyCodeResult">
+		select
+		   *
+		from `mobile_verify_code`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getByUid" resultMap="MobileVerifyCodeResult">
+		select
+		   *
+		from `mobile_verify_code`
+		where `uid` = #{uid}
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.member.MobileVerifyCode">
+        update `mobile_verify_code` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="uid != null">`uid`= #{uid},</if>
+			<if test="code != null">`code`= #{code},</if>
+			<if test="phone != null">`phone`= #{phone},</if>
+			<if test="sendNum != null">`send_num`= #{sendNum}</if>
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.member.MobileVerifyCode" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`mobile_verify_code`
+		(
+			
+			`uid`,
+			`code`,
+			`phone`,
+			`send_num`,
+			`create_time`
+		)
+		values
+		(
+			
+			#{uid},
+			#{code},
+			#{phone},
+			#{sendNum},
+			now()
+		)
+	</insert>
+	
+	<delete id="deleteByUid">
+		delete from `mobile_verify_code`  where `uid` = #{uid}
+	</delete>
+	
+	<delete id="jobClearSmsCode"  parameterType="java.lang.String">
+		delete from `mobile_verify_code` where `create_time` &lt;= #{clearTime}
+	</delete>
+</mapper>

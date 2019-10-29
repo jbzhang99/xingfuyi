@@ -1,0 +1,44 @@
+#form_company_info input.error {
+	background-color: #fff;
+	border: 1px solid #E3D7D7;
+	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 0px 8px
+		rgba(240, 200, 200, 0.6);
+}
+
+#form_company_info label.error {
+	height: 30px;
+	margin-top: 0px;
+	padding-top: 5px;
+	background: #FEE url("../../img/joinin_pic.png") no-repeat scroll -395px
+		-132px;
+}
+
+#form_credentials_info input.error {
+	background-color: #fff;
+	border: 1px solid #E3D7D7;
+	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 0px 8px
+		rgba(240, 200, 200, 0.6);
+}
+
+#form_credentials_info label.error {
+	height: 30px;
+	margin-top: 0px;
+	padding-top: 5px;
+	background: #FEE url("../../img/joinin_pic.png") no-repeat scroll -395px
+		-132px;
+}
+
+#form_store_info input.error {
+	background-color: #fff;
+	border: 1px solid #E3D7D7;
+	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.1) inset, 0px 0px 8px
+		rgba(240, 200, 200, 0.6);
+}
+
+#form_store_info label.error {
+	height: 30px;
+	margin-top: 0px;
+	padding-top: 5px;
+	background: #FEE url("../../img/joinin_pic.png") no-repeat scroll -395px
+		-132px;
+}

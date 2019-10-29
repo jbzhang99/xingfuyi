@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.cart.CartWriteDao">
+	<resultMap id="CartResult" type="com.yixiekeji.entity.cart.Cart">
+		<result property="id" column="id" />
+		<result property="createTime" column="create_time" />
+		<result property="memberId" column="member_id" />
+		<result property="count" column="count" />
+		<result property="specId" column="spec_id" />
+		<result property="specInfo" column="spec_info" />
+		<result property="productId" column="product_id" />
+		<result property="sellerId" column="seller_id" />
+		<result property="productGoodsId" column="product_goods_id" />
+		<result property="checked" column="checked" />
+	</resultMap>
+
+	<update id="update" parameterType="com.yixiekeji.entity.cart.Cart">
+		update `cart`
+		<set>
+			<!-- <if test="id != null">`id`= #{id},</if> -->
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="count != null">`count`= #{count},</if>
+			<if test="specId != null">`spec_id`= #{specId},</if>
+			<if test="specInfo != null">`spec_info`= #{specInfo},</if>
+			<if test="productId != null">`product_id`= #{productId},</if>
+			<if test="sellerId != null">`seller_id`= #{sellerId},</if>
+			<if test="productGoodsId != null">`product_goods_id`= #{productGoodsId},</if>
+			<if test="checked != null">`checked`= #{checked},</if>
+		</set>
+		where `id` = #{id}
+	</update>
+
+	<!--<update id="addCount">-->
+		<!--update `cart`-->
+		<!--set `count` = `count` + #{count},-->
+		<!--`checked`= 1-->
+		<!--where `id` = #{id}-->
+	<!--</update>-->
+	<update id="addCount">
+		update `cart`
+		set `count` = #{count},
+		`checked`= 1
+		where `id` = #{id}
+	</update>
+
+	<delete id="delete"  parameterType="java.lang.Integer">
+		delete from `cart` where `id` = #{id}
+	</delete>
+
+	<delete id="deleteByIds">
+		delete from `cart`
+		where `id` in
+		<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+			${item}
+		</foreach>
+	</delete>
+
+	<select id="getByMemberId" parameterType="Integer" resultMap="CartResult">
+		select
+		*
+		from `cart`
+		where `member_id` = #{memberId}
+		<if test="useType == 2">
+			and `checked`= 1
+		</if>
+	</select>
+
+	<!-- 根据会员ID 删除购物车内信息 -->
+	<delete id="deleteByMemberId"  parameterType="java.lang.Integer">
+		delete from `cart` where `member_id` = #{memberId} and `checked` = 1
+	</delete>
+
+	<delete id="jobClearCart"  parameterType="java.lang.String">
+		delete from `cart` where `create_time` &lt;= #{clearTime}
+	</delete>
+
+	<update id="updateChecked">
+		update `cart`
+		set `checked` = #{checked}
+		where `id` = #{cartId}
+		and `member_id` = #{memberId}
+	</update>
+
+	<update id="updateCheckedAll">
+		update `cart`
+		set `checked` = #{checked}
+		where `member_id` = #{memberId}
+	</update>
+
+	<select id="get" parameterType="Integer" resultMap="CartResult">
+		select
+		*
+		from `cart`
+		where `id` = #{id}
+	</select>
+
+	<insert id="insert" parameterType="com.yixiekeji.entity.cart.Cart" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into
+		`cart`
+		(
+		`create_time`,
+		`member_id`,
+		`count`,
+		`spec_id`,
+		`spec_info`,
+		`product_id`,
+		`seller_id`,
+		`product_goods_id`
+		)
+		values
+		(
+		now(),
+		#{memberId},
+		#{count},
+		#{specId},
+		#{specInfo},
+		#{productId},
+		#{sellerId},
+		#{productGoodsId}
+		)
+	</insert>
+
+	<select id="getByMIdAndGoodId" parameterType="Integer" resultMap="CartResult">
+		select
+		*
+		from cart
+		where `member_id`= #{memberId}
+		and `product_goods_id`= #{productGoodsId}
+	</select>
+
+	<update id="updateStatusById" parameterType="Integer">
+		 update cart set checked=0 where not id = #{id}
+	</update>
+
+	<update id="updateCartById">
+        update cart set checked=0,count=#{count} where id = #{id}
+	</update>
+
+</mapper>

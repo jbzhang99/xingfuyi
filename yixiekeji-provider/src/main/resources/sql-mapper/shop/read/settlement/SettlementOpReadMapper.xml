@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.settlement.SettlementOpReadDao">
+	<resultMap id="SettlementOpResult" type="com.yixiekeji.entity.settlement.SettlementOp">
+			<result property="id" column="id" />
+			<result property="ordersId" column="orders_id" />
+			<result property="ordersSn" column="orders_sn" />
+			<result property="sellerId" column="seller_id" />
+			<result property="productId" column="product_id" />
+			<result property="productGoodsId" column="product_goods_id" />
+			<result property="specInfo" column="spec_info" />
+			<result property="productName" column="product_name" />
+			<result property="productSku" column="product_sku" />
+			<result property="packageGroupsId" column="package_groups_id" />
+			<result property="mallGroupsId" column="mall_groups_id" />
+			<result property="giftId" column="gift_id" />
+			<result property="isGift" column="is_gift" />
+			<result property="moneyPrice" column="money_price" />
+			<result property="number" column="number" />
+			<result property="moneyAmount" column="money_amount" />
+			<result property="moneyActSingle" column="money_act_single" />
+			<result property="actSingleId" column="act_single_id" />
+			<result property="actGroupId" column="act_group_id" />
+			<result property="actFlashSaleId" column="act_flash_sale_id" />
+			<result property="actFlashSaleProductId" column="act_flash_sale_product_id" />
+			<result property="actBiddingId" column="act_bidding_id" />
+			<result property="actIntegralId" column="act_integral_id" />
+			<result property="actIntegralNum" column="act_integral_num" />
+			<result property="logisticsId" column="logistics_id" />
+			<result property="logisticsName" column="logistics_name" />
+			<result property="logisticsNumber" column="logistics_number" />
+			<result property="shippingTime" column="shipping_time" />
+			<result property="closeTime" column="close_time" />
+			<result property="systemRemark" column="system_remark" />
+			<result property="backNumber" column="back_number" />
+			<result property="exchangeNumber" column="exchange_number" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+			<result property="settlementId" column="settlement_id" />
+			<result property="settleCycle" column="settle_cycle" />
+			<result property="productCateId" column="product_cate_id" />
+			<result property="productCateName" column="product_cate_name" />
+			<result property="scaling" column="scaling" />
+			<result property="commision" column="commision" />
+			<result property="saleMoney" column="sale_money" />
+			<result property="settleTime" column="settle_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SettlementOpResult">
+		select
+		   *
+		from `settlement_op`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getByOrderId" parameterType="Integer" resultMap="SettlementOpResult">
+		select * from `settlement_op` where `orders_id` = #{ordersId}
+	</select>
+</mapper>

@@ -1,0 +1,109 @@
+.page-body {
+	background: rgb(233, 239, 249);
+	padding: 18px 20px 24px;
+}
+
+ul {
+	list-style: none;
+}
+
+em {
+	font-style: normal;
+}
+
+a {
+	text-decoration: none;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.w46 {
+	width: 49%;
+	height: 100%;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.pd20 {
+	padding: 10px 20px;
+	box-sizing: border-box;
+}
+
+.mb30 {
+	margin-bottom: 20px;
+}
+
+.bgcol {
+	background: #fff;
+	padding: 10px 0px;
+}
+
+.txcent {
+	text-align: center;
+}
+
+.ftb {
+	font-weight: 700;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.mored-a {
+	color: #333;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.borbot {
+	border-bottom: 2px solid #fb6e52;
+}
+
+.colorange {
+	color: #fb6e52 !important
+}
+
+.whbox {
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.whbox ul li {
+	line-height: 30px;
+}
+
+.whbox ul li span {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background: #fb6e52;
+	border-radius: 50%;
+}
+
+.whbox ul li a {
+	color: #333;
+}
+
+.undo ul li a {
+	color: blue;
+	margin: 0 3px;
+}
+
+.w46 .idxpot {
+	width: 100%;
+	height: 270px;
+	margin-top: 0px;
+}

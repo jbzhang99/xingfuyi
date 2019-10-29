@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.news.NewsTypeWriteDao">
+	<resultMap id="NewsTypeResult" type="com.yixiekeji.entity.news.NewsType">
+			<result property="id" column="id" />
+			<result property="pid" column="pid" />
+			<result property="parentPath" column="parent_path" />
+			<result property="name" column="name" />
+			<result property="sort" column="sort" />
+			<result property="image" column="image" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+
+	<delete id="del">
+        delete from `news_type` where `id` = #{id}
+    </delete>
+	
+	<select id="get" parameterType="Integer" resultMap="NewsTypeResult">
+		select
+		   *
+		from `news_type`
+		where `id` = #{id}
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.news.NewsType">
+        update `news_type` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="pid != null">`pid`= #{pid},</if>
+			<if test="parentPath != null">`parent_path`= #{parentPath},</if>
+			<if test="name != null">`name`= #{name},</if>
+			<if test="sort != null">`sort`= #{sort},</if>
+			<if test="image != null">`image`= #{image},</if>
+			<if test="createTime != null">`create_time`= #{createTime}</if>
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="save" parameterType="com.yixiekeji.entity.news.NewsType" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`news_type`
+		(
+			
+			`pid`,
+			`parent_path`,
+			`name`,
+			`sort`,
+			`image`,
+			`create_time`
+		)
+		values
+		(
+			
+			#{pid},
+			#{parentPath},
+			#{name},
+			#{sort},
+			#{image},
+			#{createTime}
+		)
+	</insert>
+	
+</mapper>

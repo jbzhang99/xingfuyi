@@ -1,0 +1,334 @@
+.reminder-con {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+.reminder-con h3 {
+    font-size: 12px;
+    color: #f25454;
+}
+
+.reminder-con .cons {
+    margin-top: 3px;
+    color: #999;
+}
+
+.reminder-con p {
+    line-height: 1.8;
+}
+
+.formboxcon {
+    font-size: 12px;
+    background-color: #fff;
+    margin:10px 10px 0 10px;
+    border-radius:10px;
+    overflow:hidden;
+}
+.bt_submit_finance{
+	margin-bottom:10px;
+}
+.formboxcon .foemitems {
+    overflow: hidden;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.formboxcon .foemitems .u-label {
+    width: 28%;
+    float: left;
+    text-align: right;
+    color: #666;
+}
+
+.formboxcon .foemitems .colw {
+    float: left;
+    width: 60%;
+}
+
+.formboxcon .foemitems .colw.red {
+    color: #5cb85c;
+}
+
+.formboxcon .foemitems .u-label i {
+    color: #d7000f;
+    margin-right: 3px;
+}
+
+.formboxcon .foemitems .col {
+    color: #d7000f;
+}
+
+.formboxcon .foemitems select,
+.formboxcon .foemitems input {
+    border: 0;
+    outline: none;
+}
+
+.formcol {
+    color: #d7000f;
+    font-size: 12px;
+    padding: 4px 9px;
+}
+
+.ptit {
+    padding: 5px 10px;
+    background: #f2f2f2;
+}
+
+.expewrapcon {
+    padding: 10px;
+}
+
+.expected-income-con {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+.expected-income-con h3 {
+    display: inline-block;
+    padding: 4px;
+    background: #f2c90c;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    position: relative;
+    top: -5px;
+}
+
+.balancecash {
+    font-weight: 700;
+}
+
+.iconadd {
+    background: url(../img/iconadd.png) no-repeat;
+    display: inline-block;
+    width: 13px;
+    height: 14px;
+    background-position: 0 -3px;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+
+.expected-income-con .mybalance-info {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.balancecash em {
+    font-style: normal;
+}
+
+.accrued-rules {
+    margin: 8px 0 8px 69px;
+}
+
+.expected-income-con.mybalance-withdraw {
+    margin-top: 10px;
+}
+
+.expected-income-con h3.mybalance-title__cash {
+    background: #2ec55c;
+}
+
+.withdraw__upper {
+    position: relative;
+}
+
+.withdraw__upper .btn-getcash {
+    cursor: pointer;
+    position: absolute;
+    border: 1px solid #b2b2b2;
+    border-radius: 3px;
+    background: #f1f1f1;
+    padding: 0 10px;
+    right: 0;
+    bottom: 3px;
+}
+
+.withdraw__middle {
+    margin-top: 10px;
+    padding-left: 57px;
+}
+
+.mybalance-withdraw em {
+    font-style: normal;
+}
+
+.balancecash-money {
+    font-weight: 700;
+}
+
+.balancecash-status {
+    margin-left: 10px;
+}
+
+.withdraw__middle li {
+    display: inline-block;
+}
+
+.withdraw__below {
+    margin-top: 10px;
+    padding-left: 57px;
+}
+
+.withdraw__below li {
+    display: inline-block;
+}
+
+.balancecash-info {
+    float: right;
+}
+
+.tabboxcon {
+    margin: 10px;
+    overflow-x: scroll;
+}
+
+.tabboxcon .searchlist-result {
+    width: 200%;
+    font-size: 11px;
+    color: #333333;
+    border-width: 0px;
+    border-collapse: collapse;
+}
+
+table.searchlist-result th {
+    text-align: center;
+    border-width: 1px;
+    padding: 8px;
+    width: 10%;
+    border-style: solid;
+    border-color: #e2e2e2;
+    background-color: #eaeaea;
+}
+
+table.searchlist-result td {
+    text-align: center;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #e2e2e2;
+    background-color: #ffffff;
+}
+
+.xjz-con.reminder-con h3 {
+    text-align: center;
+    font-size: 13px;
+}
+
+.searchItm {
+    font-size: 12px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.searchItm input,
+.searchItm select {
+    border: none;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.search-lable {
+    display: inline-block;
+    width: 30%;
+    text-align: right;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.searchItm input.iptim {
+    width: 28%;
+}
+
+.btnaera {
+    text-align: right;
+    margin: 8px 15px;
+}
+
+.btnaera input {
+    font-size: 14px;
+}
+
+.bt {
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    background-color: #32beff;
+    padding: 3px 15px;
+    margin-left: 10px;
+}
+
+.reminder-con .tit {
+    font-weight: 700;
+    font-size: 14px;
+    margin: 6px 0;
+}
+.th-cell{
+    padding-bottom: 10px;
+}
+
+.th-cell label {
+    display: inline-block;
+    width: 22%;
+    vertical-align: top;
+    font-weight: normal;
+}
+.th-cell span{
+    display: inline-block;
+    width: 78%;
+    vertical-align: top;
+    color: #666;
+}
+.th-state a{
+    display: inline-block;
+    text-align: center;
+    border-radius: 4px;
+    padding: 2px 10px;
+    border: solid 1px #ccc;
+    font-size: 12px;
+    line-height: 18px;
+}
+.derailedCon{
+    background-color: #fff;
+    padding-bottom: 10px;
+    margin:10px 10px 20px 10px;
+    border-radius:10px;
+}
+.tabitems {
+	padding:0 10px 10px;
+}
+
+.item-lis {
+    padding: 8px 10px;
+    position: relative;
+    background-color: #fff;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.th-state {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    color: #F90;
+}
+
+.txtcetr {
+    text-align: center;
+}
+
+.abtn {
+    margin-top: 10px;
+}

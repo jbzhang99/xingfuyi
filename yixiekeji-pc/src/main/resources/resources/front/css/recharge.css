@@ -1,0 +1,87 @@
+.recharge-box {
+	border: 1px solid #E4E4E4;
+	border-radius: 2px;
+	font-family: "microsoft yahei";
+	margin-bottom: 20px;
+}
+
+.stepflex-box {
+	margin-top: 20px;
+	font-family: "microsoft yahei";
+	margin-right: 15px;
+	margin-bottom: 2px;
+}
+
+.recharge-tit {
+	background: #F3F3F3;
+	padding: 10px 10px;
+	font-size: 18px;
+	color: #000;
+}
+
+.recharge-content {
+	width: 1000px;
+	margin: 20px auto;
+}
+
+.grounp-div {
+	height: 30px;
+	font-size: 14px;
+	color: #333;
+}
+
+.mony-txt {
+	width: 100px;
+	height: 30px;
+	margin-right: 10px;
+	border: 1px solid #E2E2E2;
+}
+
+.careful-info {
+	padding-left: 70px;
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+
+.careful-info p {
+	line-height: 24px;
+	color: #a6a6a6;
+	margin: 0px;
+}
+
+.careful-info .tel-iph {
+	border: 1px solid #e2e2e2;
+	display: inline-block;
+	padding: 5px 10px 5px 30px;
+	color: #333;
+	letter-spacing: 1px;
+	background: #f5f5f5 url(../img/tel-iph.png) no-repeat 8px 4px;
+}
+
+.careful-btn {
+	display: block;
+	color: #fff;
+	font-size: 20px;
+	background: #DE3432;
+	padding: 10px 50px;
+	border: 0;
+	border-radius: 3px;
+	margin-top: 10px;
+}
+
+.review-tips {
+	border: 2px solid #E8D89D;
+	background: #FFFDEE;
+	padding: 10px 40px;
+}
+
+.review-tips p {
+	margin: 0px;
+	line-height: 20px;
+}
+
+.review-tips p.fir-p {
+	font-weight: 800;
+	font-size: 14px;
+}
+

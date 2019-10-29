@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.sale.SaleScaleProductLogReadDao">
+	<resultMap id="SaleScaleProductLogResult" type="com.yixiekeji.entity.sale.SaleScaleProductLog">
+			<result property="id" column="id" />
+			<result property="sellerId" column="seller_id" />
+			<result property="productId" column="product_id" />
+			<result property="saleScale1" column="sale_scale1" />
+			<result property="saleScale2" column="sale_scale2" />
+			<result property="createId" column="create_id" />
+			<result property="createName" column="create_name" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SaleScaleProductLogResult">
+		select
+		   *
+		from `sale_scale_product_log`
+		where `id` = #{id}
+	</select>
+	
+</mapper>

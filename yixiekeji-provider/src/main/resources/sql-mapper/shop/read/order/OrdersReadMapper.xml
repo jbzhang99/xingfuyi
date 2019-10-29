@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.order.OrdersReadDao">
+	<resultMap id="OrdersResult" type="com.yixiekeji.entity.order.Orders">
+			<result property="id" column="id" />
+			<result property="orderSn" column="order_sn" />
+			<result property="orderPsn" column="order_psn" />
+			<result property="isParent" column="is_parent" />
+			<result property="isShow" column="is_show" />
+			<result property="relationOrderSn" column="relation_order_sn" />
+			<result property="orderType" column="order_type" />
+			<result property="sellerId" column="seller_id" />
+			<result property="sellerName" column="seller_name" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="orderState" column="order_state" />
+			<result property="payTime" column="pay_time" />
+			<result property="paymentStatus" column="payment_status" />
+			<result property="invoiceStatus" column="invoice_status" />
+			<result property="invoiceTitle" column="invoice_title" />
+			<result property="invoiceType" column="invoice_type" />
+			<result property="moneyProduct" column="money_product" />
+			<result property="moneyLogistics" column="money_logistics" />
+			<result property="moneyOrder" column="money_order" />
+			<result property="moneyPaidBalance" column="money_paid_balance" />
+			<result property="moneyPaidReality" column="money_paid_reality" />
+			<result property="moneyCoupon" column="money_coupon" />
+			<result property="moneyActFull" column="money_act_full" />
+			<result property="moneyDiscount" column="money_discount" />
+			<result property="moneyBack" column="money_back" />
+			<result property="moneyIntegral" column="money_integral" />
+			<result property="integral" column="integral" />
+			<result property="couponUserId" column="coupon_user_id" />
+			<result property="actFullId" column="act_full_id" />
+			<result property="activityId" column="activity_id" />
+			<result property="ip" column="ip" />
+			<result property="paymentName" column="payment_name" />
+			<result property="paymentCode" column="payment_code" />
+			<result property="name" column="name" />
+			<result property="provinceId" column="province_id" />
+			<result property="cityId" column="city_id" />
+			<result property="areaId" column="area_id" />
+			<result property="addressAll" column="address_all" />
+			<result property="addressInfo" column="address_info" />
+			<result property="mobile" column="mobile" />
+			<result property="email" column="email" />
+			<result property="zipCode" column="zip_code" />
+			<result property="remark" column="remark" />
+			<result property="deliverTime" column="deliver_time" />
+			<result property="finishTime" column="finish_time" />
+			<result property="tradeSn" column="trade_sn" />
+			<result property="source" column="source" />
+			<result property="logisticsId" column="logistics_id" />
+			<result property="logisticsName" column="logistics_name" />
+			<result property="logisticsNumber" column="logistics_number" />
+			<result property="isCodconfim" column="is_codconfim" />
+			<result property="codconfirmId" column="codconfirm_id" />
+			<result property="codconfirmName" column="codconfirm_name" />
+			<result property="codconfirmTime" column="codconfirm_time" />
+			<result property="codconfirmRemark" column="codconfirm_remark" />
+			<result property="codconfirmState" column="codconfirm_state" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+			<result property="evaluateState" column="evaluate_state" />
+			<result property="taxNum" column="tax_num" />
+	</resultMap>
+	
+	<resultMap id="goodsReturnMap" type="com.yixiekeji.dto.OrdersReturnDto">
+			<result property="id" column="id" />
+			<result property="sellerId" column="seller_id" />
+			<result property="memberId" column="member_id" />
+			<result property="orderState" column="order_state" />
+			<result property="payTime" column="pay_time" />
+			<result property="paymentStatus" column="payment_status" />
+			<result property="stateMoney" column="state_money" />
+			<result property="finishTime" column="finish_time" />
+	</resultMap>
+	
+	<resultMap id="productSaleMap" type="com.yixiekeji.dto.ProductSaleDto">
+			<result property="moneyAmount" column="money_amount" />
+			<result property="productName" column="product_name" />
+			<result property="specInfo" column="spec_info" />
+			<result property="isNorm" column="is_norm" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+	
+	<select id="getOrderNumByMIdAndState" resultType="java.lang.Integer">
+		select
+		   count(1)
+		from `orders`
+		where `member_id` = #{memberId}
+		and `order_state` = #{orderState}
+		and `is_show` = 1
+	</select>
+	
+	<select id="get" parameterType="Integer" resultMap="OrdersResult">
+		select
+		   *
+		from `orders`
+		where `id` = #{id}
+	</select>
+
+	<select id="getSettleOrders" resultMap="OrdersResult">
+		select
+		   *
+		from `orders`
+		where `seller_id` = #{sellerId}
+		and `order_state` = 5
+		and `finish_time` &gt;= #{startTime}
+		and `finish_time` &lt;= #{endTime}
+		and `is_parent` = 0
+	</select>
+	
+	<select id="getOrderDayDto" resultType="com.yixiekeji.dto.OrderDayDto">
+        select 
+        	left(create_time,10) as orderDay,
+        	sum(money_product) as moneyProduct,
+        	sum(money_logistics) as moneyLogistics,
+	    	sum(money_order) as moneyOrder,
+        	sum(money_paid_balance) as moneyPaidBalance,
+        	sum(money_paid_reality) as moneyPaidReality,
+        	sum(money_back) as moneyBack,
+	    	count(1) as count
+    	from orders
+		where
+			`order_state` != 6
+			and `is_parent` = 0
+			<if test="queryMap.q_startTime != null and queryMap.q_startTime !=''"  >
+				and `create_time` &gt;= #{queryMap.q_startTime}
+			</if>
+			<if test="queryMap.q_endTime != null and queryMap.q_endTime !=''"  >
+				and `create_time` &lt;= #{queryMap.q_endTime}
+			</if>
+			<if test="queryMap.q_sellerId != null and queryMap.q_sellerId !=''"  >
+				and `seller_id`= #{queryMap.q_sellerId}
+			</if>
+		group by orderDay
+    	order by orderDay desc
+    </select>
+	
+	<select id="getUnfinishedOrders" resultMap="OrdersResult">
+		select
+		   *
+		from `orders`
+		where `order_state` = 4
+		and `deliver_time` &lt;= #{deliverTime}
+		and `is_parent` = 0
+	</select>
+	
+	<select id="getUnPaiedOrders" resultMap="OrdersResult">
+		select
+		   *
+		from `orders`
+		where `order_state` = 1
+		and `payment_status` = 0
+		and `create_time` &lt;= #{cancelTime}
+		and `is_parent` = 1
+	</select>
+	
+	<select id="getSumMoneyOrderBySellerId" resultType="com.yixiekeji.dto.OrderDayDto">
+        select 
+	    	sum(money_order) as moneyOrder,
+        	sum(money_back) as moneyBack,
+	    	count(1) as count
+    	from orders
+		where `order_state` = 5
+			and `seller_id`= #{sellerId}
+			and `is_parent` = 0
+    </select>
+    
+    <select id="getCountBySellerId" parameterType="Integer" resultType="Integer">
+		select count(1)
+		from `orders`
+		where `seller_id` = #{sellerId}
+		and `is_parent` = 0
+	</select>
+	
+	<select id="getProductSale" resultMap="productSaleMap">
+		SELECT
+			sum(op.money_amount) as money_amount,
+			op.spec_info AS spec_info,
+			<if test="model != null and model == 'year'" >
+			date_format(o.`create_time`,'%Y-%m') as create_time
+			</if>
+			<if test="model != null and model == 'month'"  >
+			date_format(o.`create_time`,'%Y-%m-%d') as create_time
+			</if>
+		FROM
+			orders o
+		LEFT JOIN orders_product op ON o.id = op.orders_id
+		WHERE op.`product_id` = #{productId}
+			and o.`is_parent` = 0
+		<if test="model != null and model == 'year'" >
+			AND Year(o.`create_time`) = #{year}
+		</if>
+		<if test="model != null and model == 'month'"  >
+			AND Year(o.`create_time`) = #{year} AND Month(o.`create_time`) = #{month}
+		</if>
+		<if test="s_status != null"  > 
+			AND o.`order_state` in 
+			 <foreach item="item" index="index" collection="s_status" open="(" separator="," close=")">  
+			  #{item}  
+			 </foreach>  
+		</if>
+		<if test="model != null and model == 'year'" >
+			group by op.`spec_info`,date_format(o.`create_time`,'%Y-%m')
+		</if>
+		<if test="model != null and model == 'month'"  >
+			group by op.`spec_info`,date_format(o.`create_time`,'%Y-%m-%d')
+		</if>
+	</select>
+	
+	<select id="goodsReturnRate" parameterType="Integer" resultMap="goodsReturnMap">
+		SELECT o.seller_id, 
+			o.member_id, 
+			o.order_state, 
+			o.pay_time, 
+			o.payment_status, 
+			o.id, 
+			m.state_money, 
+			o.finish_time
+		FROM orders o LEFT OUTER JOIN member_product_back m ON o.id = m.order_id
+		WHERE o.order_state = 5
+		AND o.payment_status = 1
+		AND o.`is_parent` = 0
+		<if test="q_sellerId != null"  > 
+			AND o.seller_id = #{q_sellerId}
+		</if>
+		<if test="year != null"  > 
+			AND Year(o.finish_time) = #{year}
+		</if>
+		<if test="month != null"  >
+		 	AND Year(o.finish_time) = #{year} and Month(o.finish_time) = #{month}
+		 </if>
+	</select>
+	
+	<select id="getOrdersCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(1) from `orders`
+		<include refid="getOrdersCondition" />
+	</select>
+
+	<select id="getOrders" parameterType="java.util.Map" resultType="com.yixiekeji.entity.order.Orders">
+		select * from `orders`
+		<include refid="getOrdersCondition" />
+		order by id desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+
+	<!-- 查询条件 -->
+	<sql id="getOrdersCondition">
+		<where>
+			<if test="queryMap.q_sellerId != null and queryMap.q_sellerId !=''"  >
+				and `seller_id`= #{queryMap.q_sellerId}
+			</if>
+			<if test="queryMap.q_memberId != null and queryMap.q_memberId !=''"  >
+				and `member_id`= #{queryMap.q_memberId}
+			</if>
+			<if test="queryMap.q_orderSn != null and queryMap.q_orderSn !=''"  >
+				and `order_sn` like CONCAT('%',#{queryMap.q_orderSn},'%')
+			</if>
+			<if test="queryMap.q_orderPsn != null and queryMap.q_orderPsn !=''"  >
+				and `order_psn` like CONCAT('%',#{queryMap.q_orderPsn},'%')
+			</if>
+			<if test="queryMap.q_orderType != null and queryMap.q_orderType != ''" >
+				and order_type =  #{queryMap.q_orderType}
+			</if>
+			<if test="queryMap.q_orderState != null and queryMap.q_orderState !=''"  >
+				and `order_state`= #{queryMap.q_orderState}
+			</if>
+			<if test="queryMap.q_isParent != null and queryMap.q_isParent !=''"  >
+				and `is_parent` = #{queryMap.q_isParent}
+			</if>
+			<if test="queryMap.q_isShow != null and queryMap.q_isShow !=''"  >
+				and `is_show`= #{queryMap.q_isShow}
+			</if>
+			<if test="queryMap.q_paymentCode != null and queryMap.q_paymentCode !=''"  >
+				and `payment_code`= #{queryMap.q_paymentCode}
+			</if>
+			<if test="queryMap.q_finishStartTime != null and queryMap.q_finishStartTime !=''"  >
+				and `finish_time` &gt;= #{queryMap.q_finishStartTime}
+			</if>
+			<if test="queryMap.q_finishEndTime != null and queryMap.q_finishEndTime !=''"  >
+				and `finish_time` &lt;= #{queryMap.q_finishEndTime}
+			</if>
+			<if test="queryMap.q_evaluateNoState != null and queryMap.q_evaluateNoState !=''"  >
+				and `evaluate_state` != #{queryMap.q_evaluateNoState}
+				and `order_type` != 4
+			</if>
+			<if test="queryMap.year != null and queryMap.year !=''"  > 
+				and Year(finish_time) = #{queryMap.year}
+			</if>
+			<if test="queryMap.month != null and queryMap.month !=''"  >
+			 	and Year(finish_time) = #{queryMap.year} and Month(finish_time) = #{queryMap.month}
+			 </if>
+			<if test="queryMap.startTime != null and queryMap.endTime != null"  >
+				and DATE_FORMAT(`create_time` , "%Y-%m-%d") BETWEEN STR_TO_DATE(#{queryMap.startTime} , "%Y-%m-%d")
+					AND STR_TO_DATE(#{queryMap.endTime} , "%Y-%m-%d")
+			 </if>
+			<if test="queryMap.s_status != null and queryMap.s_status !=''"  >
+			 	and `order_state` in 
+			 	 <foreach item="item" index="index" collection="queryMap.s_status" open="(" separator="," close=")">  
+				  #{item}  
+				 </foreach>  
+			</if>
+			<if test="queryMap.s_statusR != null and queryMap.s_statusR !=''"  >
+			 	and (order_state = 3 or order_state = 4 or order_state = 5)
+			</if>
+		</where>
+	</sql>
+	
+	<select id="getNumByMIdAndEvaluateState" resultType="java.lang.Integer">
+		select 
+			count(*) 
+		from `orders` 
+		where `member_id` = #{memberId}
+		and `order_state` = 5
+		and `order_type` != 4
+		and `evaluate_state` != 3
+		and `is_show` = 1
+	</select>
+	
+	<select id="getByOrderPsn" resultMap="OrdersResult">
+		select
+			*
+		from `orders`
+		where `order_psn` = #{orderPsn}
+	</select>
+
+
+	<select id="getOrdersByMemberIdAndState" resultMap="OrdersResult">
+		select
+			*
+		from `orders`
+		where `member_id` = #{memberId} and `order_state` = #{orderState} and `is_parent` = 0
+	</select>
+	
+	
+	<select id="countByFinishTimeAndOrderState" resultType="java.lang.Integer">
+		select
+		   count(1)
+		from `orders`
+		where
+		`order_state` = #{orderState}
+		and `is_parent` = 0
+		and `order_type` = 1
+		<if test="finishTime != null and finishTime !=''">
+		 	and `finish_time` &gt; #{finishTime}
+		</if>
+	</select>
+	
+	<select id="getByFinishTimeAndOrderState" resultType="com.yixiekeji.entity.order.Orders">
+		select * from `orders`
+		where
+		`order_state` = #{orderState}
+		and `is_parent` = 0
+		and `order_type` = 1
+		<if test="finishTime != null and finishTime !=''">
+		 	and `finish_time` &gt; #{finishTime}
+		</if>
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+</mapper>

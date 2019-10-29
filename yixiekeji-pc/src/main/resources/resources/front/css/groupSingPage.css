@@ -1,0 +1,420 @@
+table {
+    border: 1px solid #e0e0e0;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.g-specbox {
+    background: none repeat scroll  0 0 #ccc;
+    margin-top: 20px;
+}
+.g-specbox tr {
+    height: 28px;
+}
+.g-specbox th {
+    width: 110px;
+    background-color: #F8F8F8;
+    border-bottom: 2px solid #E6E6E6;
+    text-indent: 30px;
+    text-align: left;
+}
+.g-specbox tr td {
+    border-bottom: 1px solid #E6E6E6;
+    text-indent: 30px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    display: table-cell;
+    vertical-align: inherit;
+    background-color: #fff;
+}
+.g-specbox tr td:first-child{
+    width: 30%;
+}
+.g-specbox tr td:nth-child(2){
+    width: 70%;
+}
+
+.left-box {
+  float: left;
+  height: 360px;
+  padding: 0 10px;
+}
+.left-box .mainImg {
+    width:360px;
+    height:360px;
+    margin:auto;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left: -180px;
+    margin-top:-180px;
+}
+.left-box .mainImg a {
+  vertical-align: middle;
+}
+.left-box .mainImg img {
+  display: block;
+  width: 100%;
+  vertical-align: middle;
+}
+.right-box {
+  width: 830px;
+  float: left;
+  min-height: 360px;
+  background-color: #F8F8F8;
+  display: inline-block;
+  /*padding: 20px 0 0 20px;*/
+}
+.right-box .right-box-pad {
+  padding: 20px 0 0 20px;
+}
+.right-box .shop-name {
+    margin: 28px 0 0 20px;
+    font: 700 18px/30px "Microsoft Yahei";
+    width: 80%;
+    overflow: hidden;
+    margin: 0;
+}
+.right-box .description {
+    width: 85%;
+    margin-top: 5px;
+    margin-bottom:4px;
+    color: #aaa;
+    font-size: 13px;
+    line-height: 20px;
+    word-break: break-all;
+    padding: 3px 7px;
+    border: 1px dashed #ececec;
+}
+.right-box .description li {
+    /*height: 20px;
+    list-style: disc inside;*/
+    max-height:60px;
+    list-style: none;
+    overflow: hidden;
+}
+.right-box .timeinfo {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #000;
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    width: 80%;
+}
+.right-box .timeinfo .time-item {
+  display: inline-block;
+  float: left;
+  font-weight: 700;
+}
+
+.right-box .timeinfo .time-item strong {
+  /*font-weight: 400;*/
+}
+.right-box .timeinfo .number-item {
+    display: inline-block;
+    float: right;
+}
+.right-box .timeinfo .number-item .num {
+    font-weight: 700;
+    color: #E84848;
+}
+
+.right-box .item-purch {
+    width: 80%;
+    height: 64px;
+    margin-top: 20px;
+    background-color: #E84848;
+    color: #FFF;
+    font-family: Arial,"Microsoft Yahei";
+    position: relative;
+}
+
+.right-box .item-purch .btn {
+    margin-right: 25px;
+    margin-top: 10px;
+    float: right;
+    background: #99191a none repeat scroll 0 0;
+    color: #fffefe;
+    display: inline-block;
+    font: 24px/30px "微软雅黑";
+    /*height: 41px;*/
+    text-align: center;
+    width: 166px;
+    border-radius: 5px;
+}
+.right-box .item-purch .btn.btn-gray {
+    background-color: #99191a;
+}
+.right-box .item-purch .btn.btn-gray {
+    background-color: #DFDFDF;
+}
+.right-box .item-purch .btn-red:hover {
+  text-decoration: none;
+}
+.item-purch .item-flxed {
+  overflow: hidden;
+}
+.item-purch .item-flxed::after {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    content: "";
+    width: 5px;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+    border-width: 33px 22px 31px 0;
+    border-style: solid;
+    border-color: #E84848 #F8F8F8;
+}
+.item-purch .newPrice {
+    float: left;
+    height: 64px;
+    line-height: 64px;
+    color: #fff;
+    font-family: Arial;
+    font-weight: 700;
+    font-size: 40px;
+    padding-left: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+.item-purch .oldPrice {
+    /*position: relative;*/
+    float: left;
+    margin-left: 13px;
+    _display: inline;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 30px;
+}
+.item-purch .oldPrice.oldPrice-span {
+    margin-left: 20px;
+}
+.item-purch .oldPrice:hover {
+    color: #fff;
+}
+.simsun {
+    font-family: Simsun;
+}
+
+.item-purch .oldPrice .originPrice {
+    font-size: 16px;
+    color: #fff;
+/*    position: absolute;
+    left: -24px;
+    top: -2px;*/
+    line-height: 21px;
+    bottom: 10px;
+}
+/*彈出框*/
+.groupon-box {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999999;
+    display: none;
+}
+
+.groupon-Popup {
+    width: 400px;
+    min-height: 136px;
+    margin: 200px auto;
+}
+.attribute_buy_num {
+    background: #fff;
+    padding: 50px 40px;
+    border-radius: 20px;
+    position: relative;
+}
+.attribute_buy_num_tit {
+    display: block;
+    /*width: 6.7rem;*/
+    line-height: 30px;
+    color: #888;
+    float: left;
+}
+.attribute_buy_num_val {
+    overflow: hidden;
+    display: inline-block;
+}
+.attribute_buy_num_val span.un_minus_icon, .attribute_buy_num_val span.add_icon {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    float: left;
+    border: 1px solid #ccc;
+}
+.attribute_buy_num_val span.un_minus_icon {
+    background: url(../img/num_minus1.png) no-repeat center;
+    background-size: 12px 12px;
+    border: 1px solid #dfdfdf !important;
+}
+.attribute_buy_num_val input {
+    width: 40px;
+    height: 28px;
+    background: #fff;
+    border-top: 1px solid #ccc;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    float: left;
+    text-align: center;
+    outline: 0;
+}
+.attribute_buy_num_val span.add_icon {
+    background: #fff url(../img/num_add.png) no-repeat center;
+    background-size: 12px 12px;
+}
+.limit_num {
+    overflow: hidden;
+    padding-left: 10px;
+    line-height: 30px;
+    color: #999;
+    float: left;
+}
+.limit_num span {
+    font-family: none;
+    padding: 0 2px;
+}
+.groupon-box-close {
+    font-size: 30px;
+    position: absolute;
+    top:10px;
+    right:10px;
+    color: #999;
+    cursor: pointer;
+}
+.statement {
+    float: left;
+    height: 28px;
+    border-radius:5px;
+    margin-left: 10px;
+    padding: 0 10px;
+    outline: none;
+    border:0;
+    background: #E84848;
+    color: #fff;
+}
+.show-groupon-box {
+    display: block;
+}
+
+#Choose.tuan-choose-wrap {
+  border-top: 1px dotted #ddd;
+  height: auto;
+  margin-left: -2px;
+  margin-top: 5px;
+  padding-top: 10px;
+  position: relative;
+  z-index: 3;
+  overflow:hidden;
+}
+#Choose .dt.dt-size {
+	margin-left:0px;
+}
+#Choose.tuan-choose-wrap  .li-sy {
+	padding:0;
+}
+
+.right-box .item-purch-tuan{
+	 margin-top:0; 
+}
+
+.tuan-num-check{
+	width: 320px;
+	overflow:hidden;
+	color: red;
+	display: none;
+	/* min-height:20px; */
+}
+.ladder-price {
+    margin-bottom: 10px;
+}
+.ladder-price-tit {
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 25px;
+    color: #000;
+    display: inline-block;
+    font-family: "Microsoft YaHei";
+}
+.ladder-price p {
+    width: 30%;
+    line-height: 25px;
+    font-size: 14px;
+    float: left;
+    color: #000;
+}
+.ladder-price-p {
+    padding-left: 70px;
+}
+.ladder-price-sum {
+    font-family: "Microsoft YaHei";
+    line-height: 25px;
+    font-size: 14px;
+    color: #000;
+    display: inline-block;
+}
+.ladder-price-sum em {
+    color: #E84848;
+}
+.container-xg {
+    position: relative;
+    overflow: hidden;
+    width: 1210px;
+}
+#p-box .right-box {
+    float:right;
+    width:830px;
+    margin-left:-380px;
+}
+/*#p-box .left-wrapper{
+    float:right;
+    width:380px;
+}*/
+#p-box .left-box{
+    position:absolute;
+    width:380px;
+    height:100%;
+}
+.price-font {
+	display:inline-block;
+	font-size:16px;
+	padding-right:5px;
+	
+}
+.first-col-red {
+	color:red;
+	font-size:14px;
+}
+.right-box .item-purch.over{
+	background:#CD9B9B;
+}
+.item-purch .item-flxed.item-flxed-over::after{
+	border-color:#CD9B9B #F8F8F8;
+}
+.lift-font-line{
+	word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}

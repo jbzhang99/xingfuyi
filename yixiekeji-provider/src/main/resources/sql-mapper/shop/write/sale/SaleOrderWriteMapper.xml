@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.sale.SaleOrderWriteDao">
+	<resultMap id="SaleOrderResult" type="com.yixiekeji.entity.sale.SaleOrder">
+			<result property="id" column="id" />
+			<result property="buyId" column="buy_id" />
+			<result property="buyName" column="buy_name" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="productId" column="product_id" />
+			<result property="productName" column="product_name" />
+			<result property="sellerId" column="seller_id" />
+			<result property="sellerName" column="seller_name" />
+			<result property="orderId" column="order_id" />
+			<result property="orderSn" column="order_sn" />
+			<result property="ordersProductId" column="orders_product_id" />
+			<result property="orderTime" column="order_time" />
+			<result property="moneyAll" column="money_all" />
+			<result property="actMoney" column="act_money" />
+			<result property="money" column="money" />
+			<result property="number" column="number" />
+			<result property="saleMoney" column="sale_money" />
+			<result property="saleScale" column="sale_scale" />
+			<result property="saleState" column="sale_state" />
+			<result property="saleType" column="sale_type" />
+			<result property="saleGrade" column="sale_grade" />
+			<result property="backNumber" column="back_number" />
+			<result property="backMoney" column="back_money" />
+			<result property="backIds" column="back_ids" />
+			<result property="saleApplyMoneyId" column="sale_apply_money_id" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SaleOrderResult">
+		select
+		   *
+		from `sale_order`
+		where `id` = #{id}
+	</select>
+	
+	<select id="countByOrdersProductId" parameterType="Integer" resultType="Integer">
+		select
+		   count(1)
+		from `sale_order`
+		where `orders_product_id` = #{ordersProductId}
+	</select>
+	
+	<select id="getByOrdersProductId" parameterType="Integer" resultMap="SaleOrderResult">
+		select
+		   *
+		from `sale_order`
+		where `orders_product_id` = #{ordersProductId}
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.sale.SaleOrder">
+        update `sale_order` 
+    	<set>
+			<if test="buyId != null">`buy_id`= #{buyId},</if>
+			<if test="buyName != null">`buy_name`= #{buyName},</if>
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="memberName != null">`member_name`= #{memberName},</if>
+			<if test="productId != null">`product_id`= #{productId},</if>
+			<if test="productName != null">`product_name`= #{productName},</if>
+			<if test="sellerId != null">`seller_id`= #{sellerId},</if>
+			<if test="sellerName != null">`seller_name`= #{sellerName},</if>
+			<if test="orderId != null">`order_id`= #{orderId},</if>
+			<if test="orderSn != null">`order_sn`= #{orderSn},</if>
+			<if test="ordersProductId != null">`orders_product_id`= #{ordersProductId},</if>
+			<if test="orderTime != null">`order_time`= #{orderTime},</if>
+			<if test="moneyAll != null">`money_all`= #{moneyAll},</if>
+			<if test="actMoney != null">`act_money`= #{actMoney},</if>
+			<if test="money != null">`money`= #{money},</if>
+			<if test="number != null">`number`= #{number},</if>
+			<if test="saleMoney != null">`sale_money`= #{saleMoney},</if>
+			<if test="saleScale != null">`sale_scale`= #{saleScale},</if>
+			<if test="saleState != null">`sale_state`= #{saleState},</if>
+			<if test="saleType != null">`sale_type`= #{saleType},</if>
+			<if test="saleGrade != null">`sale_grade`= #{saleGrade},</if>
+			<if test="backNumber != null">`back_number`= #{backNumber},</if>
+			<if test="backMoney != null">`back_money`= #{backMoney},</if>
+			<if test="backIds != null">`back_ids`= #{backIds},</if>
+			<if test="saleApplyMoneyId != null">`sale_apply_money_id`= #{saleApplyMoneyId},</if>
+			`update_time`= now()
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.sale.SaleOrder" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`sale_order`
+		(
+			`buy_id`,
+			`buy_name`,
+			`member_id`,
+			`member_name`,
+			`product_id`,
+			`product_name`,
+			`seller_id`,
+			`seller_name`,
+			`order_id`,
+			`order_sn`,
+			`orders_product_id`,
+			`order_time`,
+			`money_all`,
+			`act_money`,
+			`money`,
+			`number`,
+			`sale_money`,
+			`sale_scale`,
+			`sale_state`,
+			`sale_type`,
+			`sale_grade`,
+			`back_number`,
+			`back_money`,
+			`back_ids`,
+			`sale_apply_money_id`,
+			`create_time`,
+			`update_time`
+		)
+		values
+		(
+			#{buyId},
+			#{buyName},
+			#{memberId},
+			#{memberName},
+			#{productId},
+			#{productName},
+			#{sellerId},
+			#{sellerName},
+			#{orderId},
+			#{orderSn},
+			#{ordersProductId},
+			#{orderTime},
+			#{moneyAll},
+			#{actMoney},
+			#{money},
+			#{number},
+			#{saleMoney},
+			#{saleScale},
+			#{saleState},
+			#{saleType},
+			#{saleGrade},
+			#{backNumber},
+			#{backMoney},
+			#{backIds},
+			#{saleApplyMoneyId},
+			now(),
+			now()
+		)
+	</insert>
+	
+	<update id="updateBySaleStateAndCreateTime" parameterType="java.util.Date">
+        update `sale_order`
+        set
+        		`sale_state`= 2
+        where 
+        		`create_time` &lt; #{date} and `sale_state`= 1
+    </update>
+    
+    <update id="updateBySaleStateAndApplyMoney" parameterType="Integer">
+        update `sale_order`
+        set
+        		`sale_state`= 3,
+        		`sale_apply_money_id`= #{saleApplyMoneyId},
+        		`update_time`= now()
+        where 
+        		`sale_state`= 2
+        		and `member_id` = #{memberId}
+    </update>
+    
+     <update id="updateBySaleState" parameterType="Integer">
+        update `sale_order`
+        set
+        		`sale_state`= #{saleState2},
+        		`update_time`= now()
+        where 
+        		`sale_state`= #{saleState1}
+        		and `member_id` = #{memberId}
+    </update>
+	
+	<select id="sumSaleOrderBySaleStateAndMemberId" parameterType="Integer" resultType="java.math.BigDecimal">
+		select
+		   sum(sale_money)
+		from `sale_order`
+		where `member_id` = #{memberId} and `sale_state` = #{saleState}
+	</select>
+	
+</mapper>

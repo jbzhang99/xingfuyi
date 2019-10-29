@@ -1,0 +1,229 @@
+p,h3 {
+  padding:0;
+  margin:0;
+}
+
+.voucher-filter {
+    display: inline-block;
+    display: block;
+    line-height: 40px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    font-family: 'Microsoft YaHei';
+    margin-bottom: 30px;
+}
+.voucher-filter a {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+    color: #333;
+}
+.voucher-filter a.selted, .voucher-filter a:hover {
+    color: #e4393c;
+}
+.container > .cm {
+    overflow: hidden;
+}
+.voucher-list {
+    display: inline-block;
+    display: block;
+    width: 1240px;
+}
+.voucher-item {
+    position: relative;
+    width: 383px;
+    height: 170px;
+    padding-right: 65px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    font-family: 'Microsoft YaHei';
+    float: left;
+    margin: 2px 28px 28px 2px;
+    overflow: hidden;
+}
+.voucher-item .v-type {
+    padding: 25px 0px 20px 25px;
+}
+.voucher-item .v-price {
+    display: block;
+    margin-bottom: 10px;
+    color: #74d2d4;
+}
+.voucher-item .v-price em {
+    float: left;
+    margin: 5px 0 0;
+    font-family: verdana;
+    font-size: 24px;
+}
+.voucher-item .v-price strong {
+    float: left;
+    line-height: 50px;
+    margin: 0 10px 0 5px;
+    font-size: 60px;
+    font-family: arial;
+    _display: inline;
+}
+.ftx-06 {
+    color: #666;
+}
+.voucher-item .v-price .txt {
+    float: left;
+    line-height: 22px;
+}
+.voucher-item .v-range {
+    line-height: 22px;
+    color: #999;
+    display: block;
+}
+.voucher-item .v-opbtns {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 170px;
+    padding: 37px 22px 0;
+    line-height: 24px;
+    color: #fff;
+    font-size: 14px;
+    background: #74d2d4;
+    padding-left: 36px;
+    padding-right: 24px;
+}
+.voucher-item .v-opbtns a {
+  text-decoration: none;
+}
+.voucher-item .v-opbtns a:hover span {
+  color: #666;
+}
+.voucher-item .v-opbtns span {
+  color:#fff;
+}
+.voucher-item .v-opbtns .semi-circle {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 170px;
+    background: url(../img/semi-circle.png) repeat-y;
+}
+.voucher-item .btn-state {
+    background-image: url(../img/quan-state.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 69px;
+    height: 69px;
+    line-height: 99em;
+    overflow: hidden;
+    bottom: 5px;
+    right: 85px;
+}
+.voucher-item .btn-getend {
+    background-position: 0 -79px;
+}
+.voucher-item .btn-overdued {
+    background-position: 0px -158px;
+}
+.voucher-gray-item .v-opbtns {
+    background: #c3c3c3;
+}
+.voucher-gray-item .v-opbtns span {
+    color: #666;
+}
+.voucher-gray-item .v-opbtns a:hover span {
+    color: #666;
+}
+.voucher-gray-item .v-price {
+    color: #c3c3c3;
+}
+/*弹出框*/
+.popup-box {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 999;
+  display: none;
+}
+.voucher-popup {
+    width: 550px;
+    min-height: 255px;
+    border: 4px solid #C4C4C4;  
+    background: #fff;
+    margin: 200px auto;
+    border-radius: 4px;
+    position: relative;
+}
+.voucher-popup .voucher-popup-one {
+  height: 34px;
+  line-height: 34px;
+  padding: 0 10px;
+  background: #F3F3F3;
+  font-family: 'Microsoft YaHei';
+}
+.voucher-popup .voucher-popup-one h3 {
+  float: left;
+  line-height: 34px;
+}
+.voucher-popup .voucher-popup-one span {
+  float: right;
+  line-height: 34px;
+  font-size: 30px;
+  color: #666;
+  cursor: pointer;
+}
+.voucher-popup .voucher-popup-two {
+  padding: 38px 0 0 48px;
+}
+.voucher-popup-two-icon {
+  padding-left: 60px;
+  padding-right: 20px;
+  position: relative;
+  font-family: 'Microsoft YaHei';
+}
+.voucher-popup-two-icon::before {
+  content: '';
+  display: inline-block;
+  width: 52px;
+  height:52px;
+  background: url(../img/popup.png) no-repeat;
+  position: absolute;
+  left:0;
+  top:0;
+}
+.voucher-popup-two-icon .p-success {
+  font-size: 16px;
+  line-height: 30px;
+}
+.voucher-popup-two-icon .p-random {
+  color: #999;
+}
+.voucher-popup-two-icon button {
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  outline: 0;
+  border-radius: 2px;
+}
+.voucher-popup-two-icon .v-btn {
+  margin-top: 30px;
+}
+.voucher-popup-two-icon button.btn-use {
+  background: #E43E41;
+  border: 1px solid #E43E41;
+  color: #fff;
+  margin-right: 70px;
+}
+.voucher-popup-two-icon button.btn-close {
+  background: #F5F5F5;
+  border: 1px solid #DDDDDD;
+}
+.voucher-popup-time {
+  position: absolute;
+  bottom:10px;
+  padding-left: 10px;
+}

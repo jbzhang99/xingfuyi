@@ -1,0 +1,92 @@
+.login-page {
+	/*background: #0ca3d2;*/
+	background: url(../img/bodybg.jpg) repeat-x;
+	font-family: arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif;
+	color: #666;
+}
+
+.login-page .erro {
+	color: red;
+	padding-left: 40px;
+	text-align: left;
+}
+
+.login-page .login-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	text-align: center;
+	margin-top: -220px;
+	margin-left: -200px;
+	box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px
+		rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px
+		rgba(0, 0, 0, 0.3);
+}
+
+.login-page .login-content:before {
+	content: '';
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	bottom: -8px;
+	left: -8px;
+	z-index: -1;
+	background: rgba(0, 0, 0, 0.08);
+	border-radius: 4px;
+}
+
+.form_login {
+	background: #fff;
+	padding: 20px 20px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	border-radius: 0 0 3px 3px;
+}
+
+.loginTitle {
+	font-size: 22px;
+	text-align: center;
+}
+
+.form-control.form-control-viricode {
+	width: 100px;
+	float: left;
+}
+
+.botm-copy {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -253px;
+	text-align: center;
+}
+
+@media ( max-width : 420px) {
+	.login-page .login-content {
+		width: 280px;
+		margin-left: -140px;
+	}
+	.form-control.form-control-viricode {
+		width: 100px;
+	}
+	.a-change {
+		position: absolute;
+		bottom: -14px;
+		left: 8px;
+		display: block;
+		font-size: 12px;
+	}
+	.form-group.form-group-viricode {
+		margin-bottom: 25px;
+	}
+	.form-group.form-group-viricode img {
+		height: 26px;
+	}
+}
+
+@media ( max-width : 620px) {
+	.botm-copy {
+		display: none;
+	}
+}

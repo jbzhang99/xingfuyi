@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.news.NewsTypeReadDao">
+	<resultMap id="NewsTypeResult" type="com.yixiekeji.entity.news.NewsType">
+			<result property="id" column="id" />
+			<result property="pid" column="pid" />
+			<result property="parentPath" column="parent_path" />
+			<result property="name" column="name" />
+			<result property="sort" column="sort" />
+			<result property="image" column="image" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+
+	<select id="getCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from news_type t1
+		<include refid="whereConditions" />
+	</select>
+	
+	<select id="page" resultType="com.yixiekeji.entity.news.NewsType">
+		select * from news_type t1
+		<include refid="whereConditions" />
+		order by id asc,sort asc,create_time desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<select id="list" resultType="com.yixiekeji.entity.news.NewsType">
+		select * from news_type t1
+		order by sort asc,create_time desc
+	</select>
+
+	<select id="get" parameterType="Integer" resultMap="NewsTypeResult">
+		select
+		   *
+		from `news_type`
+		where `id` = #{id}
+	</select>
+	
+	<sql id="whereConditions">
+		<where>
+			1=1
+			<if test="param1.q_name != null and param1.q_name != ''">
+				and t1.`name` like CONCAT('%',#{param1.q_name},'%')
+			</if>
+			<if test="param1.q_auditStatus != null and param1.q_auditStatus != ''">
+				and t1.`audit_Status` = #{param1.q_auditStatus}
+			</if>
+			<if test="param1.q_sellerName != null and param1.q_sellerName != ''">
+				and t1.`seller_Name` like CONCAT('%',#{param1.q_sellerName},'%')
+			</if>
+		</where>
+	</sql>
+	
+</mapper>

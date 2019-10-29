@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.member.MemberBalancePayLogWriteDao">
+	<resultMap id="MemberBalancePayLogResult" type="com.yixiekeji.entity.member.MemberBalancePayLog">
+			<result property="id" column="id" />
+			<result property="paymentCode" column="payment_code" />
+			<result property="paymentName" column="payment_name" />
+			<result property="payMoney" column="pay_money" />
+			<result property="payState" column="pay_state" />
+			<result property="paySn" column="pay_sn" />
+			<result property="tradeSn" column="trade_sn" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="createTime" column="create_time" />
+			<result property="payFinishTime" column="pay_finish_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="MemberBalancePayLogResult">
+		select
+		   *
+		from `member_balance_pay_log`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getByOrderSn" parameterType="String" resultMap="MemberBalancePayLogResult">
+		select
+		   *
+		from `member_balance_pay_log`
+		where `pay_sn` = #{orderNo}
+	</select>
+	
+	<select id="getCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from `member_balance_pay_log` t1
+		<include refid="whereConditions" />
+	</select>
+	
+	<delete id="del">
+        delete from `member_balance_pay_log` where `id` = #{id}
+	</delete>
+	
+	<delete id="batchDel">
+        delete from `member_balance_pay_log`  where `id` in(${ids})
+	</delete>
+	
+	<select id="page" resultType="com.yixiekeji.entity.member.MemberBalancePayLog">
+		select * from `member_balance_pay_log` t1
+		<include refid="whereConditions" />
+		order by pay_finish_time desc,create_time desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<select id="list" resultType="com.yixiekeji.entity.member.MemberBalancePayLog">
+		select * from `member_balance_pay_log` t1
+		order by id
+	</select>
+	
+	<!-- 查询条件 -->
+	<sql id="whereConditions">
+		where 1=1
+		<trim  suffixOverrides="," >
+			<if test="id != null and id !=''"  > and `id`= #{id}</if>
+			<if test="paymentCode != null and paymentCode !=''"  > and `payment_code`= #{paymentCode}</if>
+			<if test="paymentName != null and paymentName !=''"  > and `payment_name`= #{paymentName}</if>
+			<if test="payMoney != null and payMoney !=''"  > and `pay_money`= #{payMoney}</if>
+			<if test="payState != null and payState !=''"  > and `pay_state`= #{payState}</if>
+			<if test="paySn != null and paySn !=''"  > and `pay_sn`= #{paySn}</if>
+			<if test="tradeSn != null and tradeSn !=''"  > and `trade_sn`= #{tradeSn}</if>
+			<if test="memberId != null and memberId !=''"  > and `member_id`= #{memberId}</if>
+			<if test="memberName != null and memberName !=''"  > and `member_name`= #{memberName}</if>
+			<if test="q_memberName != null and q_memberName !=''"  >
+				 and `member_name` like CONCAT('%',#{q_memberName},'%')
+			</if>
+			<if test="createTime != null and createTime !=''"  > and `create_time`= #{createTime}</if>
+			<if test="payFinishTime != null and payFinishTime !=''"  > and `pay_finish_time`= #{payFinishTime}</if>
+		</trim>
+	</sql>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.member.MemberBalancePayLog">
+        update `member_balance_pay_log` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="paymentCode != null">`payment_code`= #{paymentCode},</if>
+			<if test="paymentName != null">`payment_name`= #{paymentName},</if>
+			<if test="payMoney != null">`pay_money`= #{payMoney},</if>
+			<if test="payState != null">`pay_state`= #{payState},</if>
+			<if test="paySn != null">`pay_sn`= #{paySn},</if>
+			<if test="tradeSn != null">`trade_sn`= #{tradeSn},</if>
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="memberName != null">`member_name`= #{memberName},</if>
+			<if test="createTime != null">`create_time`= #{createTime},</if>
+			<if test="payFinishTime != null">`pay_finish_time`= #{payFinishTime}</if>
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="save" parameterType="com.yixiekeji.entity.member.MemberBalancePayLog" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`member_balance_pay_log`
+		(
+			
+			`payment_code`,
+			`payment_name`,
+			`pay_money`,
+			`pay_state`,
+			`pay_sn`,
+			`trade_sn`,
+			`member_id`,
+			`member_name`,
+			`create_time`,
+			`pay_finish_time`
+		)
+		values
+		(
+			
+			#{paymentCode},
+			#{paymentName},
+			#{payMoney},
+			#{payState},
+			#{paySn},
+			#{tradeSn},
+			#{memberId},
+			#{memberName},
+			#{createTime},
+			#{payFinishTime}
+		)
+	</insert>
+	
+</mapper>

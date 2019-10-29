@@ -1,0 +1,158 @@
+i {
+	font-style: normal;
+}
+
+body {
+	font-family: "microSoft Yahei"
+}
+
+* {
+	padding: 0;
+	margin: 0;
+}
+/*清除浮动*/
+.clearfix::after, .clearfix::before {
+	content: ".";
+	height: 0;
+	line-height: 0;
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+.pepper-w {
+	width: 94.375%;
+	margin: 0 auto;
+	position: relative;
+}
+
+.pepper {
+	width: 100%;
+	overflow: hidden;
+	margin-top: 0.78125em;
+	color: #686868;
+	border: 1px solid #bfbfbf;
+	border-bottom: 0px;
+	background: #fff;
+}
+
+.pepper-l {
+	float: left;
+	width: 70%;
+	box-shadow: 2px 2px 4px #f5f5f5;
+	position: relative;
+	padding-bottom: 10px;
+	/* height: 4.6875em; */
+	padding-left: 0.4em;
+}
+
+.pepper-l-num {
+	font-size: 12px;
+	border-bottom: 1px solid #efefef;
+	color: #46c6c9;
+}
+
+.pepper-l-num i {
+	font-size: 21px;
+}
+
+.pepper-l-num span {
+	/* font-size: 1.3em; */
+	display: inline-block;
+	padding-bottom: 6px;
+	/* padding-top: 0.8em; */
+	padding-top: 10px;
+	font-size: 35px;
+}
+
+.pepper-l-con {
+	font-size: 12px;
+	padding-top: 6px;
+	line-height: 16px;
+}
+
+.pepper-r {
+	width: 26%;
+	float: right;
+}
+
+.pepper-r span {
+	display: inline-block;
+	width: 100%;
+	padding: 0.2em 18px 0.2em 0;
+	margin: 10px auto 5px;
+	background: #fff;
+	text-align: center;
+	font-family: '微软雅黑';
+	font-size: 14px;
+	color: #46c6c9;
+	font-weight: bold;
+}
+
+.pepper-r div {
+	vertical-align: top;
+	font-size: 12px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.pepper-b {
+	position: relative;
+}
+
+.pepper-b .pb-con {
+	color: #fff;
+	min-height: 8px;
+	padding: 7px 0 6px 8px;
+	font-size: 12px;
+	background: #74d2d4;
+	margin-top: 9px;
+}
+
+.pepper-b .pb-border {
+	width: 100%;
+	height: 3px;
+	background: url(../img/colorbg.png) repeat-x;
+	background-size: 8px;
+	margin-top: -1px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.pepper-l-num .colot-font, .pepper-r .colot-font {
+	color: #7FA6CF;
+}
+
+.pepper-b .pb-rule {
+	padding: 5px 0 6px 8px;;
+}
+
+.use-rule {
+	border-bottom: 1px solid #bfbfbf;
+}
+
+.overdue-icon {
+	position: absolute;
+	width: 65px;
+	height: 70px;
+	top: 0px;
+	left: 0px;
+	background: url(../img/coupon.png) no-repeat -177px 0;
+}
+
+.used-icon {
+	position: absolute;
+	width: 93px;
+	height: 93px;
+	top: 10px;
+	left: 0px;
+	background: url(../img/coupon.png) no-repeat 0px 0px;
+}
+
+.tips {
+	color: red;
+}
+
+.nocoupon {
+	margin: 10px 35%;
+	font-size: 18px;
+}

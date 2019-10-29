@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.product.ProductNormAttrOptWriteDao">
+	<resultMap id="ProductNormAttrOptResult" type="com.yixiekeji.entity.product.ProductNormAttrOpt">
+			<result property="id" column="id" />
+			<result property="productNormId" column="product_norm_id" />
+			<result property="productNormName" column="product_norm_name" />
+			<result property="productId" column="product_id" />
+			<result property="sellerId" column="seller_id" />
+			<result property="typeAttr" column="type_attr" />
+			<result property="type" column="type" />
+			<result property="name" column="name" />
+			<result property="image" column="image" />
+			<result property="createId" column="create_id" />
+			<result property="createTime" column="create_time" />
+			<result property="attrId" column="attr_id" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="ProductNormAttrOptResult">
+		select
+		   *
+		from `product_norm_attr_opt`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getOptNormsByProGoods" parameterType="Integer" resultMap="ProductNormAttrOptResult">
+		SELECT
+			*
+		FROM
+			product_norm_attr_opt opt
+		WHERE
+			product_id = #{productId}
+		AND FIND_IN_SET(
+			opt.attr_id,
+			(
+				SELECT
+					norm_attr_id
+				FROM
+					product_goods
+				WHERE
+					id = ${productGoodsId}
+			)
+		)
+	</select>
+	
+	<select id="getCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from `product_norm_attr_opt` t1
+		<include refid="whereConditions" />
+	</select>
+	
+	<delete id="del">
+        delete from `product_norm_attr_opt` where `id` = #{id}
+	</delete>
+	
+	<select id="page" resultType="com.yixiekeji.entity.product.ProductNormAttrOpt">
+		select * from `product_norm_attr_opt` t1
+		<include refid="whereConditions" />
+		order by id
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<select id="list" resultType="com.yixiekeji.entity.product.ProductNormAttrOpt">
+		select * from `product_norm_attr_opt` t1
+		order by id
+	</select>
+	
+	<!-- 查询条件 -->
+	<sql id="whereConditions">
+		where 1=1
+		<trim  suffixOverrides="," >
+			<if test="id != null and id !=''"  > and `id`= #{id}</if>
+			<if test="productNormId != null and productNormId !=''"  > and `product_norm_id`= #{productNormId}</if>
+			<if test="productNormName != null and productNormName !=''"  > and `product_norm_name`= #{productNormName}</if>
+			<if test="productId != null and productId !=''"  > and `product_id`= #{productId}</if>
+			<if test="sellerId != null and sellerId !=''"  > and `seller_id`= #{sellerId}</if>
+			<if test="typeAttr != null and typeAttr !=''"  > and `type_attr`= #{typeAttr}</if>
+			<if test="type != null and type !=''"  > and `type`= #{type}</if>
+			<if test="name != null and name !=''"  > and `name`= #{name}</if>
+			<if test="image != null and image !=''"  > and `image`= #{image}</if>
+			<if test="createId != null and createId !=''"  > and `create_id`= #{createId}</if>
+			<if test="createTime != null and createTime !=''"  > and `create_time`= #{createTime}</if>
+			<if test="attrId != null and attrId !=''"  > and `attr_id`= #{attrId}</if>
+		</trim>
+	</sql>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.product.ProductNormAttrOpt">
+        update `product_norm_attr_opt` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="productNormId != null">`product_norm_id`= #{productNormId},</if>
+			<if test="productNormName != null">`product_norm_name`= #{productNormName},</if>
+			<if test="productId != null">`product_id`= #{productId},</if>
+			<if test="sellerId != null">`seller_id`= #{sellerId},</if>
+			<if test="typeAttr != null">`type_attr`= #{typeAttr},</if>
+			<if test="type != null">`type`= #{type},</if>
+			<if test="name != null">`name`= #{name},</if>
+			<if test="image != null">`image`= #{image},</if>
+			<if test="createId != null">`create_id`= #{createId},</if>
+			<if test="createTime != null">`create_time`= #{createTime},</if>
+			<if test="attrId != null">`attr_id`= #{attrId}</if>
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="save" parameterType="com.yixiekeji.entity.product.ProductNormAttrOpt" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`product_norm_attr_opt`
+		(
+			
+			`product_norm_id`,
+			`product_norm_name`,
+			`product_id`,
+			`seller_id`,
+			`type_attr`,
+			`type`,
+			`name`,
+			`image`,
+			`create_id`,
+			`create_time`,
+			`attr_id`
+		)
+		values
+		(
+			
+			#{productNormId},
+			#{productNormName},
+			#{productId},
+			#{sellerId},
+			#{typeAttr},
+			#{type},
+			#{name},
+			#{image},
+			#{createId},
+			#{createTime},
+			#{attrId}
+		)
+	</insert>
+	
+</mapper>

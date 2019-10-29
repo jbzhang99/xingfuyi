@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.order.OrdersProductWriteDao">
+	<resultMap id="OrdersProductResult" type="com.yixiekeji.entity.order.OrdersProduct">
+			<result property="id" column="id" />
+			<result property="ordersId" column="orders_id" />
+			<result property="ordersSn" column="orders_sn" />
+			<result property="ordersPsn" column="orders_psn" />
+			<result property="sellerId" column="seller_id" />
+			<result property="sellerName" column="seller_name" />
+			<result property="productCateId" column="product_cate_id" />
+			<result property="productId" column="product_id" />
+			<result property="productGoodsId" column="product_goods_id" />
+			<result property="specInfo" column="spec_info" />
+			<result property="productName" column="product_name" />
+			<result property="productSku" column="product_sku" />
+			<result property="packageGroupsId" column="package_groups_id" />
+			<result property="mallGroupsId" column="mall_groups_id" />
+			<result property="giftId" column="gift_id" />
+			<result property="isGift" column="is_gift" />
+			<result property="moneyPrice" column="money_price" />
+			<result property="number" column="number" />
+			<result property="moneyAmount" column="money_amount" />
+			<result property="moneyActSingle" column="money_act_single" />
+			<result property="actSingleId" column="act_single_id" />
+			<result property="actGroupId" column="act_group_id" />
+			<result property="actFlashSaleId" column="act_flash_sale_id" />
+			<result property="actFlashSaleProductId" column="act_flash_sale_product_id" />
+			<result property="actBiddingId" column="act_bidding_id" />
+			<result property="actIntegralId" column="act_integral_id" />
+			<result property="actIntegralNum" column="act_integral_num" />
+			<result property="actIntegralMoney" column="act_integral_money" />
+			<result property="systemRemark" column="system_remark" />
+			<result property="backNumber" column="back_number" />
+			<result property="exchangeNumber" column="exchange_number" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+			<result property="isEvaluate" column="is_evaluate" />
+	</resultMap>
+
+	<select id="get" parameterType="Integer" resultMap="OrdersProductResult">
+		select
+		   *
+		from `orders_product`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getByOrderIdAndSellerId" parameterType="Integer" resultType="com.yixiekeji.entity.order.OrdersProduct">
+		select * from `orders_product`
+		where `orders_id` = #{ordersId}
+			and `seller_id` = #{sellerId}
+	</select>
+
+	<select id="getByOrderId" parameterType="Integer" resultType="com.yixiekeji.entity.order.OrdersProduct">
+		select * from `orders_product`
+		where `orders_id` = #{ordersId}
+	</select>
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.order.OrdersProduct" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into `orders_product`
+		(
+			`orders_id`,
+			`orders_sn`,
+			`orders_psn`,
+			`seller_id`,
+			`seller_name`,
+			`product_cate_id`,
+			`product_id`,
+			`product_goods_id`,
+			`spec_info`,
+			`product_name`,
+			`product_sku`,
+			`package_groups_id`,
+			`mall_groups_id`,
+			`gift_id`,
+			`is_gift`,
+			`money_price`,
+			`number`,
+			`money_amount`,
+			`money_act_single`,
+			`act_single_id`,
+			`act_group_id`,
+			`act_flash_sale_id`,
+			`act_flash_sale_product_id`,
+			`act_bidding_id`,
+			`act_integral_id`,
+			`act_integral_num`,
+			`act_integral_money`,
+			`system_remark`,
+			`back_number`,
+			`exchange_number`,
+			`create_time`,
+			`update_time`,
+			`is_evaluate`
+		)
+		values
+		(
+			#{ordersId},
+			#{ordersSn},
+			#{ordersPsn},
+			#{sellerId},
+			#{sellerName},
+			#{productCateId},
+			#{productId},
+			#{productGoodsId},
+			#{specInfo},
+			#{productName},
+			#{productSku},
+			#{packageGroupsId},
+			#{mallGroupsId},
+			#{giftId},
+			#{isGift},
+			#{moneyPrice},
+			#{number},
+			#{moneyAmount},
+			#{moneyActSingle},
+			#{actSingleId},
+			#{actGroupId},
+			#{actFlashSaleId},
+			#{actFlashSaleProductId},
+			#{actBiddingId},
+			#{actIntegralId},
+			#{actIntegralNum},
+			#{actIntegralMoney},
+			#{systemRemark},
+			#{backNumber},
+			#{exchangeNumber},
+			now(),
+			now(),
+			#{isEvaluate}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.yixiekeji.entity.order.OrdersProduct">
+        update `orders_product` 
+    	<set>
+			<if test="productCateId != null">`product_cate_id`= #{productCateId},</if>
+			<if test="productId != null">`product_id`= #{productId},</if>
+			<if test="productGoodsId != null">`product_goods_id`= #{productGoodsId},</if>
+			<if test="specInfo != null">`spec_info`= #{specInfo},</if>
+			<if test="productName != null">`product_name`= #{productName},</if>
+			<if test="productSku != null">`product_sku`= #{productSku},</if>
+			<if test="packageGroupsId != null">`package_groups_id`= #{packageGroupsId},</if>
+			<if test="mallGroupsId != null">`mall_groups_id`= #{mallGroupsId},</if>
+			<if test="giftId != null">`gift_id`= #{giftId},</if>
+			<if test="isGift != null">`is_gift`= #{isGift},</if>
+			<if test="moneyPrice != null">`money_price`= #{moneyPrice},</if>
+			<if test="number != null">`number`= #{number},</if>
+			<if test="moneyAmount != null">`money_amount`= #{moneyAmount},</if>
+			<if test="moneyActSingle != null">`money_act_single`= #{moneyActSingle},</if>
+			<if test="actSingleId != null">`act_single_id`= #{actSingleId},</if>
+			<if test="actGroupId != null">`act_group_id`= #{actGroupId},</if>
+			<if test="actFlashSaleId != null">`act_flash_sale_id`= #{actFlashSaleId},</if>
+			<if test="actFlashSaleProductId != null">`act_flash_sale_product_id`= #{actFlashSaleProductId},</if>
+			<if test="actBiddingId != null">`act_bidding_id`= #{actBiddingId},</if>
+			<if test="actIntegralId != null">`act_integral_id`= #{actIntegralId},</if>
+			<if test="actIntegralNum != null">`act_integral_num`= #{actIntegralNum},</if>
+			<if test="actIntegralMoney != null">`act_integral_money`= #{actIntegralMoney},</if>
+			<if test="systemRemark != null">`system_remark`= #{systemRemark},</if>
+			<if test="backNumber != null">`back_number`= #{backNumber},</if>
+			<if test="exchangeNumber != null">`exchange_number`= #{exchangeNumber},</if>
+			<if test="isEvaluate != null">`is_evaluate`= #{isEvaluate},</if>
+			<!-- <if test="createTime != null">`create_time`= #{createTime},</if> -->
+			`update_time`= now()
+	    </set>
+        where `id` = #{id}
+	</update>
+
+	<update id="updateIsEvaluate">
+		update `orders_product` 
+		set `is_evaluate` = #{isEvaluate} 
+		where `id` = #{id}
+	</update>
+	
+	<update id="updateBackNumber">
+		update `orders_product` 
+		set `back_number` = `back_number` + #{backNumber} 
+		where `id` = #{id}
+	</update>
+	
+	<update id="updateExchangeNumber">
+		update `orders_product` 
+		set `exchange_number` = `exchange_number` + #{exchangeNumber} 
+		where `id` = #{id}
+	</update>
+
+	<select id="getByOrdersPsn" parameterType="String" resultMap="OrdersProductResult">
+		select * from `orders_product`
+		where `orders_psn` = #{ordersPsn}
+	</select>
+</mapper>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.member.MemberProductBackWriteDao">
+	<resultMap id="MemberProductBackResult" type="com.yixiekeji.entity.member.MemberProductBack">
+		<result property="id" column="id" />
+		<result property="sellerId" column="seller_id" />
+		<result property="sellerName" column="seller_name" />
+		<result property="orderId" column="order_id" />
+		<result property="orderSn" column="order_sn" />
+		<result property="orderProductId" column="order_product_id" />
+		<result property="productId" column="product_id" />
+		<result property="productName" column="product_name" />
+		<result property="memberId" column="member_id" />
+		<result property="memberName" column="member_name" />
+		<result property="provinceId" column="province_id" />
+		<result property="cityId" column="city_id" />
+		<result property="areaId" column="area_id" />
+		<result property="addressAll" column="address_all" />
+		<result property="addressInfo" column="address_info" />
+		<result property="zipCode" column="zip_code" />
+		<result property="contactPhone" column="contact_phone" />
+		<result property="contactName" column="contact_name" />
+		<result property="logisticsId" column="logistics_id" />
+		<result property="logisticsName" column="logistics_name" />
+		<result property="logisticsMark" column="logistics_mark" />
+		<result property="logisticsNumber" column="logistics_number" />
+		<result property="question" column="question" />
+		<result property="image" column="image" />
+		<result property="stateReturn" column="state_return" />
+		<result property="stateMoney" column="state_money" />
+		<result property="number" column="number" />
+		<result property="backMoney" column="back_money" />
+		<result property="backIntegral" column="back_integral" />
+		<result property="backIntegralMoney" column="back_integral_money" />
+		<result property="backCouponUserId" column="back_coupon_user_id" />
+		<result property="backMoneyTime" column="back_money_time" />
+		<result property="optId" column="opt_id" />
+		<result property="optName" column="opt_name" />
+		<result property="remark" column="remark" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+
+	<select id="get" parameterType="Integer" resultMap="MemberProductBackResult">
+		select
+		   *
+		from `member_product_back`
+		where `id` = #{id}
+	</select>
+	
+	<delete id="del">
+        delete from `member_product_back` where `id` = #{id}
+	</delete>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.member.MemberProductBack">
+        update `member_product_back` 
+		<set>
+			<!-- <if test="id != null">`id`= #{id},</if> -->
+			<if test="sellerId != null">`seller_id`= #{sellerId},</if>
+			<if test="sellerName != null">`seller_name`= #{sellerName},</if>
+			<if test="orderId != null">`order_id`= #{orderId},</if>
+			<if test="orderSn != null">`order_sn`= #{orderSn},</if>
+			<if test="orderProductId != null">`order_product_id`= #{orderProductId},</if>
+			<if test="productId != null">`product_id`= #{productId},</if>
+			<if test="productName != null">`product_name`= #{productName},</if>
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="memberName != null">`member_name`= #{memberName},</if>
+			<if test="provinceId != null">`province_id`= #{provinceId},</if>
+			<if test="cityId != null">`city_id`= #{cityId},</if>
+			<if test="areaId != null">`area_id`= #{areaId},</if>
+			<if test="addressAll != null">`address_all`= #{addressAll},</if>
+			<if test="addressInfo != null">`address_info`= #{addressInfo},</if>
+			<if test="zipCode != null">`zip_code`= #{zipCode},</if>
+			<if test="contactPhone != null">`contact_phone`= #{contactPhone},</if>
+			<if test="contactName != null">`contact_name`= #{contactName},</if>
+			<if test="logisticsId != null">`logistics_id`= #{logisticsId},</if>
+			<if test="logisticsName != null">`logistics_name`= #{logisticsName},</if>
+			<if test="logisticsMark != null">`logistics_mark`= #{logisticsMark},</if>
+			<if test="logisticsNumber != null">`logistics_number`= #{logisticsNumber},</if>
+			<if test="question != null">`question`= #{question},</if>
+			<if test="image != null">`image`= #{image},</if>
+			<if test="stateReturn != null">`state_return`= #{stateReturn},</if>
+			<if test="stateMoney != null">`state_money`= #{stateMoney},</if>
+			<if test="number != null">`number`= #{number},</if>
+			<if test="backMoney != null">`back_money`= #{backMoney},</if>
+			<if test="backIntegral != null">`back_integral`= #{backIntegral},</if>
+			<if test="backIntegralMoney != null">`back_integral_money`= #{backIntegralMoney},</if>
+			<if test="backCouponUserId != null">`back_coupon_user_id`= #{backCouponUserId},</if>
+			<if test="backMoneyTime != null">`back_money_time`= #{backMoneyTime},</if>
+			<if test="optId != null">`opt_id`= #{optId},</if>
+			<if test="optName != null">`opt_name`= #{optName},</if>
+			<if test="remark != null">`remark`= #{remark},</if>
+			<!-- <if test="createTime != null">`create_time`= #{createTime},</if> -->
+			`update_time`= now()
+		</set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="save" parameterType="com.yixiekeji.entity.member.MemberProductBack" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`member_product_back`
+		(
+			
+			`seller_id`,
+			`seller_name`,
+			`order_id`,
+			`order_sn`,
+			`order_product_id`,
+			`product_id`,
+			`product_name`,
+			`member_id`,
+			`member_name`,
+			`province_id`,
+			`city_id`,
+			`area_id`,
+			`address_all`,
+			`address_info`,
+			`zip_code`,
+			`contact_phone`,
+			`contact_name`,
+			`logistics_id`,
+			`logistics_name`,
+			`logistics_mark`,
+			`logistics_number`,
+			`question`,
+			`image`,
+			`state_return`,
+			`state_money`,
+			`number`,
+			`back_money`,
+			`back_integral`,
+			`back_integral_money`,
+			`back_coupon_user_id`,
+			`back_money_time`,
+			`opt_id`,
+			`opt_name`,
+			`remark`,
+			`create_time`,
+			`update_time`
+		)
+		values
+		(
+			
+			#{sellerId},
+			#{sellerName},
+			#{orderId},
+			#{orderSn},
+			#{orderProductId},
+			#{productId},
+			#{productName},
+			#{memberId},
+			#{memberName},
+			#{provinceId},
+			#{cityId},
+			#{areaId},
+			#{addressAll},
+			#{addressInfo},
+			#{zipCode},
+			#{contactPhone},
+			#{contactName},
+			#{logisticsId},
+			#{logisticsName},
+			#{logisticsMark},
+			#{logisticsNumber},
+			#{question},
+			#{image},
+			#{stateReturn},
+			#{stateMoney},
+			#{number},
+			#{backMoney},
+			#{backIntegral},
+			#{backIntegralMoney},
+			#{backCouponUserId},
+			#{backMoneyTime},
+			#{optId},
+			#{optName},
+			#{remark},
+			now(),
+			now()
+		)
+	</insert>
+	
+	
+	<!-- 查询条件 -->
+	<sql id="Where_Clause">
+		where 1=1
+		<trim  suffixOverrides="," >
+			<if test="id != null and id !=''"  > and `id`= #{id}</if>
+			<if test="sellerId != null and sellerId !=''"  > and `seller_id`= #{sellerId}</if>
+			<if test="orderId != null and orderId !=''"  > and `order_id`= #{orderId}</if>
+			<if test="orderProductId != null and orderProductId !=''"  > and `order_product_id`= #{orderProductId}</if>
+			<if test="productId != null and productId !=''"  > and `product_id`= #{productId}</if>
+			<if test="memberId != null and memberId !=''"  > and `member_id`= #{memberId}</if>
+			<if test="memberName != null and memberName !=''"  > and `member_name`= #{memberName}</if>
+			<if test="provinceId != null and provinceId !=''"  > and `province_id`= #{provinceId}</if>
+			<if test="cityId != null and cityId !=''"  > and `city_id`= #{cityId}</if>
+			<if test="areaId != null and areaId !=''"  > and `area_id`= #{areaId}</if>
+			<if test="addressAll != null and addressAll !=''"  > and `address_all`= #{addressAll}</if>
+			<if test="addressInfo != null and addressInfo !=''"  > and `address_info`= #{addressInfo}</if>
+			<!-- <if test="phone != null and phone !=''"  > and `phone`= #{phone}</if> -->
+			<!-- <if test="returnName != null and returnName !=''"  > and `return_name`= #{returnName}</if> -->
+			<if test="zipCode != null and zipCode !=''"  > and `zip_code`= #{zipCode}</if>
+			<if test="question != null and question !=''"  > and `question`= #{question}</if>
+			<if test="image != null and image !=''"  > and `image`= #{image}</if>
+			<if test="stateReturn != null and stateReturn !=''"  > and `state_return`= #{stateReturn}</if>
+			<if test="stateMoney != null and stateMoney !=''"  > and `state_money`= #{stateMoney}</if>
+			<if test="createTime != null and createTime !=''"  > and `create_time`= #{createTime}</if>
+			<if test="updateTime != null and updateTime !=''"  > and `update_time`= #{updateTime}</if>
+			<if test="optId != null and optId !=''"  > and `opt_id`= #{optId}</if>
+			<if test="remark != null and remark !=''"  > and `remark`= #{remark}</if>
+			<if test="number != null and number !=''"  > and `number`= #{number}</if>
+		</trim>
+	</sql>
+	
+	<!-- 用户退货 列表总数-->
+	<select id="queryCount" resultType="java.lang.Integer"  parameterType="map">
+		select count(1) from member_product_back
+		<include refid="Where_Clause"/>
+	</select>
+	  	
+	<!-- 查询用户退货列表 -->
+	<select id="queryList" resultMap="MemberProductBackResult"  parameterType="map">
+		select 
+		  * 
+		from member_product_back 
+		<include refid="Where_Clause"/>
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<!-- 修改退货状态 -->
+	<update id="upStateReturn" parameterType="java.lang.Integer">
+		update 
+			`member_product_back`
+		set `state_return` = #{state}
+		where `id` = #{id}
+	</update>
+</mapper>

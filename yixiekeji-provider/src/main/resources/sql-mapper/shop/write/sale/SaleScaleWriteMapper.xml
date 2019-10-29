@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.sale.SaleScaleWriteDao">
+	<resultMap id="SaleScaleResult" type="com.yixiekeji.entity.sale.SaleScale">
+			<result property="id" column="id" />
+			<result property="sellerId" column="seller_id" />
+			<result property="saleScale1" column="sale_scale1" />
+			<result property="saleScale2" column="sale_scale2" />
+			<result property="state" column="state" />
+			<result property="createId" column="create_id" />
+			<result property="createName" column="create_name" />
+			<result property="createTime" column="create_time" />
+			<result property="updateId" column="update_id" />
+			<result property="updateName" column="update_name" />
+			<result property="updateTime" column="update_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SaleScaleResult">
+		select
+		   *
+		from `sale_scale`
+		where `id` = #{id}
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.sale.SaleScale">
+        update `sale_scale` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="sellerId != null">`seller_id`= #{sellerId},</if>
+			<if test="saleScale1 != null">`sale_scale1`= #{saleScale1},</if>
+			<if test="saleScale2 != null">`sale_scale2`= #{saleScale2},</if>
+			<if test="state != null">`state`= #{state},</if>
+			<if test="createId != null">`create_id`= #{createId},</if>
+			<if test="createName != null">`create_name`= #{createName},</if>
+			<if test="updateId != null">`update_id`= #{updateId},</if>
+			<if test="updateName != null">`update_name`= #{updateName},</if>
+			`update_time`= now()
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.sale.SaleScale" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`sale_scale`
+		(
+			
+			`seller_id`,
+			`sale_scale1`,
+			`sale_scale2`,
+			`state`,
+			`create_id`,
+			`create_name`,
+			`create_time`,
+			`update_id`,
+			`update_name`,
+			`update_time`
+		)
+		values
+		(
+			
+			#{sellerId},
+			#{saleScale1},
+			#{saleScale2},
+			#{state},
+			#{createId},
+			#{createName},
+			now(),
+			#{updateId},
+			#{updateName},
+			now()
+		)
+	</insert>
+	
+</mapper>

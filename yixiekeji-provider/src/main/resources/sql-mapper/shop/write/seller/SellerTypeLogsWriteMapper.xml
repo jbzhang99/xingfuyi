@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.seller.SellerTypeLogsWriteDao">
+    <insert id="insert"  useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `seller_type_logs`(
+            `create_id`,
+            `create_name`,
+            `content`,
+            `create_time`,
+            `product_cate_id`
+        )
+        values(
+            #{createId},
+            #{createName},
+            #{content},
+            now(),
+            #{productCateId}
+        )
+    </insert>
+    <update id="update">
+        update `seller_type_logs`
+        <set>
+            <if test = "null != id and '' != id">`id`= #{id},</if>
+            <if test = "null != createId and '' != createId">`create_id`= #{createId},</if>
+            <if test = "null != createName and '' != createName">`create_name`= #{createName},</if>
+            <if test = "null != content and '' != content">`content`= #{content},</if>
+            <if test = "null != createTime and '' != createTime">`create_time`= #{createTime},</if>
+            <if test = "null != #{productCateId} and '' != #{productCateId}">`product_cate_id`= #{#{productCateId}},</if>
+        </set>
+        where `id` = #{id}
+    </update>
+    <delete id="del">
+        delete from `seller_type_logs` where `id` = #{id}
+    </delete>
+
+    <select id="get" resultType="com.yixiekeji.entity.seller.SellerTypeLogs">
+        select
+        <include refid="selectColumn"/>
+        from `seller_type_logs`
+        where `id` = #{id}
+    </select>
+    <select id="getByCateId" resultType="com.yixiekeji.entity.seller.SellerTypeLogs">
+        select
+        <include refid="selectColumn"/>
+        from `seller_type_logs`
+        where `product_cate_id` = #{id}
+    </select>
+
+    <sql id="selectColumn">
+        `id`,
+        `create_id`,
+        `create_name`,
+        `content`,
+        `create_time`,
+        `product_cate_id`
+    </sql>
+</mapper>

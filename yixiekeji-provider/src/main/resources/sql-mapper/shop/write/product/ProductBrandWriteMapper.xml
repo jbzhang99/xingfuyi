@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.product.ProductBrandWriteDao">
+
+    <select id="getById" resultType="com.yixiekeji.entity.product.ProductBrand">
+        select * from product_brand where id = #{id}
+    </select>
+    <select id="getByIds" resultType="com.yixiekeji.entity.product.ProductBrand">
+        select * from product_brand where id in (${ids})
+    </select>
+
+    <select id="getByName" resultType="java.lang.Integer">
+        select count(1) from product_brand where name = #{name} and state != 4
+    </select>
+
+    <insert id="save" parameterType="com.yixiekeji.entity.product.ProductBrand">
+        insert into product_brand (<include refid="column"/>)
+            values(
+                #{name},#{nameFirst},#{image},2,#{top},#{sort},#{createId},now(),
+                #{updateId},now(),2
+            )
+    </insert>
+
+    <update id="update">
+        update product_brand
+        <set>
+            update_time = now(),
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="nameFirst != null and nameFirst != ''">
+                name_first = #{nameFirst},
+            </if>
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+            <if test="lookMethod != null and lookMethod != ''">
+                look_method = #{lookMethod},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="top != null">
+                top = #{top},
+            </if>
+            <if test="updateId != null">
+                update_id = #{updateId},
+            </if>
+            <if test="state != null">
+                state = #{state},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <sql id="column">
+        `name`,`name_first` ,`image` ,`look_method`,`top`,`sort`,`create_id`,`create_time` ,`update_id`,`update_time`
+        ,`state`
+    </sql>
+</mapper>

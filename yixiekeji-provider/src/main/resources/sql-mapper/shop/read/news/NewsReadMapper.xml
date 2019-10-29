@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.news.NewsReadDao">
+	
+	<select id="getNewsType" resultType="com.yixiekeji.entity.news.NewsType">
+		select * from news_type t1
+		where pid = 0
+		order by sort asc,create_time desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<select id="getNewsByType" resultType="com.yixiekeji.entity.news.News">
+		select * from news t1
+		where type_id = #{typeid} and status=1
+		order by sort asc,create_time desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<select id="getLastedNews" resultType="com.yixiekeji.entity.news.News">
+		select * from news t1
+		where status=1
+		order by create_time desc,sort asc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+
+	<select id="get" parameterType="Integer" resultType="com.yixiekeji.entity.news.News">
+		select
+		   *
+		from `news`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getType" parameterType="Integer" resultType="com.yixiekeji.entity.news.NewsType">
+		select
+		   *
+		from `news_type`
+		where `id` = #{typeid}
+	</select>
+	
+	<select id="getPre" parameterType="Integer" resultType="com.yixiekeji.entity.news.News">
+		select
+		   *
+		from `news`
+		where 
+		<![CDATA[ `sort` < #{sort} and `type_Id` = #{type} ]]>     
+		order by sort desc limit 1
+	</select>
+	
+	<select id="getNext" parameterType="Integer" resultType="com.yixiekeji.entity.news.News">
+		select
+		   *
+		from `news`
+		where 
+		<![CDATA[ `sort` > #{sort} and `type_Id` = #{type} ]]>     
+		order by sort asc limit 1
+	</select>
+
+	<select id="queryNewsCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from news t1
+		<include refid="whereConditions" />
+	</select>
+	
+	<sql id="whereConditions">
+		<where>
+			1=1
+			<if test="q_title != null and q_title != ''">
+				and t1.`title` like CONCAT('%',#{q_title},'%')
+			</if>
+			<if test="typeid != null and typeid != ''">
+				and t1.`type_id` = #{typeid}
+			</if>
+			<if test="status != null and status != ''">
+				and t1.`status` = #{status}
+			</if>
+			<if test="q_content != null and q_content != ''">
+				and t1.`content` like CONCAT('%',#{q_content},'%')
+			</if>
+		</where>
+	</sql>
+	
+	<select id="countNewsByTypeId" parameterType="Integer" resultType="java.lang.Integer">
+		select count(1) from news t1
+		where t1.type_id=#{typeId}
+	</select>
+	
+	<select id="getNewsByTypeId" resultType="com.yixiekeji.entity.news.News">
+		select * from news t1
+		where t1.type_id=#{typeId}
+		order by sort asc,create_time desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	
+	
+	
+	<select id="getCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1) from news t1
+		<include refid="whereConditionsForPage" />
+	</select>
+	
+	<select id="page" resultType="com.yixiekeji.entity.news.News">
+		select * from news t1
+		<include refid="whereConditionsForPage" />
+		order by type_id asc,sort asc,create_time desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+	
+	<sql id="whereConditionsForPage">
+		<where>
+			1=1
+			<if test="param1.q_title != null and param1.q_title != ''">
+				and t1.`title` like CONCAT('%',#{param1.q_title},'%')
+			</if>
+			<if test="param1.q_content != null and param1.q_content != ''">
+				and t1.`content` like CONCAT('%',#{param1.q_content},'%')
+			</if>
+		</where>
+	</sql>
+	
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.sale.SaleSettingWriteDao">
+	<resultMap id="SaleSettingResult" type="com.yixiekeji.entity.sale.SaleSetting">
+			<result property="id" column="id" />
+			<result property="saleSet" column="sale_set" />
+			<result property="saleOrderTime" column="sale_order_time" />
+			<result property="createId" column="create_id" />
+			<result property="createName" column="create_name" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="SaleSettingResult">
+		select
+		   *
+		from `sale_setting`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getSaleSettingDesc" parameterType="Integer" resultMap="SaleSettingResult">
+		select
+		   *
+		from `sale_setting`
+		order by id desc
+		limit 1
+	</select>
+	
+	<update id="update" parameterType="com.yixiekeji.entity.sale.SaleSetting">
+        update `sale_setting` 
+    		<set>
+			<if test="saleSet != null">`sale_set`= #{saleSet},</if>
+			<if test="saleOrderTime != null">`sale_order_time`= #{saleOrderTime},</if>
+			<if test="createId != null">`create_id`= #{createId},</if>
+			<if test="createName != null">`create_name`= #{createName},</if>
+			<if test="createTime != null">`create_time`= #{createTime}</if>
+	    </set>
+        where `id` = #{id}
+	</update>
+	
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.sale.SaleSetting" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`sale_setting`
+		(
+			`sale_set`,
+			`sale_order_time`,
+			`create_id`,
+			`create_name`,
+			`create_time`
+		)
+		values
+		(
+			#{saleSet},
+			#{saleOrderTime},
+			#{createId},
+			#{createName},
+			now()
+		)
+	</insert>
+	
+	<insert id="insertSaleOrderTime" parameterType="com.yixiekeji.entity.sale.SaleSetting" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`sale_setting`
+		(
+			`sale_set`,
+			`sale_order_time`,
+			`create_id`,
+			`create_name`,
+			`create_time`
+		)
+		values
+		(
+			#{saleSet},
+			now(),
+			#{createId},
+			#{createName},
+			now()
+		)
+	</insert>
+	
+</mapper>

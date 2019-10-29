@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.order.OrdersWriteDao">
+	<resultMap id="OrdersResult" type="com.yixiekeji.entity.order.Orders">
+			<result property="id" column="id" />
+			<result property="orderSn" column="order_sn" />
+			<result property="orderPsn" column="order_psn" />
+			<result property="isParent" column="is_parent" />
+			<result property="isShow" column="is_show" />
+			<result property="relationOrderSn" column="relation_order_sn" />
+			<result property="orderType" column="order_type" />
+			<result property="sellerId" column="seller_id" />
+			<result property="sellerName" column="seller_name" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="orderState" column="order_state" />
+			<result property="payTime" column="pay_time" />
+			<result property="paymentStatus" column="payment_status" />
+			<result property="invoiceStatus" column="invoice_status" />
+			<result property="invoiceTitle" column="invoice_title" />
+			<result property="invoiceType" column="invoice_type" />
+			<result property="moneyProduct" column="money_product" />
+			<result property="moneyLogistics" column="money_logistics" />
+			<result property="moneyOrder" column="money_order" />
+			<result property="moneyPaidBalance" column="money_paid_balance" />
+			<result property="moneyPaidReality" column="money_paid_reality" />
+			<result property="moneyCoupon" column="money_coupon" />
+			<result property="moneyActFull" column="money_act_full" />
+			<result property="moneyDiscount" column="money_discount" />
+			<result property="moneyBack" column="money_back" />
+			<result property="moneyIntegral" column="money_integral" />
+			<result property="integral" column="integral" />
+			<result property="couponUserId" column="coupon_user_id" />
+			<result property="actFullId" column="act_full_id" />
+			<result property="activityId" column="activity_id" />
+			<result property="ip" column="ip" />
+			<result property="paymentName" column="payment_name" />
+			<result property="paymentCode" column="payment_code" />
+			<result property="name" column="name" />
+			<result property="provinceId" column="province_id" />
+			<result property="cityId" column="city_id" />
+			<result property="areaId" column="area_id" />
+			<result property="addressAll" column="address_all" />
+			<result property="addressInfo" column="address_info" />
+			<result property="mobile" column="mobile" />
+			<result property="email" column="email" />
+			<result property="zipCode" column="zip_code" />
+			<result property="remark" column="remark" />
+			<result property="deliverTime" column="deliver_time" />
+			<result property="finishTime" column="finish_time" />
+			<result property="tradeSn" column="trade_sn" />
+			<result property="source" column="source" />
+			<result property="logisticsId" column="logistics_id" />
+			<result property="logisticsName" column="logistics_name" />
+			<result property="logisticsNumber" column="logistics_number" />
+			<result property="isCodconfim" column="is_codconfim" />
+			<result property="codconfirmId" column="codconfirm_id" />
+			<result property="codconfirmName" column="codconfirm_name" />
+			<result property="codconfirmTime" column="codconfirm_time" />
+			<result property="codconfirmRemark" column="codconfirm_remark" />
+			<result property="codconfirmState" column="codconfirm_state" />
+			<result property="createTime" column="create_time" />
+			<result property="updateTime" column="update_time" />
+			<result property="evaluateState" column="evaluate_state" />
+			<result property="taxNum" column="tax_num" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="OrdersResult">
+		select
+		   *
+		from `orders`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getByOrderSn" parameterType="String" resultMap="OrdersResult">
+		select
+		   *
+		from `orders`
+		where `order_sn` = #{orderSn}
+	</select>
+
+	<insert id="insert" parameterType="com.yixiekeji.entity.order.Orders" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into `orders`
+		(
+			`order_sn`,
+			`order_psn`,
+			`is_parent`,
+			`is_show`,
+			`relation_order_sn`,
+			`order_type`,
+			`seller_id`,
+			`seller_name`,
+			`member_id`,
+			`member_name`,
+			`order_state`,
+			`pay_time`,
+			`payment_status`,
+			`invoice_status`,
+			`invoice_title`,
+			`invoice_type`,
+			`money_product`,
+			`money_logistics`,
+			`money_order`,
+			`money_paid_balance`,
+			`money_paid_reality`,
+			`money_coupon`,
+			`money_act_full`,
+			`money_discount`,
+			`money_back`,
+			`money_integral`,
+			`integral`,
+			`coupon_user_id`,
+			`act_full_id`,
+			`activity_id`,
+			`ip`,
+			`payment_name`,
+			`payment_code`,
+			`name`,
+			`province_id`,
+			`city_id`,
+			`area_id`,
+			`address_all`,
+			`address_info`,
+			`mobile`,
+			`email`,
+			`zip_code`,
+			`remark`,
+			`deliver_time`,
+			`finish_time`,
+			`trade_sn`,
+			`source`,
+			`logistics_id`,
+			`logistics_name`,
+			`logistics_number`,
+			`is_codconfim`,
+			`codconfirm_id`,
+			`codconfirm_name`,
+			`codconfirm_time`,
+			`codconfirm_remark`,
+			`codconfirm_state`,
+			`tax_num`,
+			`create_time`,
+			`update_time`,
+			`evaluate_state`
+		)
+		values
+		(
+			#{orderSn},
+			#{orderPsn},
+			#{isParent},
+			#{isShow},
+			#{relationOrderSn},
+			#{orderType},
+			#{sellerId},
+			#{sellerName},
+			#{memberId},
+			#{memberName},
+			#{orderState},
+			#{payTime},
+			#{paymentStatus},
+			#{invoiceStatus},
+			#{invoiceTitle},
+			#{invoiceType},
+			#{moneyProduct},
+			#{moneyLogistics},
+			#{moneyOrder},
+			#{moneyPaidBalance},
+			#{moneyPaidReality},
+			#{moneyCoupon},
+			#{moneyActFull},
+			#{moneyDiscount},
+			#{moneyBack},
+			#{moneyIntegral},
+			#{integral},
+			#{couponUserId},
+			#{actFullId},
+			#{activityId},
+			#{ip},
+			#{paymentName},
+			#{paymentCode},
+			#{name},
+			#{provinceId},
+			#{cityId},
+			#{areaId},
+			#{addressAll},
+			#{addressInfo},
+			#{mobile},
+			#{email},
+			#{zipCode},
+			#{remark},
+			#{deliverTime},
+			#{finishTime},
+			#{tradeSn},
+			#{source},
+			#{logisticsId},
+			#{logisticsName},
+			#{logisticsNumber},
+			#{isCodconfim},
+			#{codconfirmId},
+			#{codconfirmName},
+			#{codconfirmTime},
+			#{codconfirmRemark},
+			#{codconfirmState},
+			#{taxNum},
+			now(),
+			now(),
+			#{evaluateState}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.yixiekeji.entity.order.Orders">
+        update `orders` 
+    	<set>
+			<if test="isShow != null">`is_show`= #{isShow},</if>
+			<if test="relationOrderSn != null">`relation_order_sn`= #{relationOrderSn},</if>
+			<if test="orderState != null">`order_state`= #{orderState},</if>
+			<if test="payTime != null">`pay_time`= #{payTime},</if>
+			<if test="paymentStatus != null">`payment_status`= #{paymentStatus},</if>
+			<if test="invoiceStatus != null">`invoice_status`= #{invoiceStatus},</if>
+			<if test="invoiceTitle != null">`invoice_title`= #{invoiceTitle},</if>
+			<if test="invoiceType != null">`invoice_type`= #{invoiceType},</if>
+			<if test="moneyProduct != null">`money_product`= #{moneyProduct},</if>
+			<if test="moneyLogistics != null">`money_logistics`= #{moneyLogistics},</if>
+			<if test="moneyOrder != null">`money_order`= #{moneyOrder},</if>
+			<if test="moneyPaidBalance != null">`money_paid_balance`= #{moneyPaidBalance},</if>
+			<if test="moneyPaidReality != null">`money_paid_reality`= #{moneyPaidReality},</if>
+			<if test="moneyCoupon != null">`money_coupon`= #{moneyCoupon},</if>
+			<if test="moneyActFull != null">`money_act_full`= #{moneyActFull},</if>
+			<if test="moneyDiscount != null">`money_discount`= #{moneyDiscount},</if>
+			<if test="moneyBack != null">`money_back`= #{moneyBack},</if>
+			<if test="moneyIntegral != null">`money_integral`= #{moneyIntegral},</if>
+			<if test="integral != null">`integral`= #{integral},</if>
+			<if test="couponUserId != null">`coupon_user_id`= #{couponUserId},</if>
+			<if test="actFullId != null">`act_full_id`= #{actFullId},</if>
+			<if test="activityId != null">`activity_id`= #{activityId},</if>
+			<if test="ip != null">`ip`= #{ip},</if>
+			<if test="paymentName != null">`payment_name`= #{paymentName},</if>
+			<if test="paymentCode != null">`payment_code`= #{paymentCode},</if>
+			<if test="name != null">`name`= #{name},</if>
+			<if test="provinceId != null">`province_id`= #{provinceId},</if>
+			<if test="cityId != null">`city_id`= #{cityId},</if>
+			<if test="areaId != null">`area_id`= #{areaId},</if>
+			<if test="addressAll != null">`address_all`= #{addressAll},</if>
+			<if test="addressInfo != null">`address_info`= #{addressInfo},</if>
+			<if test="mobile != null">`mobile`= #{mobile},</if>
+			<if test="email != null">`email`= #{email},</if>
+			<if test="zipCode != null">`zip_code`= #{zipCode},</if>
+			<if test="remark != null">`remark`= #{remark},</if>
+			<if test="deliverTime != null">`deliver_time`= #{deliverTime},</if>
+			<if test="finishTime != null">`finish_time`= #{finishTime},</if>
+			<if test="tradeSn != null">`trade_sn`= #{tradeSn},</if>
+			<if test="source != null">`source`= #{source},</if>
+			<if test="logisticsId != null">`logistics_id`= #{logisticsId},</if>
+			<if test="logisticsName != null">`logistics_name`= #{logisticsName},</if>
+			<if test="logisticsNumber != null">`logistics_number`= #{logisticsNumber},</if>
+			<if test="isCodconfim != null">`is_codconfim`= #{isCodconfim},</if>
+			<if test="codconfirmId != null">`codconfirm_id`= #{codconfirmId},</if>
+			<if test="codconfirmName != null">`codconfirm_name`= #{codconfirmName},</if>
+			<if test="codconfirmTime != null">`codconfirm_time`= #{codconfirmTime},</if>
+			<if test="codconfirmRemark != null">`codconfirm_remark`= #{codconfirmRemark},</if>
+			<if test="codconfirmState != null">`codconfirm_state`= #{codconfirmState},</if>
+			<if test="evaluateState != null">`evaluate_state`= #{evaluateState},</if>
+			<if test="taxNum != null">`tax_num`= #{taxNum},</if>
+			`update_time`= now()
+	    </set>
+        where `id` = #{id}
+	</update>
+
+	<update id="updateMoneyBack">
+        update `orders` 
+        set
+        	money_back = money_back + #{moneyBack},
+        	`update_time`= now()
+        where `id` = #{id}
+	</update>
+
+	<select id="list" resultType="com.yixiekeji.entity.order.Orders">
+		select * from `orders` t1
+		order by id
+	</select>
+	
+	<update id="updateCloseActBidding">
+		update `orders` 
+        set
+        	`order_state` = 6,
+        	`update_time`= now()
+        where `activity_id` = #{actBiddingId}
+        and `order_state` = 1
+        and `order_type` = 4
+	</update>
+	
+	<select id="getActBiddingState5" parameterType="java.lang.Integer" resultType="com.yixiekeji.entity.order.Orders">
+		select * from `orders`
+		where `order_state` = 5
+		and `activity_id` = #{actBiddingId}
+        and `order_type` = 4
+        and `is_parent` = 0
+	</select>
+
+	<select id="getByOrderPsn" resultMap="OrdersResult">
+		select
+			*
+		from `orders`
+		where `order_psn` = #{orderPsn}
+	</select>
+	
+	<update id="updateEvaluateStateById">
+		update 
+			`orders` 
+		set `evaluate_state` = #{evaluateState} 
+		where `id` = #{id}
+	</update>
+	
+	<select id="getPaidDepositNumber" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select sum(op.`number`) from `orders` o left join `orders_product` op on o.id = op.`orders_id`
+		where o.`order_type` = 4
+		and o.`activity_id` = #{actBiddingId}
+        and o.`order_state` = 5
+        and o.`is_parent` = 0
+	</select>
+	
+	<update id="cancelByPsn">
+        update `orders` 
+        set
+        	`order_state` = 6,
+        	`finish_time` = now(),
+        	`update_time`= now()
+        where `order_psn` = #{orderPsn}
+	</update>
+</mapper>

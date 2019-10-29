@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.sale.SaleMemberReadDao">
+	<resultMap id="SaleMemberResult" type="com.yixiekeji.entity.sale.SaleMember">
+		<result property="id" column="id" />
+		<result property="memberId" column="member_id" />
+		<result property="memberName" column="member_name" />
+		<result property="certificateType" column="certificate_type" />
+		<result property="certificateCode" column="certificate_code" />
+		<result property="bankType" column="bank_type" />
+		<result property="bankCode" column="bank_code" />
+		<result property="bankName" column="bank_name" />
+		<result property="bankAdd" column="bank_add" />
+		<result property="state" column="state" />
+		<result property="isSale" column="is_sale" />
+		<result property="referrerId" column="referrer_id" />
+		<result property="referrerName" column="referrer_name" />
+		<result property="referrerCode" column="referrer_code" />
+		<result property="referrerPid" column="referrer_pid" />
+		<result property="referrerPname" column="referrer_pname" />
+		<result property="referrerPath" column="referrer_path" />
+		<result property="grade" column="grade" />
+		<result property="saleCode" column="sale_code" />
+		<result property="audit" column="audit" />
+		<result property="auditId" column="audit_id" />
+		<result property="auditName" column="audit_name" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+
+		<!--新加字段-->
+		<result property="authType" column="auth_type" />
+		<result property="cardPath" column="card_path" />
+		<result property="disabilityGrade" column="disability_grade" />
+		<result property="disabilityCard" column="disability_card" />
+		<result property="detailDress" column="detail_dress" />
+		<result property="provinceId" column="province_id" />
+		<result property="cityId" column="city_id" />
+		<result property="areaId" column="area_id" />
+		<result property="bindingState" column="binding_state" />
+		<result property="disabilityState" column="disability_state" />
+	</resultMap>
+
+	<select id="get" parameterType="Integer" resultMap="SaleMemberResult">
+		select
+		*
+		from `sale_member`
+		where `id` = #{id}
+	</select>
+
+	<select id="getSaleMemberByMemberId" parameterType="Integer" resultMap="SaleMemberResult">
+		select
+		*
+		from `sale_member`
+		where `member_id` = #{memberId}
+		order by id desc
+		limit 1
+	</select>
+
+	<select id="getSaleMemberBySaleCode" parameterType="java.lang.String" resultMap="SaleMemberResult">
+		select
+		*
+		from `sale_member`
+		where `sale_code` = #{saleCode}
+		order by id desc
+		limit 1
+	</select>
+
+	<select id="getSaleMembersCount" parameterType="java.util.Map" resultType="Integer">
+		select
+		count(*)
+		from `sale_member`
+		<include refid="getCondition"/>
+	</select>
+
+	<select id="getSaleMembers" parameterType="java.util.Map" resultMap="SaleMemberResult">
+		select
+		*
+		from `sale_member`
+		<include refid="getCondition"/>
+		order by `id` desc
+		<if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+	</select>
+
+
+	<!--校验推广码是否存在-->
+	<select id="checkSaleCode" parameterType="java.lang.String" resultMap="SaleMemberResult">
+		select * from sale_member where sale_code = #{saleCode}
+	</select>
+
+	<sql id="getCondition">
+		<where>
+			<if test="queryMap.q_state != null and queryMap.q_state !=''">
+				and `state` = #{queryMap.q_state}
+			</if>
+			<if test="queryMap.q_memberName != null and queryMap.q_memberName !=''">
+				and `member_name` = #{queryMap.q_memberName}
+			</if>
+			<if test="queryMap.q_isSale != null and queryMap.q_isSale !=''">
+				and `is_sale` = #{queryMap.q_isSale}
+			</if>
+
+			<if test="queryMap.q_referrerId != null and queryMap.q_referrerId !=''">
+				and `referrer_id` = #{queryMap.q_referrerId}
+			</if>
+			<if test="queryMap.q_referrerName != null and queryMap.q_referrerName !=''">
+				and `referrer_name` = #{queryMap.q_referrerName}
+			</if>
+			<if test="queryMap.q_referrerPid != null and queryMap.q_referrerPid !=''">
+				and `referrer_pid` = #{queryMap.q_referrerPid}
+			</if>
+		</where>
+	</sql>
+
+	<!--根据id获取残疾人/监护人身份证认证信息-->
+	<select id="getAuthInfoById" resultMap="SaleMemberResult">
+			select * from sale_member where id=#{saleMemberId} and state = #{state}
+	</select>
+
+</mapper>

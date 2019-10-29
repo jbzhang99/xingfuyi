@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.write.order.OrderPayCashLogWriteDao">
+	<resultMap id="OrderPayCashLogResult" type="com.yixiekeji.entity.order.OrderPayCashLog">
+			<result property="id" column="id" />
+			<result property="paySn" column="pay_sn" />
+			<result property="tradeSn" column="trade_sn" />
+			<result property="paymentCode" column="payment_code" />
+			<result property="paymentName" column="payment_name" />
+			<result property="payMoney" column="pay_money" />
+			<result property="payOrderSn" column="pay_order_sn" />
+			<result property="payContent" column="pay_content" />
+			<result property="memberId" column="member_id" />
+			<result property="memberName" column="member_name" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+	
+	<!-- <select id="get" parameterType="Integer" resultMap="OrderPayCashLogResult">
+		select
+		   *
+		from `order_pay_cash_log`
+		where `id` = #{id}
+	</select> -->
+	
+	<!-- <update id="update" parameterType="com.yixiekeji.entity.order.OrderPayCashLog">
+        update `order_pay_cash_log` 
+    	<set>
+			<if test="id != null">`id`= #{id},</if>
+			<if test="paySn != null">`pay_sn`= #{paySn},</if>
+			<if test="tradeSn != null">`trade_sn`= #{tradeSn},</if>
+			<if test="paymentCode != null">`payment_code`= #{paymentCode},</if>
+			<if test="paymentName != null">`payment_name`= #{paymentName},</if>
+			<if test="payMoney != null">`pay_money`= #{payMoney},</if>
+			<if test="payOrderSn != null">`pay_order_sn`= #{payOrderSn},</if>
+			<if test="payContent != null">`pay_content`= #{payContent},</if>
+			<if test="memberId != null">`member_id`= #{memberId},</if>
+			<if test="memberName != null">`member_name`= #{memberName},</if>
+			<if test="createTime != null">`create_time`= #{createTime}</if>
+	    </set>
+        where `id` = #{id}
+	</update> -->
+	
+	<insert id="insert" parameterType="com.yixiekeji.entity.order.OrderPayCashLog" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into 
+		`order_pay_cash_log`
+		(
+			`pay_sn`,
+			`trade_sn`,
+			`payment_code`,
+			`payment_name`,
+			`pay_money`,
+			`pay_order_sn`,
+			`pay_content`,
+			`member_id`,
+			`member_name`,
+			`create_time`
+		)
+		values
+		(
+			#{paySn},
+			#{tradeSn},
+			#{paymentCode},
+			#{paymentName},
+			#{payMoney},
+			#{payOrderSn},
+			#{payContent},
+			#{memberId},
+			#{memberName},
+			now()
+		)
+	</insert>
+	
+	<!-- <delete id="delete">
+        delete from `order_pay_cash_log` where `id` = #{id}
+	</delete> -->
+	
+</mapper>

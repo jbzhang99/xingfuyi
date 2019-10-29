@@ -1,0 +1,71 @@
+.stores-box{margin-left: auto;margin-right: auto;}
+.stores-box .stores-head{width:100%;max-height:150px;padding-bottom: 0;position: relative;border-top:1px dashed #E4393C;margin-bottom: 10px;}
+.stores-box .col-main{height:120px;background:#F7BDBE;}
+.stores-box .stores-nav{width:100%;background:#c81623;height:30px;}
+.col-main .stores-name{height:120px;display: block;float: left;}
+.col-main .stores-name:hover{text-decoration: none;}
+.stores-name strong{font-family: 微软雅黑;text-decoration: none;font-size: 50px;line-height: 120px;color:#c81623;}
+.stores-name:link {color:#c81623;text-decoration: none;}		/* 未被访问的链接 */
+.stores-name:visited {color:#c81623;text-decoration: none;}	/* 已被访问的链接 *//* 鼠标指针移动到链接上 */
+.stores-nav ul li{float: left;width:87px;text-align: center;line-height: 30px;}
+.stores-nav ul li a{color:#fff;display: block;text-decoration: none;font-family: "微软雅黑"}
+.stores-nav ul li:hover{background:#a40000;}
+.stores-nav ul li.curr{background:#a40000;}
+
+/*==============轮播图*/
+
+/*===============*/
+.stores-list{background: #c81623;margin-top: 10px;}
+.stores-list h2{line-height: 30px;color:#fff;text-align:center;font-family: "微软雅黑";font-size: 30px;padding-top:35px;padding-bottom: 35px;}
+.tuijian-ul li{
+	float: left;
+	width: 236px;
+	height: 340px;
+	margin: 0 15px 15px 0;
+	overflow: hidden;
+	display: inline;
+	background: #fff;
+}
+.tuijian-ul{margin-right: -20px;overflow: hidden;margin-bottom: 10px;}
+.tuijian-ul .Sitem{width: 236px;height: 336px;}
+.tuijian-ul .Spic{margin: 6px;}
+.tuijian-ul .Spic a{width: 224px;height: 224px;display: block; overflow:hidden;}
+.tuijian-ul .Spic img{width:224px;}
+.tuijian-ul  .Sinfo{overflow: hidden;position: relative;padding: 8px 10px 0;height: 80px;}
+.tuijian-ul .SDesc{height: 40px; line-height: 1.6; overflow: hidden;}
+.tuijian-ul .SDesc a{color: #808080;}
+.tuijian-ul .SDprice{color: #f43043;height: 29px;padding-top: 15px;font-size: 22px;white-space: nowrap}
+.tuijian-ul .SDprice span{float: left; display: inline;overflow: hidden;}
+.jRmb{font-family:verdana }
+.tuijian-ul .SDprice .jdNum{margin-left: 5px;}
+.stores-list li:hover{
+	/*box-shadow: 5px 5px 5px 5px #ddd;*/
+}
+
+/*分类*/
+#CateGorys{
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 210px;
+	height: 30px;
+}
+#CateGorys .total-shop b{
+	top: 5px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	background-position: -65px 0;
+}
+.total-shop a{
+	display: block;
+	height: 30px;
+	padding-left: 20px;
+	line-height: 30px;
+	color: #fff;
+	font-weight:700;
+}
+.stores-nav  .all-sort{position: relative;}
+.all-sort ul{position: absolute;left:211px;}
+#CateGorys .yy-sortall{z-index:1024;top:30px;}
+.total-shop a{font-weight: 400;}

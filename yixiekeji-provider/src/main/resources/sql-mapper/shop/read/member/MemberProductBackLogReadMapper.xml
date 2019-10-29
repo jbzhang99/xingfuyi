@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.member.MemberProductBackLogReadDao">
+	<resultMap id="MemberProductBackLogResult" type="com.yixiekeji.entity.member.MemberProductBackLog">
+			<result property="id" column="id" />
+			<result property="operatingId" column="operating_id" />
+			<result property="operatingName" column="operating_name" />
+			<result property="memberProductBackId" column="member_product_back_id" />
+			<result property="content" column="content" />
+			<result property="createTime" column="create_time" />
+	</resultMap>
+	
+	<select id="get" parameterType="Integer" resultMap="MemberProductBackLogResult">
+		select
+		   *
+		from `member_product_back_log`
+		where `id` = #{id}
+	</select>
+	<select id="getMemberProductBackLogByMemberProductBackId" parameterType="Integer" resultMap="MemberProductBackLogResult">
+		select
+		   *
+		from `member_product_back_log`
+		where `member_product_back_id` = #{memberProductBackLogId}
+	</select>
+	
+</mapper>

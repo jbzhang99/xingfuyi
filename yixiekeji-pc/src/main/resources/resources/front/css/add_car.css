@@ -1,0 +1,189 @@
+.bg-main {
+    background: #F5F5F5;
+    height: 145px;
+    margin-bottom: 20px;
+}
+.success-box,
+.adc-m {
+    font-family: "Microsoft YaHei";
+}
+.success-box .success-top {
+    position: relative;
+    padding-left: 35px;
+    margin: 20px 0;
+}
+.success-box .success-top .succ-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    background: url(../img/addtocart-icons.png) 0 0 no-repeat;
+}
+.success-box .success-top h3 {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 400; 
+    color: #71b247;
+}
+.success-box .p-img {
+    float: left;
+    width: 60px;
+    margin-right: 10px;
+}
+.success-box .p-info {
+    float: left;
+    width: 350px;
+    margin: 0;
+}
+.success-box .p-name {
+    width: 100%;
+    line-height: 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.success-box .p-name a {
+    color: #333;
+}
+.success-box a:hover {
+    text-decoration: none;
+}
+.success-box .p-extra {
+    display: block;
+    color: #aaa;
+}
+.success-box .success-btns {
+    float: right;
+    width: 272px;
+    font-size: 0;
+    overflow: hidden;
+}
+.success-box .btn-addtocart, .success-box .btn-tobback  {
+    display: inline-block;
+    height: 34px;
+    line-height: 36px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.success-box .btn-tobback {
+    padding: 0 30px;
+    margin-right: 10px;
+    background: #fff;
+    color: #e4393c;
+    border: 1px solid #fff;
+}
+
+.success-box .btn-addtocart {
+    position: relative;
+    width: 166px;
+    padding-left: 30px;
+    background: #e4393c;
+    border: 1px solid #e4393c;
+    color: #fff;
+}
+.success-box .btn-addtocart b {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    width: 10px;
+    height: 20px;
+    overflow: hidden;
+    background: url(../img/addtocart-icons.png) -20px -81px no-repeat;
+}
+.success-box .success-btns-pdt {
+    padding-top: 80px;
+}
+.success-box .success-btns-pdt a.btn-tobback:hover {
+    border-color: #e4393c;
+} 
+
+.adc-m .adc-mt {
+    display: inline-block;
+    display: block;
+    height: 40px;
+}
+.adc-m .adc-mt h3 {
+    float: left;
+    font-size: 14px;
+    color: #333;
+    font-weight: 800;
+    padding: 0;
+    margin: 0;
+    line-height: 40px;
+}
+.adc-m .s-panel-main {
+    /*height: 622px;*/
+}
+.adc-goods-list li a:hover {
+  text-decoration: none;
+  color: #666;
+}
+.adc-goods-list li a.btn-append:hover {
+  color: #fff;
+  background: #e4393c;
+  border-color: #e4393c;
+}
+.adc-goods-list li a.btn-append:hover b {
+   background-position: -28px -57px;
+}
+.adc-goods-list li {
+    padding: 20px;
+    width: 242px;
+    border: 1px dotted #cacaca;
+    overflow: hidden;
+    float: left;
+}
+.adc-goods-list .p-img {
+    width: 160px;
+    margin: 0 auto;
+}
+.adc-goods-list .p-name {
+    height: 36px;
+    line-height: 18px;
+    margin: 5px 0;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.adc-goods-list .p-price strong {
+    font-size: 14px;
+    color: #d91f20;
+    font-family: verdana;
+    font-weight: 400;
+}
+.adc-goods-list .p-btn {
+    margin: 15px 0 0;
+    text-align: center;
+}
+.adc-goods-list .btn-append {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 57px;
+    border: 1px solid #999;
+    color: #666;
+    text-align: center;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.adc-goods-list .btn-append b {
+    background-image: url(../img/addtocart-icons.png);
+}
+.adc-goods-list .btn-append b {
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    margin-right: 5px;
+    background-position: 0 -57px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    vertical-align: middle;
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yixiekeji.dao.shop.read.product.ProductBrandReadDao">
+	<resultMap id="ProductBrandResult" type="com.yixiekeji.entity.product.ProductBrand">
+			<result property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="nameFirst" column="name_first" />
+			<result property="image" column="image" />
+			<result property="lookMethod" column="look_method" />
+			<result property="top" column="top" />
+			<result property="sort" column="sort" />
+			<result property="createId" column="create_id" />
+			<result property="createTime" column="create_time" />
+			<result property="updateId" column="update_id" />
+			<result property="updateTime" column="update_time" />
+			<result property="state" column="state" />
+	</resultMap>
+	<select id="getById" parameterType="Integer" resultMap="ProductBrandResult">
+		select
+		   *
+		from `product_brand`
+		where `id` = #{id}
+	</select>
+	
+	<select id="getProductBrandByName" parameterType="String" resultMap="ProductBrandResult">
+		select
+		   *
+		from `product_brand`
+		where `name` = #{name}
+		and state = 2
+		limit 1
+	</select>
+	
+	<select id="getByIds" parameterType="String" resultMap="ProductBrandResult">
+		select
+		   *
+		from `product_brand`
+		where `id` in (${ids})
+		order by sort desc
+	</select>
+	
+	<select id="getHotBrands" resultMap="ProductBrandResult">
+		select
+		   *
+		from `product_brand`
+		where `state` = 2
+		and `top` = 1
+	</select>
+	
+	<select id="getAllEffectBrands" resultMap="ProductBrandResult">
+		select
+		   *
+		from `product_brand`
+		where `state` = 2
+	</select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(1) from product_brand t1
+        <include refid="whereConditions"/>
+    </select>
+
+    <select id="page" resultType="com.yixiekeji.entity.product.ProductBrand">
+        select * from product_brand t1
+        <include refid="whereConditions"/>
+        order by sort desc,id desc
+        <if test="size != null and size &gt; 0">limit #{start},#{size}</if>
+    </select>
+
+    <sql id="whereConditions">
+        <where>
+            state != 4
+            <if test="param1.q_name != null and param1.q_name != ''">
+                and t1.`name` like CONCAT('%',#{param1.q_name},'%')
+            </if>
+            <if test="param1.q_top != null and param1.q_top != ''">
+                and t1.`top` = #{param1.q_top}
+            </if>
+            <if test="param1.q_state != null and param1.q_state != ''">
+                and t1.`state` = #{param1.q_state}
+            </if>
+            <if test="param1.startTime != null and param1.startTime != ''">
+				and `create_time` &gt;= #{param1.startTime}
+			</if>
+			<if test="param1.endTime != null and param1.endTime != ''">
+				and `create_time` &lt;= #{param1.endTime}
+			</if>
+        </where>
+    </sql>
+    
+    <select id="listNoPage" resultType="com.yixiekeji.entity.product.ProductBrand">
+        select * from product_brand t1
+        where `state` = 2
+    </select>
+	
+</mapper>
