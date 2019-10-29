@@ -116,41 +116,20 @@ $(function(){
 				jAlert("手机号不能为空");
 				return;
 			}
-//			if (name.length < 6) {
-//				jAlert("用户名至少6位");
-//				return;
-//			}
 			var setPassword = $("#setPassword").val();
 			if (setPassword.trim() == ''||setPassword.trim()== null) {
 				jAlert("密码不能为空");
 				return;
 			}
-//			if (setPassword.length < 6) {
-//				jAlert("密码至少6位");
-//				return;
-//			}
-//			var verifyCode = $("#verifyCode").val();
-//			if (verifyCode == '') {
-//				jAlert("请输入验证码");
-//				return;
-//			}
-//			if (verifyCode.length != 4) {
-//				jAlert("请输入4位验证码");
-//				return;
-//			}
-
 			if ($("#formLogin").valid()) {
 				$(".ahover").attr("disabled", "disabled");
-//				var params = $('#formLogin').serialize();
 				$.ajax({
 					type : "POST",
-//					url : domain + "/dologin.html",
                     url: domain +"/dologin",
 					dataType : "json",
 					async : false,
-//					data : params,
-                    data :{mobile:name, password:setPassword}
-					success : function(data) {
+                    data :{mobile:name, password:setPassword},
+                    success:function(data){
 						if (data.success) {
                             window.location = domain;
 						} else {
