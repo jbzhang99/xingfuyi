@@ -1,6 +1,7 @@
 package com.yixiekeji.web.controller.order;
 
 import com.yixiekeji.core.*;
+import com.yixiekeji.entity.cart.Cart;
 import com.yixiekeji.entity.coupon.CouponUser;
 import com.yixiekeji.entity.integral.ActIntegral;
 import com.yixiekeji.entity.member.Member;
@@ -101,7 +102,7 @@ public class OrdersController extends BaseController {
      */
     @RequestMapping(value = "order/info.html", method = { RequestMethod.GET })
     public String toOrderSubmit(HttpServletRequest request, ModelMap map,
-                                HttpServletResponse response,Integer id) {
+                                HttpServletResponse response,Integer id,Integer count) {
         Member member = WebFrontSession.getLoginedUser(request, response);
         // 收货地址信息
         ServiceResult<List<MemberAddress>> serviceResult = memberAddressService
@@ -169,6 +170,12 @@ public class OrdersController extends BaseController {
             if (config.getIntegralScale() > 0) {
                 map.put("config", config);
             }
+        }
+        if(id != null && id != 0){
+            ServiceResult<Cart> cartById = cartService.getCartById(id);
+            map.put("cartCounts",cartById.getResult().getCount());
+            map.put("cartId",id);
+            cartService.updateCartNumber(id,count);
         }
         return "front/order/shoporder";
     }

@@ -24,6 +24,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,45 +59,69 @@ public class CartController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/addtocart.html", method = { RequestMethod.POST })
-    public @ResponseBody HttpJsonResult<Integer> addCart(HttpServletRequest request,
-                                                         HttpServletResponse response,
-                                                         Map<String, Object> dataMap, Cart cart) {
+    public @ResponseBody HttpJsonResult<Cart> addCart(HttpServletRequest request,
+                                                      HttpServletResponse response,
+                                                      Map<String, Object> dataMap,
+                                                      Integer productId, Integer productGoodId,
+                                                      Integer count,Integer type) {
 
         Member member = WebFrontSession.getLoginedUser(request,response);
-        cart.setMemberId(member.getId());
+        Integer cartCount = cartService.getCartByPid(productId);
+        ServiceResult<Product> productResult = productFrontService.getProductById(productId);
+        if (!productResult.getSuccess() || productResult.getResult() == null) {
+            return new HttpJsonResult<Cart>("添加购物车失败，获取商品信息失败！");
+        }
+        Product product = productResult.getResult();
 
         ProductGoods goods = null;
-        if (cart.getProductGoodsId() == null || cart.getProductGoodsId().intValue() == 0) {
+        if (productGoodId == null || productGoodId == 0) {
             // 如果是货品是空，则可能是从列表页等不能选择货品的页面请求过来，随机取一个货品放入购物车
             ServiceResult<List<ProductGoods>> goodsResult = productGoodsService
-                .getGoodSByProductId(cart.getProductId());
+                    .getGoodSByProductId(productId);
             if (goodsResult.getSuccess() && goodsResult.getResult() != null
-                && goodsResult.getResult().size() > 0) {
+                    && goodsResult.getResult().size() > 0) {
                 goods = goodsResult.getResult().get(0);
             }
         } else {
             ServiceResult<ProductGoods> goodResult = productGoodsService
-                .getProductGoodsById(cart.getProductGoodsId());
+                    .getProductGoodsById(productGoodId);
             goods = goodResult.getResult();
         }
         if (goods == null) {
-            return new HttpJsonResult<Integer>("添加购物车失败，获取货品信息失败！");
+            return new HttpJsonResult<Cart>("添加购物车失败，获取货品信息失败！");
         }
 
+        Cart cart = new Cart();
+        cart.setMemberId(member.getId());
         cart.setProductGoodsId(goods.getId());
         cart.setSpecId(goods.getNormAttrId());
         cart.setSpecInfo(goods.getNormName());
+        cart.setCount(count);
+        cart.setProductId(product.getId());
+        cart.setSellerId(product.getSellerId());
+        cart.setType(type);
 
         ServiceResult<Integer> serviceResult = cartService.addToCart(cart);
-        HttpJsonResult<Integer> jsonResult = new HttpJsonResult<Integer>();
+        HttpJsonResult<Cart> jsonResult = new HttpJsonResult<Cart>();
         if (!serviceResult.getSuccess()) {
             if (ConstantsEJS.SERVICE_RESULT_CODE_SYSERROR.equals(serviceResult.getCode())) {
                 throw new RuntimeException(serviceResult.getMessage());
             } else {
-                jsonResult = new HttpJsonResult<Integer>(serviceResult.getMessage());
+                jsonResult = new HttpJsonResult<Cart>(serviceResult.getMessage());
             }
         }
-        jsonResult.setData(serviceResult.getResult());
+        Cart cart1 = new Cart();
+        if(type == 1){
+            cart1.setCount(cartCount);
+            cart1.setId(serviceResult.getResult());
+            Map map = new HashMap();
+            map.put("counts",cartCount);
+            map.put("id",serviceResult.getResult());
+            jsonResult.setData(cart1);
+        }else {
+            cart1.setId(serviceResult.getResult());
+            jsonResult.setData(cart1);
+        }
         return jsonResult;
     }
 
@@ -112,9 +137,6 @@ public class CartController extends BaseController {
                            Map<String, Object> dataMap,Integer id) {
 
         Member member = WebFrontSession.getLoginedUser(request,response);
-        if(id != null){
-            cartService.updateStatusById(id);
-        }
         //取购物车信息  产品价格 按照商家来区分
         //查询购物车
         ServiceResult<CartInfoVO> serviceResult = cartService.getCartByMId(member.getId(),

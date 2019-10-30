@@ -77,6 +77,9 @@
 	<input type="hidden" id="invoiceId" name="invoiceId" >
 	<input type="hidden" id="invoiceTaxNumber" name="invoiceTaxNumber" >
 
+	<input type="hidden" id="count" value="${(cartCounts)!0}">
+	<input type="hidden" id="cartId" value="${(cartId)!0}">
+
 	<!-- 记录优惠券使用信息 -->
 	<#if cartInfoVO?? && (cartInfoVO.cartListVOs??) && (cartInfoVO.cartListVOs?size &gt; 0) >
 		<#list cartInfoVO.cartListVOs as cartListVO>
@@ -1185,7 +1188,9 @@
   		
   		//提交订单 
   		function submitOrder(){
-  		    var actionUrl = domain + "/order/ordercommit.html";
+            var counts = $("#count").val();
+            var cartId = $("#cartId").val();
+  		    var actionUrl = domain + "/order/ordercommit.html?counts="+counts+"&cartId="+cartId;
   			var param = "";
 
   			//判断收货地址是否存在

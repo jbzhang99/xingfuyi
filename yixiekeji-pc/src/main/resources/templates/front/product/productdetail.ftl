@@ -1041,13 +1041,13 @@ var normsNum = Number("${(normsNum)!'0'}");
 			if($("#cartForm").valid()){
 				 $.ajax({
 					type : "POST",
-					url :  domain+"/cart/addtocart.html",
+					url :  domain+"/cart/addtocart.html?type=0",
 					data : params,
 					dataType : "json",
 					success : function(data) {
 						if(data.success){
                             //跳转到添加购物车成功页面
-							window.location.href = domain + "/cart/add.html?id=" + data.data;
+							window.location.href = domain + "/cart/add.html?id=" + data.data.id;
 						}else{
 							jAlert(data.message);
 						}
@@ -1086,13 +1086,16 @@ var normsNum = Number("${(normsNum)!'0'}");
             if($("#cartForm").valid()){
                 $.ajax({
                     type : "POST",
-                    url :  domain+"/cart/addtocart.html",
+                    url :  domain+"/cart/addtocart.html?type=1",
                     data : params,
                     dataType : "json",
                     success : function(data) {
                         if(data.success){
+                            if(data.data.count == null){
+                                data.data.count = 0;
+                            }
                             //跳转到订单页面
-                            window.location.href = domain + "/order/info.html?id="+data.data;
+                            window.location.href=domain+"/order/info.html?id="+data.data.id+"&count="+data.data.count;
                         }else{
                             jAlert(data.message);
                         }
