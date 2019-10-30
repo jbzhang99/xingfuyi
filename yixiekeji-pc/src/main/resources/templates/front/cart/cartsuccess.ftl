@@ -62,7 +62,7 @@
 										<strong><em>￥</em><i>${(product.mallPcPrice)?string("0.00")!}</i></strong>
 									</div>
 									<div class="p-btn">
-										<a href="javascript:void(0);" onclick="addCart('${(product.id)!}','${(product.sellerId)!}')" class="btn-append"><b></b>加入购物车</a>
+										<a href="javascript:void(0);" onclick="addCart('${(product.id)!}','${(product.sellerId)!}','0')" class="btn-append"><b></b>加入购物车</a>
 									</div>
 								</div>
 							</li>
@@ -75,7 +75,7 @@
 	</div>
 		
 <script type="text/javascript">
-	function addCart(productId,sellerId){
+	function addCart(productId,sellerId,type){
 		//未登录不能添加购物车
 		if (!isUserLogin()) {
 			showid('ui-dialog');
@@ -83,12 +83,12 @@
 		}
 		$.ajax({
 			type : "POST",
-			url :  domain+"/cart/addtocart.html",
+			url :  domain+"/cart/addtocart.html?type="+type,
 			data : {productId:productId,sellerId:sellerId},
 			dataType : "json",
 			success : function(data) {
 				if(data.success){
-					window.location.href=domain+"/cart/add.html?id=" + data.data;
+					window.location.href=domain+"/cart/add.html?id=" + data.data.id;
 				}else{
 					jAlert(data.message);
 				}

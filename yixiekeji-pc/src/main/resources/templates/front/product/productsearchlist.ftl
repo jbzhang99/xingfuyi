@@ -80,7 +80,7 @@
 										</div>
 										<div class='shops-details-btn shoping-cart'>
 											<a href='${(domainUrlUtil.urlResources)!}/product/${(producListVO.id)!0}.html'  target="_blank" class='search-btn b-normal btn-light cart-btn fl'>查看详情</a>
-											<a href="javascript:void(0);" onclick="addCart('${(producListVO.id)!''}','${(producListVO.sellerId)!''}','1')" class='search-btn b-normal btn-light cart-btn fr'>加入购物车</a>
+											<a href="javascript:void(0);" onclick="addCart('${(producListVO.id)!''}','${(producListVO.sellerId)!''}','0')" class='search-btn b-normal btn-light cart-btn fr'>加入购物车</a>
 										</div>
 									</div>
 								</li>
@@ -136,7 +136,7 @@ function cateTopAjax() {
                     cateTopHtml += "<a href='${(domainUrlUtil.urlResources)!}/product/" + product.id+ ".html' target='_blank' class='shop-name'>";
                     cateTopHtml += "<em>" + product.name1 + "</em></a><div class='shop-price'><span>特价：</span><strong>";
                     cateTopHtml += "<em class='shop-number'>￥" + product.mallPcPrice + "</em></strong></div><div class='shop-snapped'>";
-                    cateTopHtml += "<a href='javascript:void(0);' onclick=addCart(" + product.id + "," + product.sellerId + ")" + " class='btn btn-default'>立即抢购</a>";
+                    cateTopHtml += "<a href='javascript:void(0);' onclick=addCart(" + product.id + "," + product.sellerId + ","+1+")" + " class='btn btn-default'>立即抢购</a>";
                     cateTopHtml += "</div></li>";
                 })
                 $("#cateTopId").append(cateTopHtml);
@@ -181,7 +181,7 @@ function cateLeftAjax() {
 	/**
 		添加购物车
 	*/
-	function addCart(productId,sellerId){
+	function addCart(productId,sellerId,type){
 		//未登录不能添加购物车
 		if (!isUserLogin()) {
 			showid('ui-dialog');
@@ -189,13 +189,13 @@ function cateLeftAjax() {
 		}
 		$.ajax({
 			type : "POST",
-			url :  domain+"/cart/addtocart.html",
+			url :  domain+"/cart/addtocart.html?type="+type,
 			data : {productId:productId,sellerId:sellerId},
 			dataType : "json",
 			success : function(data) {
 				if(data.success){
 					//跳转到添加购物车成功页面
-					window.open(domain+"/cart/add.html?id=" + data.data);  
+					window.open(domain+"/cart/add.html?id=" + data.data.id);
 				}else{
 					jAlert(data.message);
 				}

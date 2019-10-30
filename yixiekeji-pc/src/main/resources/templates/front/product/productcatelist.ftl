@@ -76,7 +76,7 @@
 												<a href="javascript:void(0)" class="list_good_upnum fr ">+</a>
 												<a href="javascript:void(0)" class="list_good_downnum fr">-</a>
 											</div> -->
-											<a href="javascript:void(0)" onclick="addCart('${(product.id)!''}','${(product.sellerId)!''}')" class="list_good_addcart fl addcar"><span>加入购物车</span></a>
+											<a href="javascript:void(0)" onclick="addCart('${(product.id)!''}','${(product.sellerId)!''}','0')" class="list_good_addcart fl addcar"><span>加入购物车</span></a>
 											<a href="${(domainUrlUtil.urlResources)!}/product/${(product.id)!0}.html" target="_blank" class="list_good_addfav fr myfav_38340">查看详情</a>
 										</div>
 									</div>
@@ -118,7 +118,7 @@ $(function(){
 
 })
 
-	function addCart(productId,sellerId) {
+	function addCart(productId,sellerId,type) {
 		if (!isUserLogin()) {
 			showid('ui-dialog');
 			return;
@@ -126,13 +126,13 @@ $(function(){
 		
 		$.ajax({
 			type : "POST",
-			url :  domain+"/cart/addtocart.html",
+			url :  domain+"/cart/addtocart.html?type="+type,
 			data : {productId:productId,sellerId:sellerId},
 			dataType : "json",
 			success : function(data) {
 				if(data.success){
 					//跳转到添加购物车成功页面
-					window.open(domain+"/cart/add.html?id=" + data.data);  
+					window.open(domain+"/cart/add.html?id=" + data.data.id);
 				}else{
 					jAlert(data.message);
 				}

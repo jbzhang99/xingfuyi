@@ -35,7 +35,7 @@
 									<strong><em>￥</em><i>${(product.mallPcPrice)?string("0.00")!}</i></strong>
 								</div>
 								<div class="p-btn">
-									<a href="javascript:void(0);" onclick="addCart('${(product.id)!}','${(product.sellerId)!}')" class="btn-append"><b></b>加入购物车</a>
+									<a href="javascript:void(0);" onclick="addCart('${(product.id)!}','${(product.sellerId)!}','0')" class="btn-append"><b></b>加入购物车</a>
 								</div>
 							</div>
 						</li>
