@@ -40,7 +40,7 @@
         <version-mybatis>1.3.2</version-mybatis>
         <version-druid>1.1.9</version-druid>
         
-        <shiro-core.version>1.4.0</shiro-core.version>
+        <shiro-core.version>1.4.2</shiro-core.version>
         <shiro-spring.version>1.4.0</shiro-spring.version>
         <shiro-ehcache.version>1.4.0</shiro-ehcache.version>
         <jsp-api.version>2.0</jsp-api.version>
